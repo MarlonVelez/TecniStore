@@ -2,8 +2,6 @@ package com.example.tienda_op_2.api;
 
 import android.content.Context;
 import android.widget.Toast;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -14,81 +12,64 @@ import com.example.tienda_op_2.modelo.Producto;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.List;
 
 //import static com.example.tecnitienda.MainActivity.VARIABLE_GLOBAL;
 
 
 public class servicioApi {
 
+    JSONObject jsonObject;
+    Context context;
+    RecyclerView recyclerView;
+    //RecyclerView listProductos;
+    String endPoint;
+    apiProductos api= new apiProductos();
+
     ProductoAdapter productoAdapter;
     ArrayList<Producto> productos= new ArrayList<>();
-    Context context;
-    RecyclerView listProductos;
 
     public servicioApi() {
 
     }
 
-    public servicioApi(Context context, RecyclerView listProductos) {
+    public servicioApi(Context context, String endPoint) {
         this.context = context;
-        this.listProductos = listProductos;
-
-        datosList();
-        mostrarPriductos(productos);
+        this.endPoint= endPoint;
     }
 
-    public void datosList(){
-        String URL="https://tecnistoreaapi.rj.r.appspot.com/producto";
-        //String URL=VARIABLE_GLOBAL+".ngrok.io/apiTienda/verProducto";
+
+    public void datosList(RecyclerView recyclerView){
+        String URL="https://tecnistoreaapi.rj.r.appspot.com/"+endPoint;
+
         JsonArrayRequest usersJSON= new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
+                /*Swicht para identificar el end point y sacar los datos*/
+
                 try {
-                    parseJSON(response);
+                    switch (endPoint){
+                        case "producto":
+                            apiProductos serviProducto= new apiProductos(context, recyclerView);
+                            serviProducto.parseJSON(response);
+                            break;
+                        case "categoria":
+                            apiCategorias serviCategoria= new apiCategorias(context, recyclerView);
+                            serviCategoria.parseJSON(response);
+                            break;
+                    }
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    //e.printStackTrace();
+                    Toast.makeText(null,e.getMessage(),Toast.LENGTH_LONG).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context,error.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(null,error.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
         Volley.newRequestQueue(context).add(usersJSON);
-    }
-
-    public void parseJSON(JSONArray myJSON) throws JSONException {
-        for (int i =0; i<myJSON.length(); i++){
-
-            JSONObject jsonObject= null;
-
-            //Users user= new Users();
-            Producto producto= new Producto();
-
-            jsonObject= myJSON.getJSONObject(i);
-
-            producto.setNombre(jsonObject.getString("nombre"));
-            producto.setDescripcion(jsonObject.getString("descripcion"));
-            producto.setStock(jsonObject.getInt("stock"));
-            producto.setPrecio("$"+String.valueOf(jsonObject.getDouble("precio")));
-            producto.setFotoUrl(jsonObject.getString("fotoUrl"));
-
-            productos.add(producto);
-
-        }
-        productoAdapter.notifyDataSetChanged();
-    }
-
-    private void mostrarPriductos(List<Producto> DataList) {
-       //RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context, 2);
-        listProductos.setLayoutManager(layoutManager);
-        productoAdapter = new ProductoAdapter(context,DataList);
-        listProductos.setAdapter(productoAdapter);
     }
 
 }

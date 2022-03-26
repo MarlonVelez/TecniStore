@@ -34,7 +34,9 @@ public class Home extends Fragment {
     private String mParam2;
     private CategoryAdapter categoryAdapter;
     private List<Categoria> categoryList;
-    private RecyclerView  list_categorias;
+    private RecyclerView  listaCategorias;
+    private RecyclerView listaProdcutos;
+    private servicioApi api;
     private View view;
 
     public Home() {
@@ -74,29 +76,16 @@ public class Home extends Fragment {
         // Inflate the layout for this fragment
         view= inflater.inflate(R.layout.fragment_home, container, false);
 
-        RecyclerView listaProdcutos= view.findViewById(R.id.listaProductos);
-        servicioApi api= new servicioApi(view.getContext(), listaProdcutos);
+        listaProdcutos= view.findViewById(R.id.listaProductos);
+        listaCategorias= view.findViewById(R.id.itemsCategoria);
 
-        list_categorias= view.findViewById(R.id.itemsCategoria);
+        api= new servicioApi(view.getContext(), "producto");
+        api.datosList(listaProdcutos);
 
-        /*Cargo info de las categorias*/
-        categoryList = new ArrayList<Categoria>();
-        categoryList.add(new Categoria(1, ico_categoria_celular));
-        categoryList.add(new Categoria(2, ic_home_fruits));
-        categoryList.add(new Categoria(3, ic_home_fruits));
-        categoryList.add(new Categoria(4, ic_home_fruits));
-        categoryList.add(new Categoria(5, ic_home_fruits));
-        categoryList.add(new Categoria(6, ic_home_fruits));
+        api= new servicioApi(view.getContext(), "categoria");
+        api.datosList(listaCategorias);
 
-        setCategoryRecycler(categoryList);
 
         return view;
-    }
-
-    private void setCategoryRecycler(List<Categoria> categoryDataList) {
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false);
-        list_categorias.setLayoutManager(layoutManager);
-        categoryAdapter = new CategoryAdapter(view.getContext(),categoryDataList);
-        list_categorias.setAdapter(categoryAdapter);
     }
 }

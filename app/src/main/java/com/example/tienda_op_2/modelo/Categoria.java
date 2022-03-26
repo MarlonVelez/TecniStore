@@ -2,11 +2,16 @@ package com.example.tienda_op_2.modelo;
 
 public class Categoria {
     int id;
-    int imgId;
+    String imgId;
+    String nombre;
 
-    public Categoria(int id, int imgId) {
+    public Categoria(int id, String imgId, String nombre) {
         this.id = id;
         this.imgId = imgId;
+        this.nombre=nombre;
+    }
+
+    public Categoria() {
     }
 
     public int getId() {
@@ -17,11 +22,19 @@ public class Categoria {
         this.id = id;
     }
 
-    public int getImgId() {
+    public String getImgId() {
         return imgId;
     }
 
-    public void setImgId(int imgId) {
+    public void setImgId(String imgId) {
         this.imgId = imgId;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }
