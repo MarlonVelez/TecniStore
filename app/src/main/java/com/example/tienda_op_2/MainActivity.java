@@ -14,9 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import com.example.tienda_op_2.Fragments.Carrito;
-import com.example.tienda_op_2.Fragments.Home;
-import com.example.tienda_op_2.modelo.Categoria;
+import com.example.tienda_op_2.Fragments.HomeFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -34,13 +32,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
 
         //Referencias UI
-
         drawerLayout= findViewById(R.id.contenidoPrincipal);
         navigationView= findViewById(R.id.nav_view_bar);
         toolbar= findViewById(R.id.toolBar);
 
         //Configurar Fragment por defecto (El que aparece al principio)
-        getSupportFragmentManager().beginTransaction().add(R.id.contentFrame, new Home()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.contentFrame, new HomeFragment()).commit();
         setTitle("Home");
 
         //Configuracion de ToolBar
@@ -92,15 +89,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()){
 
             case R.id.nav_home:
-                ft.replace(R.id.contentFrame, new Home()).commit();
+                ft.replace(R.id.contentFrame, new HomeFragment()).commit();
                 break;
-            case R.id.nav_categoria:
-                //ft.replace(R.id.contentFrame, new Categoria()).commit();
-                Intent i = new Intent(MainActivity.this, AllCategoria.class);
-                startActivity(i);
+            case R.id.nav_configUser:
+
                 break;
             case R.id.nav_carrito:
-                ft.replace(R.id.contentFrame, new Carrito()).commit();
+                Intent carritoActi= new Intent(this, CarritoCompras.class);
+                startActivity(carritoActi);
+                finish();
                 break;
 
         }

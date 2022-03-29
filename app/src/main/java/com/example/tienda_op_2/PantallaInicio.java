@@ -3,11 +3,8 @@ package com.example.tienda_op_2;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-
-import com.example.tienda_op_2.Fragments.Home;
 
 public class PantallaInicio extends AppCompatActivity {
 

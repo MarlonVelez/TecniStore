@@ -12,6 +12,9 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.Tienda_op_2">
         <activity
+                android:name=".CarritoCompras"
+                android:exported="true"/>
+        <activity
                 android:name=".SignUp4"
                 android:exported="true"/>
         <activity
@@ -40,9 +43,6 @@
         </activity>
         <activity
                 android:name=".DetalleProducto"
-                android:exported="true"/>
-        <activity
-                android:name=".AllCategoria"
                 android:exported="true"/>
         <activity
                 android:name=".MainActivity"

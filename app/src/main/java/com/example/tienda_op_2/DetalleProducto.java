@@ -1,62 +1,94 @@
 package com.example.tienda_op_2;
 
 import android.content.Intent;
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
+import androidx.appcompat.widget.Toolbar;
+import com.example.tienda_op_2.adapter.CarritoAdapter;
 import com.squareup.picasso.Picasso;
 
 public class DetalleProducto extends AppCompatActivity {
 
+    Toolbar toolbar;
     ImageView img, btn_mas, btn_menos;
-    TextView proName, proPrice, proDesc, proQty, cantidad;
+    TextView nombreProdcuto, precioProdcuto, descripcionProducto, stockProdcuto;
+    EditText cantidad;
+    Button btnAñadirCarrito;
 
-    String name, price, desc, qty;
+    String nombre, precio, descripcion, stock;
     String image;
+
+    CarritoAdapter carritoAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_producto);
+        setTitle("Detalle del Producto");
 
-        btn_mas=findViewById(R.id.btn_plus);
-        btn_menos=findViewById(R.id.btn_less);
-        cantidad=findViewById(R.id.txt_cantidad_compra);
+        btn_mas=findViewById(R.id.btnMasDetPro);
+        btn_menos=findViewById(R.id.btnMenosDetPro);
+        cantidad=findViewById(R.id.txt_cantidadProductoDetPro);
 
+        btnAñadirCarrito=findViewById(R.id.btnAñadirCarrito);
 
+        //Referencias UI
+        toolbar= findViewById(R.id.toolBar);
+
+        //CONFIGURACION DEL TOOL BAR Y FLECHA DE RETORNO AL HOME //////////////////////
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.icon_btn_back_view));
+        Intent home= new Intent(this, MainActivity.class);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //regresar...
+                startActivity(home);
+                finish();
+            }
+        });
+        //////////////////////////////////////////////////////////////////////////////////////////////
+
+        //RECIVO DATOS MANDADOS AL SELECCIONAR UN PRODUCTO EN LA LISTA DEL HOME //////////////////////
         Intent i = getIntent();
 
 
-        name = i.getStringExtra("name");
+        nombre = i.getStringExtra("name");
         image = i.getStringExtra("image");
-        price = i.getStringExtra("price");
-        desc = i.getStringExtra("desc");
-        qty = i.getStringExtra("qty");
+        precio = i.getStringExtra("price");
+        descripcion = i.getStringExtra("desc");
+        stock = i.getStringExtra("qty");
 
-        proName = findViewById(R.id.productName);
-        proDesc = findViewById(R.id.prodDesc);
-        proPrice = findViewById(R.id.prodPrice);
+        nombreProdcuto = findViewById(R.id.productName);
+        descripcionProducto = findViewById(R.id.prodDesc);
+        precioProdcuto = findViewById(R.id.prodPrice);
         img = findViewById(R.id.big_image);
-        //back = findViewById(R.id.back2);
-        proQty = findViewById(R.id.qty);
+        stockProdcuto = findViewById(R.id.qty);
 
-        proName.setText(name);
-        proPrice.setText(price);
-        proDesc.setText(desc);
-        proQty.setText(qty);
+        nombreProdcuto.setText(nombre);
+        precioProdcuto.setText(precio);
+        descripcionProducto.setText(descripcion);
+        stockProdcuto.setText(stock);
 
         Picasso.get()
                 .load(image)
                 .error(R.mipmap.ic_launcher)
                 .into(img);
+        ////////////////////////////////////////////////////////////////////////////////////////////////
 
+        //ACCIONES DE LA BARRA DE CANTIDAD DE PRODUCTO //////////////////////
         btn_mas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!cantidad.getText().equals(qty)) {
+                if (!cantidad.getText().equals(stock)) {
                     sumCantidad();
                 }
             }
@@ -70,6 +102,18 @@ public class DetalleProducto extends AppCompatActivity {
                 }
             }
         });
+        //////////////////////////////////////////////////////////////////////////////////////////////
+
+        //ACCION AL BOTON DE AÑADIR CARRITO //////////////////////
+
+        btnAñadirCarrito.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addCarrito();
+            }
+        });
+
+        //////////////////////////////////////////////////////////////////////////////////////////////
 
     }
 
@@ -83,6 +127,17 @@ public class DetalleProducto extends AppCompatActivity {
         int num= Integer.parseInt(cantidad.getText().toString());
         int resta= num-1;
         cantidad.setText(String.valueOf(resta));
+    }
+
+    private void addCarrito(){
+        Intent carrito= new Intent(this, CarritoCompras.class);
+        carrito.putExtra("nombreProducto", nombreProdcuto.getText().toString());
+        carrito.putExtra("descripcionProducto", descripcionProducto.getText().toString());
+        carrito.putExtra("precioProducto", precioProdcuto.getText().toString());
+        carrito.putExtra("cantidadCompraProducto", cantidad.getText().toString());
+        carrito.putExtra("imagenProducto", image);
+
+        Toast.makeText(this, "Producto añadido al carrito", Toast.LENGTH_LONG).show();
     }
 
 }
