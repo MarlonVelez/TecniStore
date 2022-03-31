@@ -39,7 +39,7 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
 
         holder.nombre.setText(itemList.get(position).getNombreProducto());
         holder.descripcion.setText(itemList.get(position).getDescripcionProducto());
-        holder.precio.setText(String.valueOf(itemList.get(position).getPrecioProducto()));
+        holder.precio.setText("$"+String.valueOf(itemList.get(position).getPrecioProducto()));
         holder.cantidad.setText(String.valueOf(itemList.get(position).getCatidadProducto()));
 
         Picasso.get()

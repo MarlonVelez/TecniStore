@@ -1,4 +1,4 @@
-package com.example.tienda_op_2.Fragments;
+package com.example.tienda_op_2.fragments;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;

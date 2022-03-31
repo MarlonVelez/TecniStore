@@ -1,14 +1,19 @@
 package com.example.tienda_op_2;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.tienda_op_2.adapter.CarritoAdapter;
+import com.example.tienda_op_2.base_temp.SQLiteOpenHelper;
 import com.example.tienda_op_2.modelo.Carrito;
 
 import java.util.ArrayList;
@@ -21,19 +26,19 @@ public class CarritoCompras extends AppCompatActivity{
     CarritoAdapter carritoAdapter;
     ArrayList<Carrito> carritoArrayList= new ArrayList<>();
 
-    String nombre, precio, descripcion, cantidadCompra;
-    String image;
+    TextView txtTotal;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carrito_compras);
-        setTitle("Carrito");
+        setTitle("Mi Carrito");
 
         //Referencias UI
         toolbar= findViewById(R.id.toolBar);
         listaCarrito= findViewById(R.id.listaCarrito);
+        txtTotal= findViewById(R.id.txtTotalCompra);
 
         //Configuracion de ToolBar
         setSupportActionBar(toolbar);
@@ -51,37 +56,58 @@ public class CarritoCompras extends AppCompatActivity{
                 finish();
             }
         });
+        listarProductosCarrito();
 
-        //AQUI RECIVO LOS DATOS ENVIADOS DESDE EL DETALLE DE PRODCUTO AL PRECIONAR EN EL BOTON AÑADIR AL CARRITO///////
-        Intent i = getIntent();
+    }
+    
+    public void listarProductosCarrito(){
+        SQLiteOpenHelper base= new SQLiteOpenHelper(this);
+        SQLiteDatabase open= base.getReadableDatabase();
 
-        nombre = i.getStringExtra("nombreProducto");
-        image = i.getStringExtra("imagenProducto");
-        precio = i.getStringExtra("precioProducto");
-        descripcion = i.getStringExtra("descripcionProducto");
-        cantidadCompra = i.getStringExtra("cantidadCompraProducto");
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        Cursor fila = open.rawQuery("select * from carrito",null );
 
-        //PRUEBA PARA COMPROBAR QUE ESTEN INGRESANDO DATOS NOTA: NO ESTAN INGRESANDO DATOS Y SALTA UN EXEPCION POR ESO //
-        System.out.println("NOMBRE: "+nombre);
-        System.out.println("DESCRIPCION: "+descripcion);
-        System.out.println("PRECIO: "+precio);
-        System.out.println("CANTIDAD: "+cantidadCompra);
-        System.out.println("IMAGEN: "+image);
+        if (fila.moveToFirst()){
+            do{
+                Carrito carrito= new Carrito();
 
-        Carrito carrito= new Carrito();
-        carrito.setNombreProducto(nombre);
-        carrito.setDescripcionProducto(descripcion);
-        carrito.setPrecioProducto(Double.parseDouble(precio));
-        carrito.setCatidadProducto(Integer.parseInt(cantidadCompra));
-        carrito.setImgProducto(image);
+                /*carrito.setId(fila.getInt(0));
+                carrito.setCedula(fila.getString(1));
+                carrito.setNombre(fila.getString(2));
+                carrito.setApellido(fila.getString(3));
+                carrito.setEmail(fila.getString(4));
+                carrito.setTelefono(fila.getString(5));*/
+                
+                carrito.setNombreProducto(fila.getString(1));
+                carrito.setDescripcionProducto(fila.getString(2));
+                carrito.setPrecioProducto(fila.getDouble(3));
+                carrito.setCatidadProducto(fila.getInt(4));
+                carrito.setImgProducto(fila.getString(5));
 
-        carritoArrayList.add(carrito);
+                carritoArrayList.add(carrito);
+            }while (fila.moveToNext());
+            base.close();
+            open.close();
 
-        for (int j = 0; j < carritoArrayList.size(); j++) {
-            Toast.makeText(this, "NOMBRE: "+carritoArrayList.get(j).getNombreProducto(), Toast.LENGTH_LONG).show();
+            mostrarCarrito(carritoArrayList);
+            carritoAdapter.notifyDataSetChanged();
+
+        }else{
+            Toast.makeText(this, "No hay datos registrados", Toast.LENGTH_LONG).show();
         }
+    }
 
+    public void mostrarCarrito(ArrayList<Carrito> array) {
+        double total=0;
+
+        for (int i = 0; i < array.size(); i++) {
+
+            total=(array.get(i).getCatidadProducto()*array.get(i).getPrecioProducto())+total;
+        }
+        txtTotal.setText("$"+total);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        listaCarrito.setLayoutManager(layoutManager);
+        carritoAdapter = new CarritoAdapter(this,array);
+        listaCarrito.setAdapter(carritoAdapter);
     }
 
 }

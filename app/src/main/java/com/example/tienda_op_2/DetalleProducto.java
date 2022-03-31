@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import androidx.appcompat.widget.Toolbar;
 import com.example.tienda_op_2.adapter.CarritoAdapter;
+import com.example.tienda_op_2.base_temp.SQLiteOpenHelper;
 import com.squareup.picasso.Picasso;
 
 public class DetalleProducto extends AppCompatActivity {
@@ -130,14 +131,26 @@ public class DetalleProducto extends AppCompatActivity {
     }
 
     private void addCarrito(){
-        Intent carrito= new Intent(this, CarritoCompras.class);
-        carrito.putExtra("nombreProducto", nombreProdcuto.getText().toString());
-        carrito.putExtra("descripcionProducto", descripcionProducto.getText().toString());
-        carrito.putExtra("precioProducto", precioProdcuto.getText().toString());
-        carrito.putExtra("cantidadCompraProducto", cantidad.getText().toString());
-        carrito.putExtra("imagenProducto", image);
 
-        Toast.makeText(this, "Producto añadido al carrito", Toast.LENGTH_LONG).show();
+        SQLiteOpenHelper base= new SQLiteOpenHelper(this);
+
+        //String id= idCliente.getText().toString();
+        String nombreP= nombreProdcuto.getText().toString();
+        String descP= descripcionProducto.getText().toString();
+        String precioP= precioProdcuto.getText().toString().substring(1,precioProdcuto.getText().toString().length());
+        String cantidadCompra= cantidad.getText().toString();
+        String imagen= image;
+
+        boolean bandera= base.agregarCarrito(nombreP, descP, precioP, cantidadCompra, imagen);
+
+        if (bandera!=false){
+
+            Toast.makeText(this, "Prodcuto añadido al carrito", Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(this, "El cliente con este id ya se encuentra registrado", Toast.LENGTH_LONG).show();
+
+        }
+
     }
 
 }
