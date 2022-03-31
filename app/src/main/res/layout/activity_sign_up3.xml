@@ -49,9 +49,11 @@
                 android:layout_height="wrap_content" android:hint="@string/hint_txt_cedula">
 
             <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/transparent" tools:ignore="TouchTargetSizeCheck"/>
+                android:id="@+id/txt_cedula_usuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                tools:ignore="TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
@@ -66,10 +68,12 @@
                 android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:ignore="TouchTargetSizeCheck" android:hint="@string/hint_txt_direccion"
-                    android:backgroundTint="@android:color/transparent"/>
+                android:id="@+id/txt_domicilio_usuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                android:hint="@string/hint_txt_direccion"
+                tools:ignore="TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.cardview.widget.CardView>
     <Button

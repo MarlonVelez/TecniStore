@@ -50,10 +50,12 @@
                 android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hint_txt_nombre" tools:ignore="TouchTargetSizeCheck"
-                    android:backgroundTint="@android:color/transparent"/>
+                android:id="@+id/txt_nombre_usuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                android:hint="@string/hint_txt_nombre"
+                tools:ignore="TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
@@ -68,10 +70,12 @@
                 android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hint_txt_apellido" tools:ignore="TouchTargetSizeCheck"
-                    android:backgroundTint="@android:color/transparent"/>
+                android:id="@+id/txt_apellido_usuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                android:hint="@string/hint_txt_apellido"
+                tools:ignore="TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.cardview.widget.CardView>
     <ImageView
