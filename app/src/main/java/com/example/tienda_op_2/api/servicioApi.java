@@ -12,6 +12,7 @@ import com.example.tienda_op_2.modelo.Producto;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 //import static com.example.tecnitienda.MainActivity.VARIABLE_GLOBAL;
@@ -21,13 +22,15 @@ public class servicioApi {
 
     JSONObject jsonObject;
     Context context;
-    RecyclerView recyclerView;
+    //RecyclerView recyclerView;
     //RecyclerView listProductos;
     String endPoint;
-    apiProductos api= new apiProductos();
+
+    int id_categoria;
+    apiProductos api = new apiProductos();
 
     ProductoAdapter productoAdapter;
-    ArrayList<Producto> productos= new ArrayList<>();
+    ArrayList<Producto> productos = new ArrayList<>();
 
     public servicioApi() {
 
@@ -35,41 +38,70 @@ public class servicioApi {
 
     public servicioApi(Context context, String endPoint) {
         this.context = context;
-        this.endPoint= endPoint;
+        this.endPoint = endPoint;
     }
 
+    public servicioApi(Context context) {
+        this.context = context;
+    }
 
-    public void datosList(RecyclerView recyclerView){
-        String URL="https://tecnistoreaapi.rj.r.appspot.com/"+endPoint;
+    public void datosList(RecyclerView recyclerView) {
+        String URL = "https://tecnistoreaapi.rj.r.appspot.com/" + endPoint;
 
-        JsonArrayRequest usersJSON= new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
+        JsonArrayRequest usersJSON = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 /*Swicht para identificar el end point y sacar los datos*/
 
                 try {
-                    switch (endPoint){
+                    switch (endPoint) {
                         case "producto":
-                            apiProductos serviProducto= new apiProductos(context, recyclerView);
+                            apiProductos serviProducto = new apiProductos(context, recyclerView);
                             serviProducto.parseJSON(response);
                             break;
                         case "categoria":
-                            apiCategorias serviCategoria= new apiCategorias(context, recyclerView);
+                            apiCategorias serviCategoria = new apiCategorias(context, recyclerView);
                             serviCategoria.parseJSON(response);
                             break;
                     }
                 } catch (JSONException e) {
                     //e.printStackTrace();
-                    Toast.makeText(null,e.getMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(null, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context,error.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(context, error.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
         Volley.newRequestQueue(context).add(usersJSON);
     }
+
+    public void listarCategorias(RecyclerView recyclerView, int id) {
+
+        String URL = "https://tecnistoreaapi.rj.r.appspot.com/producto/categoria/" +id;
+
+        JsonArrayRequest usersJSON = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+                try {
+                    apiProductos serviProducto = new apiProductos(context, recyclerView);
+                    serviProducto.parseJSON(response);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(null, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        Volley.newRequestQueue(context).add(usersJSON);
+    }
+
 
 }

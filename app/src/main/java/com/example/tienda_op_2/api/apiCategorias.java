@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.tienda_op_2.adapter.CategoryAdapter;
 import com.example.tienda_op_2.modelo.Categoria;
+import com.example.tienda_op_2.modelo.Producto;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,7 +16,7 @@ import java.util.List;
 public class apiCategorias{
 
     CategoryAdapter categoriaAdapter;
-    ArrayList<Categoria> categorias= new ArrayList<>();
+    static ArrayList<Categoria> categorias= new ArrayList<>();
     Context context;
     RecyclerView listCategorias;
 
@@ -46,6 +47,7 @@ public class apiCategorias{
         mostrarCategorias(categorias);
         categoriaAdapter.notifyDataSetChanged();
     }
+
 
     public void mostrarCategorias(List<Categoria> categoryDataList) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
