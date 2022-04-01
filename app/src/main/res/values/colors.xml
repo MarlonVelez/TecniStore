@@ -20,6 +20,10 @@
     <color name="azul_claro">#2A77FF</color>
     <color name="azul_marino">#284363</color>
     <color name="blaco_arena">#E7E7E7</color>
+    <color name="rojo_eliminar">#E51D25</color>
+    <color name="verde_comprar">#B8E369</color>
+    <color name="verde_comprar_title">#5A8B02</color>
+    <color name="rojo_opaco">#F7979B</color>
 
 
 </resources>

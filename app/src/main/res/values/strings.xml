@@ -38,6 +38,10 @@
     <string name="login_txt_username">Usuario</string>
     <string name="login_txt_password">Contraseña</string>
     <string name="login_txt_password_repi">Confirmar Contraseña</string>
+    <string name="title_listaCarrito">Mi Carrito</string>
+    <string name="btn_comprar">Comprar Ahora</string>
+    <string name="btn_cancelarCarrito">Cancelar Carrito</string>
+
 
 
 </resources>
