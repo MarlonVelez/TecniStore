@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,7 +18,7 @@ public class SignUp1 extends AppCompatActivity {
     private ImageView backView;
     private Button btnSiguiente;
 
-    private TextInputEditText txt_nombreU, txt_apellidoU;
+    private EditText txt_nombreU, txt_apellidoU;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

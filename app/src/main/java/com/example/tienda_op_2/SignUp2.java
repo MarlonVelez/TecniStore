@@ -3,6 +3,7 @@ package com.example.tienda_op_2;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,7 +17,7 @@ public class SignUp2 extends AppCompatActivity {
     private ImageView backView;
     private Button btnSiguiente;
     public static String[] listaCliente2 = new String[2];
-    private TextInputEditText txt_telefonoU, txt_emailU;
+    private EditText txt_telefonoU, txt_emailU;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

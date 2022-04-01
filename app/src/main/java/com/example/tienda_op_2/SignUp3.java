@@ -3,6 +3,7 @@ package com.example.tienda_op_2;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,7 +22,7 @@ public class SignUp3 extends AppCompatActivity {
     //public static String[] listaClientes3 = new String[2];
 
     private String nombre_usuario, apellido_usuario, telefono_usuario;
-    private TextInputEditText txt_cedulaU, txt_domiciolioU;
+    private EditText txt_cedulaU, txt_domiciolioU;
     private ImageView backView;
     private Button btnSiguiente;
 
