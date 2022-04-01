@@ -34,7 +34,8 @@ public class SignUp3 extends AppCompatActivity {
         backView= findViewById(R.id.btnBackView);
         txt_cedulaU=findViewById(R.id.txt_cedula_usuario);
         txt_domiciolioU=findViewById(R.id.txt_domicilio_usuario);
-        
+
+
         backView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,6 +65,7 @@ public class SignUp3 extends AppCompatActivity {
     private void postDatosVolley(String cedula, String direccion){
         //URL de la API para cargar la informacion
         String url="https://tecnistoreaapi.rj.r.appspot.com:443/usuario";
+
 
 
         StringRequest request = new StringRequest(Request.Method.POST,url, new com.android.volley.Response.Listener<String>(){

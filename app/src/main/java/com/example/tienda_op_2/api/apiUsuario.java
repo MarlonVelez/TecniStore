@@ -51,16 +51,21 @@ public class apiUsuario {
         }){
             @Nullable
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String,String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 for (int i = 0; i < usuario.size(); i++) {
                     params.put("usuario", usuario.get(i).getUsuario() );
+                    System.out.println("usuario = " + usuario.get(i).getUsuario());
                     params.put("clave", usuario.get(i).getClave());
-                    //params.put("idUsuario", String.valueOf(usuario.get(i).getIdUsuario()));
+                    System.out.println("clave = " + usuario.get(i).getClave());
+                    //params.put("idUsuario", String.valueOf(9));
                     params.put("tipoUsuario", "cliente");
+                    System.out.println("tipo = " + "cliente");
                     //params.put("idCliente", String.valueOf(usuario.get(i).getIdCliente()));
                 }
                 return params;
+
+
 
             }
         };

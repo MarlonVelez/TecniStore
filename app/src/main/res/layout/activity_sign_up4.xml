@@ -51,6 +51,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:id="@+id/txt_usuarioRregistro"
                 android:background="@android:color/transparent"
                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -72,7 +73,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/txt_contraseña_usuario"
+                android:id="@+id/txt_contraseñaRegistro"
                 android:backgroundTint="@android:color/transparent"
                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -93,7 +94,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="298dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/txt_confirmar_contraseña_usuario"
+                android:id="@+id/txt_confirmarRegistro"
                 android:backgroundTint="@android:color/transparent"
                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>

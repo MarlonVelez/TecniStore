@@ -37,9 +37,9 @@ public class SignUp4 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up4);
 
-        txt_usu=findViewById(R.id.txt_usuario);
-        txt_contra=findViewById(R.id.txt_contraseña_usuario);
-        txt_confir_contra=findViewById(R.id.txt_confirmar_contraseña_usuario);
+        txt_usu=findViewById(R.id.txt_usuarioRregistro);
+        txt_contra=findViewById(R.id.txt_contraseñaRegistro);
+        txt_confir_contra=findViewById(R.id.txt_confirmarRegistro);
         backView= findViewById(R.id.btnBackView);
         backView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,17 +70,15 @@ public class SignUp4 extends AppCompatActivity {
                     apiUsuario serviUsuario = new apiUsuario(SignUp4.this);
 
                     boolean bandera = serviUsuario.postDatosVolley2(datosUsuario);
-                        if(bandera!=false){
+                    if(bandera!=false){
                             Intent home= new Intent(SignUp4.this, MainActivity.class);
                             startActivity(home);
                             finish();
-                        }else{
-                            Toast.makeText(SignUp4.this, "El usuario no se pudo registrar", Toast.LENGTH_SHORT).show();
-                        }
+                    }else{
+                        Toast.makeText(SignUp4.this, "El usuario no se pudo registrar", Toast.LENGTH_SHORT).show();
+                    }
 
                 }
-
-
             }
         });
     }
