@@ -114,7 +114,7 @@ public class CarritoCompras extends AppCompatActivity{
 
         /*FALTA QUE DESPUES DE ELIMINAR SE REFRESQUE LA LISTA AUTOMATICAMENTE*/
 
-        /*¿COMO PUEDO HACER REFERENCIA A UN ELEMENTE FURA DEL METODO ONCREATE O DESDE OTRA CLASE SIN QUE ME SAlGA LA EXEPCION
+        /*¿COMO PUEDO HACER REFERENCIA A UN ELEMENTE FURA DEL METODO ONCREATE O DESDE OTRA CLASE SIN QUE ME SAlGA LA SIGUIENTE EXEPCION
         * Attempt to invoke virtual method 'java.io.File android.content.Context.getDatabasePath(java.lang.String)' on a null object referenc*/
     }
     
