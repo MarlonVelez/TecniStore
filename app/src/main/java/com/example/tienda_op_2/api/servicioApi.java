@@ -60,7 +60,7 @@ public class servicioApi {
                     }
                 } catch (JSONException e) {
                     //e.printStackTrace();
-                    Toast.makeText(null,e.getMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(context,e.getMessage(),Toast.LENGTH_LONG).show();
                 }
             }
         }, new Response.ErrorListener() {

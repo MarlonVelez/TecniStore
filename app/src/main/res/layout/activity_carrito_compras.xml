@@ -10,11 +10,12 @@
         tools:context=".CarritoCompras">
 
     <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="386dp"
-            android:layout_height="561dp"
+            android:layout_width="400dp"
+            android:layout_height="581dp"
             android:id="@+id/listaCarrito"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toTopOf="@+id/cardView">
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toTopOf="@+id/cardView"
+            app:layout_constraintVertical_bias="0.509" app:layout_constraintEnd_toEndOf="parent">
     </androidx.recyclerview.widget.RecyclerView>
     <LinearLayout
             android:layout_width="419dp"
@@ -35,11 +36,47 @@
             app:cardElevation="500dp" app:cardBackgroundColor="@color/blaco_arena"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.0" app:layout_constraintBottom_toBottomOf="parent"
-            android:id="@+id/cardView">
+            android:id="@+id/cardView">>
         <LinearLayout
                 android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_width="416dp"
+                android:layout_height="82dp" android:background="@color/blanco_azulado"
+                android:layout_marginTop="37dp" android:id="@+id/linearLayout4">
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="200dp"
+                    android:layout_height="82dp" android:id="@+id/linearLayout"
+                    android:elevation="10dp" android:background="@android:color/transparent"
+                    android:layout_marginStart="2dp">
+                <Button
+                        android:text="Cancelar"
+                        android:layout_width="206dp"
+                        android:layout_height="84dp" android:id="@+id/btnCancelarCarrito"
+                        android:backgroundTint="@color/blanco_azulado" android:textColor="@color/azul_brillante"
+                        android:drawableLeft="@drawable/icon_cancelar_carrito" android:textSize="16sp"
+                        android:layout_marginTop="1dp" android:elevation="0dp" android:layout_weight="1"
+                        style="@style/Widget.AppCompat.Button.Borderless.Colored" android:textStyle="bold"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="207dp"
+                    android:layout_height="82dp"
+                    android:background="@color/azul_brillante" android:layout_marginStart="8dp">
+                <Button
+                        android:text="Comprar"
+                        android:layout_width="227dp"
+                        android:layout_height="82dp" android:id="@+id/btnCompraAhoraCarrito"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/azul_brillante" android:drawableLeft="@drawable/icon_get_cash_"
+                        android:textAlignment="center" android:textSize="16sp"
+                        android:textColor="@color/blaco_arena" android:layout_marginTop="1dp"
+                        style="@style/Widget.AppCompat.Button.Borderless.Colored" android:textStyle="bold"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="413dp"
+                android:layout_height="41dp">
             <TextView
                     android:text="TOTAL"
                     android:layout_width="wrap_content"
@@ -47,26 +84,11 @@
                     android:textColor="@color/azul_brillante" android:textSize="16sp" android:textStyle="bold"
                     android:layout_marginStart="10dp" android:layout_marginTop="5dp"/>
             <TextView
-                    android:text="$2544"
+                    android:text="$0"
                     android:layout_width="118dp"
                     android:layout_height="wrap_content" android:id="@+id/txtTotalCompra"
                     android:textColor="@color/azul_marino" android:textSize="19sp" android:textStyle="bold"
                     android:textAlignment="viewEnd" android:layout_marginStart="220dp" android:layout_marginTop="5dp"/>
-        </LinearLayout>
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="88dp" android:layout_marginTop="40dp">
-            <Button
-                    android:text="@string/btn_comprar"
-                    android:layout_width="50dp"
-                    android:layout_height="89dp" android:id="@+id/button" android:layout_weight="1"
-                    android:backgroundTint="@color/verde_comprar" android:textColor="@color/verde_comprar_title"/>
-            <Button
-                    android:text="@string/btn_cancelarCarrito"
-                    android:layout_width="50dp"
-                    android:layout_height="89dp" android:id="@+id/button2" android:layout_weight="1"
-                    android:backgroundTint="@color/rojo_opaco" android:textColor="@color/rojo_eliminar"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

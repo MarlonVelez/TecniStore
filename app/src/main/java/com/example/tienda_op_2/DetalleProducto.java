@@ -140,8 +140,9 @@ public class DetalleProducto extends AppCompatActivity {
         String precioP= precioProdcuto.getText().toString().substring(1,precioProdcuto.getText().toString().length());
         String cantidadCompra= cantidad.getText().toString();
         String imagen= image;
+        int stock= Integer.parseInt(stockProdcuto.getText().toString());
 
-        boolean bandera= base.agregarCarrito(nombreP, descP, precioP, cantidadCompra, imagen);
+        boolean bandera= base.agregarCarrito(nombreP, descP, precioP, cantidadCompra, imagen, stock);
 
         if (bandera!=false){
 

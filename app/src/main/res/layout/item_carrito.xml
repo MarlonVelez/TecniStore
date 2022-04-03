@@ -3,11 +3,12 @@
                                                    xmlns:app="http://schemas.android.com/apk/res-auto"
                                                    xmlns:tools="http://schemas.android.com/tools"
                                                    android:layout_width="match_parent"
-                                                   android:layout_height="275dp">
+                                                   android:layout_height="320dp"
+                                                   tools:context=".CarritoCompras">
 
     <androidx.cardview.widget.CardView
-            android:layout_width="393dp"
-            android:layout_height="271dp"
+            android:layout_width="392dp"
+            android:layout_height="319dp"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="1.0" app:layout_constraintVertical_bias="0.003"
@@ -17,12 +18,17 @@
                 android:layout_width="135dp"
                 android:layout_height="58dp" android:id="@+id/btn_quitarCarrito" app:iconTint="@null"
                 style="@null" android:backgroundTint="@color/rojo_eliminar"
-                app:icon="@drawable/icon_eliminar_carrito3" android:textColor="@color/blaco_arena"
-                android:layout_marginStart="250dp" android:layout_marginTop="200dp"/>
+                android:textColor="@color/blaco_arena"
+                android:layout_marginStart="250dp" android:layout_marginTop="242dp"/>
+        <CheckBox android:id="@+id/checkbox_verificar"
+                  android:layout_width="48dp"
+                  android:layout_height="wrap_content"
+                  android:layout_marginStart="10dp"
+                  android:layout_marginTop="5dp"/>
         <androidx.cardview.widget.CardView
                 android:layout_width="160dp"
                 android:layout_height="44dp" app:cardCornerRadius="20dp" android:layout_marginStart="10dp"
-                android:layout_marginTop="205dp" app:cardElevation="5dp">
+                android:layout_marginTop="250dp" app:cardElevation="5dp">
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="112dp"
@@ -32,12 +38,11 @@
                         android:layout_width="82dp"
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName"
-                        android:text="00000"
                         android:ems="10"
                         android:id="@+id/txt_cantidadProductoCarrito" android:layout_marginStart="15dp"
                         tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck"
                         android:textAlignment="center" android:background="@null"
-                        android:layout_marginTop="9dp"/>
+                        android:layout_marginTop="9dp" android:text="1"/>
             </LinearLayout>
             <LinearLayout
                     android:orientation="horizontal"
@@ -57,12 +62,12 @@
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="185dp">
+                android:layout_height="185dp" android:layout_marginTop="40dp">
             <ImageView
                     android:layout_width="120dp"
                     android:layout_height="150dp" app:srcCompat="@drawable/ic_launcher_foreground"
                     android:id="@+id/imagenProductoCarrito" android:layout_marginStart="5dp"
-                    android:layout_marginTop="15dp"/>
+                    android:layout_marginTop="30dp"/>
             <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="262dp"

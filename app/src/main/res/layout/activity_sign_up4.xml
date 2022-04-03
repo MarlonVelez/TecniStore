@@ -16,9 +16,6 @@
             android:background="@color/azul_brillante" android:backgroundTint="@color/azul_brillante"
             app:cardCornerRadius="5dp" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
-        <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
         <TextView
                 android:text="Sign Up"
                 android:layout_width="wrap_content"
@@ -35,7 +32,8 @@
         <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" app:srcCompat="@drawable/icon_btn_back_view"
-                android:id="@+id/btnBackView" android:layout_margin="15dp"/>
+                android:id="@+id/btnBackView" android:layout_margin="15dp" android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"/>
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
             android:layout_width="298dp"

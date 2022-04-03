@@ -5,7 +5,7 @@ public class Carrito {
     private String nombreProducto;
     private String descripcionProducto;
     private double precioProducto;
-    private int catidadProducto;
+    private int catidadProducto, stock;
     private String imgProducto;
 
     public Carrito(String nombreProducto, String descripcionProducto, double precioProducto, int catidadProducto, String imgProducto) {
@@ -17,6 +17,14 @@ public class Carrito {
     }
 
     public Carrito() {
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
     public String getNombreProducto() {

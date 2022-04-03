@@ -33,7 +33,7 @@
                     android:id="@+id/big_image"
                     android:layout_width="316dp"
                     android:layout_height="274dp"
-                    app:srcCompat="@drawable/ico_categoria_celular"
+                    app:srcCompat="@drawable/icon_shopping_car"
                     android:layout_marginTop="16dp" android:layout_marginStart="33dp" android:layout_marginEnd="0dp"/>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
