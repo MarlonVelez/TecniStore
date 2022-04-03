@@ -93,7 +93,7 @@ public class CarritoCompras extends AppCompatActivity{
                                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        //EN ESTE CASO NO ES NECESARIO HACER NADA xD
+                                        //EN ESTE CASO NO ES NECESARIO HACER NADA
                                     }
                                 }).show();
                     }
