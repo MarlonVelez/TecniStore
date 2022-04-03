@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import com.example.tienda_op_2.base_temp.SQLiteOpenHelper;
+import com.example.tienda_op_2.carga_de_datos.CargarUsuario;
 
 public class SplashScream extends AppCompatActivity {
 
@@ -17,6 +19,7 @@ public class SplashScream extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash_scream);
+        SQLiteOpenHelper bd= new SQLiteOpenHelper(this);
 
         Animation animation1= AnimationUtils.loadAnimation(this,R.anim.desplazamiento_arriba);
         Animation animation2= AnimationUtils.loadAnimation(this,R.anim.desplazamiento_abajo);
@@ -33,11 +36,19 @@ public class SplashScream extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent vista_login= new Intent(SplashScream.this, PantallaInicio.class);
-                startActivity(vista_login);
-                finish();
+                CargarUsuario usu= new CargarUsuario(SplashScream.this);
+                String bandera= usu.listarProductosCarrito();
+                if (bandera.equalsIgnoreCase("por registrar")) {
+                    Intent vist_home= new Intent(SplashScream.this, MainActivity.class);
+                    startActivity(vist_home);
+                    finish();
+                }else{
+                    Intent vista_login= new Intent(SplashScream.this, PantallaInicio.class);
+                    startActivity(vista_login);
+                    finish();
+                }
             }
-        },4000);
+        },2000);
 
 
     }

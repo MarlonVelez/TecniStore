@@ -64,8 +64,9 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
         holder.btn_mas_carrito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*Se obtiene el valor dentro de la barra de cantidad*/
                int total= Integer.parseInt( holder.cantidad.getText().toString());
-
+                /*Se valida que el total que se obtenga de la barra de cantidad no sea mayor al stock*/
                 if (total<itemList.get(position).getStock()) {
                     total= total+1;
                     holder.cantidad.setText(String.valueOf(total));
@@ -78,7 +79,10 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
         holder.btn_menos_carrito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*Se obtiene el valor dentro de la barra de cantidad*/
                 int total= Integer.parseInt(holder.cantidad.getText().toString());
+                /*Se valida que el total que se obtenga de la barra de cantidad no sea cero
+                * ya que obviamente no se puede comprar cero articulos*/
                 if (total!=0){
                     total= total-1;
                     holder.cantidad.setText(String.valueOf(total));
@@ -91,6 +95,8 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
         holder.eliminarCarrito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*Este metodo solo es para poder obtener el nombre del producto
+                * del item en el que le dimos eliminar*/
                 CarritoCompras carritoCompras= new CarritoCompras();
                 carritoCompras.refrescar(view, holder.nombre.getText().toString());
             }
