@@ -10,6 +10,7 @@ import com.example.tienda_op_2.R;
 import com.example.tienda_op_2.adapter.CategoryAdapter;
 import com.example.tienda_op_2.api.servicioApi;
 import com.example.tienda_op_2.modelo.Categoria;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -32,8 +33,9 @@ public class HomeFragment extends Fragment {
     private List<Categoria> categoryList;
     private RecyclerView  listaCategorias;
     private RecyclerView listaProdcutos;
-    private servicioApi api;
+    private  servicioApi api;
     private View view;
+    private int idCategoria;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -48,6 +50,7 @@ public class HomeFragment extends Fragment {
      * @return A new instance of fragment Home.
      */
     // TODO: Rename and change types and number of parameters
+    @NotNull
     public static HomeFragment newInstance(String param1, String param2) {
         HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
@@ -67,7 +70,7 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view= inflater.inflate(R.layout.fragment_home, container, false);
@@ -75,13 +78,22 @@ public class HomeFragment extends Fragment {
         listaProdcutos= view.findViewById(R.id.listaProductos);
         listaCategorias= view.findViewById(R.id.itemsCategoria);
 
+
+
         api= new servicioApi(getContext(), "producto");
         api.datosList(listaProdcutos);
 
         api= new servicioApi(getContext(), "categoria");
         api.datosList(listaCategorias);
 
-
         return view;
+    }
+
+    public void onCreate(int id) {
+        // Inflate the layout for this fragment
+
+        api= new servicioApi(getContext());
+        api.listarCategorias(listaProdcutos,id);
+
     }
 }

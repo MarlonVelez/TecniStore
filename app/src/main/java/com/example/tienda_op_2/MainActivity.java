@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+
     private ActionBarDrawerToggle setDrawerToggle() {
         return new ActionBarDrawerToggle(this,
                 drawerLayout,
