@@ -60,7 +60,7 @@
                             android:layout_width="82dp"
                             android:layout_height="wrap_content"
                             android:inputType="text|number"
-                            android:text="00000"
+                            android:text="1"
                             android:ems="10"
                             android:id="@+id/txt_cantidadProductoDetPro" android:layout_marginStart="15dp"
                             tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck"

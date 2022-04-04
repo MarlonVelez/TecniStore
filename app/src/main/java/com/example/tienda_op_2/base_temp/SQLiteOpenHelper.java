@@ -30,12 +30,15 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
             "imagenProducto text)";
 
     private static String TABLA_USUARIO= "create table usuario (" +
-            "id int primary key, " +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
             "nombreUsuario text, " +
             "tipoUsuario text, " +
-            "clave text, ";
+            "clave text, " +
+            "estado text)"; //ESTADOS: REGISTRADO / POR REGISTAR
 
-
+    private static String TABLA_ITEMS= "create table item (" +
+            "id int primary key, " +
+            "nombreLayout text)";
 
     public SQLiteOpenHelper(@Nullable Context context) {
         super(context, NOMBRE_BD, null, VERSION_BD);
@@ -46,6 +49,8 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase base) {
 
         base.execSQL(TABLA_CARRITO);
+        base.execSQL(TABLA_USUARIO);
+        base.execSQL(TABLA_ITEMS);
 
     }
 
@@ -54,6 +59,8 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         //sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+TABLA_CARRITO);
         sqLiteDatabase.execSQL(TABLA_CARRITO);
+        sqLiteDatabase.execSQL(TABLA_USUARIO);
+        sqLiteDatabase.execSQL(TABLA_ITEMS);
     }
 
     public boolean agregarCarrito(/*int id,*/ String nombre, String descripcion, String precio, String cantidad, String img, int stock){
@@ -93,4 +100,44 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
         bd.close();
 
     }
+
+
+    ///// TABLA USUARIO ///////
+
+    public boolean agregarUsuario(String nombreUsu, String tipoUsu, String claveUsu, String estado){
+        SQLiteDatabase bd= getWritableDatabase();
+
+        if (bd!=null){
+            try{
+                //bd.execSQL("INSERT INTO carrito VALUES('"+id+"','"+cedula+"','"+nombre+"','"+apellido+"','"+telefono+"','"+email+"')");
+                bd.execSQL("INSERT INTO usuario VALUES("+null+",'"+nombreUsu+"','"+tipoUsu+"','"+claveUsu+"','"+estado+"')");
+                bd.close();
+                return true;
+            }catch (SQLiteConstraintException e){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+    ///// TABLA ITEMS ///////
+    public boolean agregarItem(int idItem, String nombreLayout){
+        SQLiteDatabase bd= getWritableDatabase();
+
+        if (bd!=null){
+            try{
+                bd.execSQL("INSERT INTO item VALUES("+idItem+",'"+nombreLayout+"')");
+                bd.close();
+                return true;
+            }catch (SQLiteConstraintException e){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
 }

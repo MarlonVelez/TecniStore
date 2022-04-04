@@ -3,6 +3,7 @@ package com.example.tienda_op_2;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -36,7 +37,6 @@ public class CarritoCompras extends AppCompatActivity{
         btnComprarCarrito= findViewById(R.id.btnCompraAhoraCarrito);
         btnCancelarCarrito= findViewById(R.id.btnCancelarCarrito);
 
-
         //Configuracion de ToolBar
         setSupportActionBar(toolbar);
 
@@ -57,7 +57,8 @@ public class CarritoCompras extends AppCompatActivity{
         btnComprarCarrito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent pago= new Intent(CarritoCompras.this, VentanaPago.class);
+                startActivity(pago);
             }
         });
 
@@ -105,20 +106,17 @@ public class CarritoCompras extends AppCompatActivity{
         CargaProductos datosProductos= new CargaProductos(this, listaCarrito, txtTotal);
         datosProductos.listarProductosCarrito(null);
     }
-    
+
+
     public void refrescar(View view, String nombre){
         SQLiteOpenHelper base = new SQLiteOpenHelper(view.getContext());
         base.eliminarCarrito(nombre);
-        CargaProductos datosProductos= new CargaProductos(this, listaCarrito, txtTotal);
-        datosProductos.listarProductosCarrito(null);
+        /*CargaProductos datosProductos= new CargaProductos(this, listaCarrito, myTextView);
+        datosProductos.listarProductosCarrito(null);*/
 
         /*FALTA QUE DESPUES DE ELIMINAR SE REFRESQUE LA LISTA AUTOMATICAMENTE*/
 
-        /*¿COMO PUEDO HACER REFERENCIA A UN ELEMENTE FURA DEL METODO ONCREATE O DESDE OTRA CLASE SIN QUE ME SAlGA LA EXEPCION
+        /*¿COMO PUEDO HACER REFERENCIA A UN ELEMENTO FUERA DEL METODO ONCREATE O DESDE OTRA CLASE SIN QUE ME SAlGA LA SIGUIENTE EXEPCION
         * Attempt to invoke virtual method 'java.io.File android.content.Context.getDatabasePath(java.lang.String)' on a null object referenc*/
     }
-    
-
-
-
 }
