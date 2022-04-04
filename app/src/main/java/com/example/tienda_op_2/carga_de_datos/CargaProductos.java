@@ -11,6 +11,7 @@ import com.example.tienda_op_2.CarritoCompras;
 import com.example.tienda_op_2.adapter.CarritoAdapter;
 import com.example.tienda_op_2.base_temp.SQLiteOpenHelper;
 import com.example.tienda_op_2.modelo.Carrito;
+import com.example.tienda_op_2.modelo.ItemLayout;
 
 import java.util.ArrayList;
 
@@ -68,6 +69,8 @@ public class CargaProductos {
             Toast.makeText(context, "No hay datos registrados", Toast.LENGTH_LONG).show();
         }
     }
+
+
 
     public void mostrarCarrito(ArrayList<Carrito> array) {
         double total=0;

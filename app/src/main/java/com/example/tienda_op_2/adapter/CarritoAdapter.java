@@ -121,16 +121,40 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
 
         public CarritoViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
+            //GUARDAR ITEMS
+            SQLiteOpenHelper base= new SQLiteOpenHelper(itemView.getContext());
+
             nombre= itemView.findViewById(R.id.txt_nombreProduc_carrito);
+            //base.agregarItem(R.id.txt_nombreProduc_carrito, "itemCarrito");
+
             descripcion= itemView.findViewById(R.id.txt_descProduc_carrito);
+            //base.agregarItem(R.id.txt_descProduc_carrito, "itemCarrito");
+
             precio= itemView.findViewById(R.id.txt_precioProduc_carrito);
+            //base.agregarItem(R.id.txt_precioProduc_carrito, "itemCarrito");
+
             cantidad= itemView.findViewById(R.id.txt_cantidadProductoCarrito);
+            //base.agregarItem(R.id.txt_cantidadProductoCarrito, "itemCarrito");
+
             imgProductoCarrito= itemView.findViewById(R.id.imagenProductoCarrito);
+            //base.agregarItem(R.id.imagenProductoCarrito, "itemCarrito");
+
             checkBox= itemView.findViewById(R.id.checkbox_verificar);
+            base.agregarItem(R.id.checkbox_verificar, "itemCarrito");
+
             btn_mas_carrito= itemView.findViewById(R.id.btn_mas_carrito);
+            //base.agregarItem(R.id.btn_mas_carrito, "itemCarrito");
+
             btn_menos_carrito= itemView.findViewById(R.id.btn_menos_carrito);
+            //base.agregarItem(R.id.btn_menos_carrito, "itemCarrito");
+
             eliminarCarrito= itemView.findViewById(R.id.btn_quitarCarrito);
+            base.agregarItem(R.id.btn_quitarCarrito, "itemCarrito");
+
             listaCart= itemView.findViewById(R.id.listaCarrito);
+            //base.agregarItem(R.id.listaCarrito, "itemCarrito");
+
+
         }
     }
 

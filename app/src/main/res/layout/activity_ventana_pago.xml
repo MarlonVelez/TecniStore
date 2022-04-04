@@ -7,4 +7,27 @@
         android:layout_height="match_parent"
         tools:context=".VentanaPago">
 
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" android:id="@+id/linearLayout2" app:layout_constraintTop_toTopOf="parent">
+        <include
+                layout="@layout/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+        />
+        <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="SpeakableTextPresentCheck"
+        />
+        <androidx.viewpager.widget.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="393dp"
+                android:layout_height="680dp"
+                app:layout_constraintHeight_percent=".7"
+                tools:ignore="SpeakableTextPresentCheck"/>
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

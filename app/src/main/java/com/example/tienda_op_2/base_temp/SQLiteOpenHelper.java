@@ -36,6 +36,10 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
             "clave text, " +
             "estado text)"; //ESTADOS: REGISTRADO / POR REGISTAR
 
+    private static String TABLA_ITEMS= "create table item (" +
+            "id int primary key, " +
+            "nombreLayout text)";
+
     public SQLiteOpenHelper(@Nullable Context context) {
         super(context, NOMBRE_BD, null, VERSION_BD);
 
@@ -46,7 +50,7 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
 
         base.execSQL(TABLA_CARRITO);
         base.execSQL(TABLA_USUARIO);
-        System.out.println("ENTRA!!! ENTRA!!! ENTRA!!! ENTRA!!! ENTRA!!! ENTRA!!! ENTRA!!! ");
+        base.execSQL(TABLA_ITEMS);
 
     }
 
@@ -56,6 +60,7 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
         //sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+TABLA_CARRITO);
         sqLiteDatabase.execSQL(TABLA_CARRITO);
         sqLiteDatabase.execSQL(TABLA_USUARIO);
+        sqLiteDatabase.execSQL(TABLA_ITEMS);
     }
 
     public boolean agregarCarrito(/*int id,*/ String nombre, String descripcion, String precio, String cantidad, String img, int stock){
@@ -116,4 +121,23 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
             return false;
         }
     }
+
+    ///// TABLA ITEMS ///////
+    public boolean agregarItem(int idItem, String nombreLayout){
+        SQLiteDatabase bd= getWritableDatabase();
+
+        if (bd!=null){
+            try{
+                bd.execSQL("INSERT INTO item VALUES("+idItem+",'"+nombreLayout+"')");
+                bd.close();
+                return true;
+            }catch (SQLiteConstraintException e){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
 }
