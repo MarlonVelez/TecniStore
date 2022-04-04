@@ -64,8 +64,9 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
         holder.btn_mas_carrito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*Se obtiene el valor dentro de la barra de cantidad*/
                int total= Integer.parseInt( holder.cantidad.getText().toString());
-
+                /*Se valida que el total que se obtenga de la barra de cantidad no sea mayor al stock*/
                 if (total<itemList.get(position).getStock()) {
                     total= total+1;
                     holder.cantidad.setText(String.valueOf(total));
@@ -78,7 +79,10 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
         holder.btn_menos_carrito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*Se obtiene el valor dentro de la barra de cantidad*/
                 int total= Integer.parseInt(holder.cantidad.getText().toString());
+                /*Se valida que el total que se obtenga de la barra de cantidad no sea cero
+                * ya que obviamente no se puede comprar cero articulos*/
                 if (total!=0){
                     total= total-1;
                     holder.cantidad.setText(String.valueOf(total));
@@ -91,6 +95,8 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
         holder.eliminarCarrito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*Este metodo solo es para poder obtener el nombre del producto
+                * del item en el que le dimos eliminar****/
                 CarritoCompras carritoCompras= new CarritoCompras();
                 carritoCompras.refrescar(view, holder.nombre.getText().toString());
             }
@@ -115,16 +121,40 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
 
         public CarritoViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
+            //GUARDAR ITEMS
+            SQLiteOpenHelper base= new SQLiteOpenHelper(itemView.getContext());
+
             nombre= itemView.findViewById(R.id.txt_nombreProduc_carrito);
+            //base.agregarItem(R.id.txt_nombreProduc_carrito, "itemCarrito");
+
             descripcion= itemView.findViewById(R.id.txt_descProduc_carrito);
+            //base.agregarItem(R.id.txt_descProduc_carrito, "itemCarrito");
+
             precio= itemView.findViewById(R.id.txt_precioProduc_carrito);
+            //base.agregarItem(R.id.txt_precioProduc_carrito, "itemCarrito");
+
             cantidad= itemView.findViewById(R.id.txt_cantidadProductoCarrito);
+            //base.agregarItem(R.id.txt_cantidadProductoCarrito, "itemCarrito");
+
             imgProductoCarrito= itemView.findViewById(R.id.imagenProductoCarrito);
+            //base.agregarItem(R.id.imagenProductoCarrito, "itemCarrito");
+
             checkBox= itemView.findViewById(R.id.checkbox_verificar);
+            base.agregarItem(R.id.checkbox_verificar, "itemCarrito");
+
             btn_mas_carrito= itemView.findViewById(R.id.btn_mas_carrito);
+            //base.agregarItem(R.id.btn_mas_carrito, "itemCarrito");
+
             btn_menos_carrito= itemView.findViewById(R.id.btn_menos_carrito);
+            //base.agregarItem(R.id.btn_menos_carrito, "itemCarrito");
+
             eliminarCarrito= itemView.findViewById(R.id.btn_quitarCarrito);
+            base.agregarItem(R.id.btn_quitarCarrito, "itemCarrito");
+
             listaCart= itemView.findViewById(R.id.listaCarrito);
+            //base.agregarItem(R.id.listaCarrito, "itemCarrito");
+
+
         }
     }
 

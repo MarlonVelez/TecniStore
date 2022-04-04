@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import com.example.tienda_op_2.base_temp.SQLiteOpenHelper;
 
 public class PantallaInicio extends AppCompatActivity {
 
@@ -43,6 +44,7 @@ public class PantallaInicio extends AppCompatActivity {
         saltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*Mensaje de aletar de salto del registro*/
                 new AlertDialog.Builder(PantallaInicio.this)
                         .setTitle("¡Alerta!")
                         .setIcon(R.drawable.icon_warning)
@@ -51,7 +53,13 @@ public class PantallaInicio extends AppCompatActivity {
                         .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
+                                /*Si es que salta del registro se abrira directamente el Home
+                                * y se creara un usuario temporal mutable para evitar volver a mostrar la ventana de
+                                * registro*/
                                 Intent main= new Intent( PantallaInicio.this, MainActivity.class);
+                                /*Se llama al metodo para crear usuario temporal dentro de mi BD SQLite*/
+                                SQLiteOpenHelper bd= new SQLiteOpenHelper(PantallaInicio.this);
+                                bd.agregarUsuario("Invitado", "cliente", "000", "por registrar");
                                 startActivity(main);
                                 finish();
                             }
