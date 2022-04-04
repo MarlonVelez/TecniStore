@@ -96,7 +96,7 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
             @Override
             public void onClick(View view) {
                 /*Este metodo solo es para poder obtener el nombre del producto
-                * del item en el que le dimos eliminar*/
+                * del item en el que le dimos eliminar****/
                 CarritoCompras carritoCompras= new CarritoCompras();
                 carritoCompras.refrescar(view, holder.nombre.getText().toString());
             }
