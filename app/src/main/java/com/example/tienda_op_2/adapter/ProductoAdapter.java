@@ -58,7 +58,6 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
                 i.putExtra("qty",String.valueOf(prodcutoList.get(position).getStock()));
 
                 System.out.println("STOCK¡¡: "+prodcutoList.get(position).getStock());
-
                 context.startActivity(i);
 
             }

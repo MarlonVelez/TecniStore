@@ -11,6 +11,7 @@ import com.example.tienda_op_2.validaciones.Validacion_user;
 
 import java.util.ArrayList;
 
+
 public class LoginAdapter extends  AsyncTask < Object,Void, Boolean> {
 
     private Validacion_user comunicacion;
@@ -60,7 +61,6 @@ public class LoginAdapter extends  AsyncTask < Object,Void, Boolean> {
             this.comunicacion.toggleProgressBar(false);
         }
     }
-
 
 
 }

@@ -22,7 +22,6 @@ public class apiProductos{
     public apiProductos(Context context, RecyclerView listProductos) {
         this.context = context;
         this.listProductos = listProductos;
-
         mostrarPriductos(productos);
     }
 
@@ -31,6 +30,7 @@ public class apiProductos{
     }
 
     public void parseJSON(JSONArray myJSON) throws JSONException {
+
         for (int i =0; i<myJSON.length(); i++){
                 //////
             JSONObject jsonObject= null;
@@ -51,6 +51,7 @@ public class apiProductos{
         mostrarPriductos(productos);
         productoAdapter.notifyDataSetChanged();
     }
+
 
     public void mostrarPriductos(List<Producto> dataList ) {
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context, 2);
