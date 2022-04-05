@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
+import android.widget.*;
 import androidx.fragment.app.Fragment;
 import com.example.tienda_op_2.R;
 
@@ -34,8 +32,19 @@ public class RegistroFragment extends Fragment {
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatosPagoFragment dialogPago= new DatosPagoFragment();
-                dialogPago.show(getActivity().getSupportFragmentManager(), "Metodo Pafgo");
+
+                if (!txtCedula.getText().toString().isEmpty() &&
+                        !txtNombre.getText().toString().isEmpty() &&
+                        !txtApellido.getText().toString().isEmpty() &&
+                        !txtFechaNac.getText().toString().isEmpty() &&
+                        !txtDireccion.getText().toString().isEmpty() &&
+                        !txtTelefono.getText().toString().isEmpty() &&
+                        !txtEmail.getText().toString().isEmpty()){
+                    DatosPagoFragment dialogPago= new DatosPagoFragment();
+                    dialogPago.show(getActivity().getSupportFragmentManager(), "Metodo Pafgo");
+                }else{
+                    Toast.makeText(root.getContext(), "Tienes que llenar todos los campos", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

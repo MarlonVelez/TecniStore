@@ -19,13 +19,13 @@
         <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="38dp"
                 tools:ignore="SpeakableTextPresentCheck"
         />
         <androidx.viewpager.widget.ViewPager
                 android:id="@+id/view_pager"
-                android:layout_width="393dp"
-                android:layout_height="680dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 app:layout_constraintHeight_percent=".7"
                 tools:ignore="SpeakableTextPresentCheck"/>
     </LinearLayout>

@@ -104,7 +104,7 @@ public class CarritoCompras extends AppCompatActivity{
         });
 
         CargaProductos datosProductos= new CargaProductos(this, listaCarrito, txtTotal);
-        datosProductos.listarProductosCarrito(null);
+        datosProductos.listarProductosCarrito(null, "Carrito");
     }
 
 

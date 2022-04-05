@@ -23,8 +23,8 @@ public class PagoFargmentAdapter extends FragmentPagerAdapter {
                 RegistroFragment registroFragment = new RegistroFragment();
                 return registroFragment;
             case 1:
-                DatosPagoFragment datosPagoFragment = new DatosPagoFragment();
-                return datosPagoFragment;
+                ListaComprasFragment listaComprasFragment = new ListaComprasFragment();
+                return listaComprasFragment;
             default:
                 return null;
         }
