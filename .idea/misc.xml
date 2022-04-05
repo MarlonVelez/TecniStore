@@ -3,7 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/drawable/backgraund_button.xml" value="0.33470319634703194" />
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/drawable/brackgraund_txt_register.xml" value="0.33470319634703194" />
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/activity_all_catecoria.xml" value="0.23550724637681159" />
@@ -25,14 +24,11 @@
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/fragment_registro.xml" value="0.325" />
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/header_nav.xml" value="0.23369565217391305" />
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/item_carrito.xml" value="0.33" />
-
-        <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/activity_main.xml" value="0.22916666666666666" />
-        <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/activity_pantalla_inicio.xml" value="0.22916666666666666" />
-        <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/all_category_row_items.xml" value="0.23097826086956522" />
-        <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/fragment_home.xml" value="0.22916666666666666" />
-
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/item_producto.xml" value="0.22916666666666666" />
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/rows_categorias.xml" value="0.75" />
+        <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore2/app/src/main/res/layout/fragment_datos_pago.xml" value="0.32592592592592595" />
+        <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore2/app/src/main/res/layout/fragment_registro.xml" value="0.32592592592592595" />
+        <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore2/app/src/main/res/layout/rows_categorias.xml" value="0.32592592592592595" />
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/tienda_op_2/app/src/main/res/drawable/gradient_color.xml" value="0.3277777777777778" />
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/tienda_op_2/app/src/main/res/drawable/ic_home_fruits.xml" value="0.36875" />
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/tienda_op_2/app/src/main/res/layout-w1240dp/activity_login2.xml" value="0.22657295850066933" />

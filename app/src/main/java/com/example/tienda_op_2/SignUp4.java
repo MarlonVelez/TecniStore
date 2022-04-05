@@ -63,9 +63,9 @@ public class SignUp4 extends AppCompatActivity {
                     ArrayList<Usuario> datosUsuario = new ArrayList<>();
                     Usuario miusuario = new Usuario();
 
-                    miusuario.setIdCliente(1);
+                    /*miusuario.setIdCliente(1);
                     miusuario.setUsuario(txt_usu.getText().toString());
-                    miusuario.setClave(txt_contra.getText().toString());
+                    miusuario.setClave(txt_contra.getText().toString());*/
                     datosUsuario.add(miusuario);
                     apiUsuario serviUsuario = new apiUsuario(SignUp4.this);
 

@@ -3,11 +3,126 @@
                                                    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
                                                    android:layout_height="match_parent">
 
-    <TextView
-            android:text="DATOS PAGO"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView11"
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="356dp"
+            android:layout_height="244dp" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.005"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.8">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="79dp">
+            <TextView
+                    android:text="Número Tarjeta"
+                    android:layout_width="134dp"
+                    android:layout_height="wrap_content" android:id="@+id/textView11" android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"/>
+            <EditText
+                    android:layout_width="330dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/txtNumTarjeta" android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp" android:minHeight="48dp"
+                    android:background="@android:color/transparent" android:hint="0000 0000 0000 0000"
+                    android:drawableRight="@drawable/icon_card_txt_pago"/>
+        </LinearLayout>
+        <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider"
+        />
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="89dp">
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="209dp"
+                    android:layout_height="match_parent">
+                <TextView
+                        android:text="Fecha Vencimiento"
+                        android:layout_width="141dp"
+                        android:layout_height="wrap_content" android:id="@+id/textView12"
+                        android:layout_marginTop="5dp" android:layout_marginStart="10dp"/>
+                <View
+                        android:id="@+id/divider6"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="?android:attr/listDivider"
+                        android:layout_marginTop="3dp"/>
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="208dp"
+                        android:layout_height="match_parent">
+                    <EditText
+                            android:layout_width="81dp"
+                            android:layout_height="wrap_content"
+                            android:inputType="date"
+                            android:ems="10"
+                            android:id="@+id/txtMesVencimiento"
+                            android:minHeight="48dp" android:layout_marginTop="10dp" android:layout_marginStart="10dp"
+                            android:background="@android:color/transparent" android:hint="Mes"/>
+                    <View
+                            android:id="@+id/divider3"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="?android:attr/listDivider"
+                            android:layout_marginStart="2dp"/>
+                    <EditText
+                            android:layout_width="106dp"
+                            android:layout_height="wrap_content"
+                            android:inputType="date"
+                            android:ems="10"
+                            android:id="@+id/txtAñoVencimiento"
+                            android:minHeight="48dp" android:layout_marginTop="10dp" android:layout_marginStart="5dp"
+                            android:background="@android:color/transparent" android:hint="Año"/>
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                    android:id="@+id/divider5"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="?android:attr/listDivider"
+            />
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                <TextView
+                        android:text="CVV"
+                        android:layout_width="154dp"
+                        android:layout_height="wrap_content" android:id="@+id/textView14"
+                        android:layout_marginTop="6dp" android:layout_marginStart="5dp"/>
+                <EditText
+                        android:layout_width="185dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:ems="10"
+                        android:id="@+id/txtCVV" android:layout_marginTop="9dp"
+                        android:minHeight="48dp" android:layout_marginStart="5dp"
+                        android:background="@android:color/transparent" android:hint="000"/>
+            </LinearLayout>
+        </LinearLayout>
+        <View
+                android:id="@+id/divider7"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider"
+        />
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="349dp"
+                android:layout_height="match_parent">
+            <Button
+                    android:text="Aceptar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/button3" android:layout_marginStart="130dp"
+                    android:layout_marginTop="20dp" android:textColor="@color/blaco_arena" android:textStyle="bold"
+                    android:textAllCaps="false"/>
+        </LinearLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

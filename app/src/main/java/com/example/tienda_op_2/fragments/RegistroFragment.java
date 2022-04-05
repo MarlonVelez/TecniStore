@@ -31,13 +31,20 @@ public class RegistroFragment extends Fragment {
 
         btnSiguiente= root.findViewById(R.id.btnSiguientePago);
 
+        btnSiguiente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatosPagoFragment dialogPago= new DatosPagoFragment();
+                dialogPago.show(getActivity().getSupportFragmentManager(), "Metodo Pafgo");
+            }
+        });
+
         txtFechaNac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDatePickerDialog();
             }
         });
-
 
         return root;
 

@@ -49,7 +49,7 @@ public class apiUsuario {
                 //Toast.makeText(SignUp4.this,"Falla al obtener la respuesta = " + error,Toast.LENGTH_SHORT).show();
             }
         }){
-            @Nullable
+            /*@Nullable
             @Override
             protected Map<String,String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
@@ -67,7 +67,7 @@ public class apiUsuario {
 
 
 
-            }
+            }*/
         };
 
         queue.add(request);

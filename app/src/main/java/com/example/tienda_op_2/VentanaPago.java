@@ -25,7 +25,6 @@ public class VentanaPago extends AppCompatActivity {
         vp= findViewById(R.id.view_pager);
 
         tab.addTab(tab.newTab().setText("Datos de Envio"));
-        tab.addTab(tab.newTab().setText("Metodo de Pago"));
         tab.addTab(tab.newTab().setText("Lista de Compras"));
         tab.setTabGravity(TabLayout.GRAVITY_FILL);
 

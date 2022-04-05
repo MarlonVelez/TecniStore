@@ -1,20 +1,67 @@
 package com.example.tienda_op_2.fragments;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import com.example.tienda_op_2.R;
+import org.jetbrains.annotations.NotNull;
 
 
-public class DatosPagoFragment extends Fragment {
+public class DatosPagoFragment extends DialogFragment {
 
-    @Override
+    EditText txtNumTarjeta, txtMesVencimiento, txtAñoVencimiento, txtCVV;
+    Activity actividad;
+
+    /*@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ViewGroup root= (ViewGroup) inflater.inflate(R.layout.fragment_datos_pago, container, false);
-        return root;
+        //ViewGroup root= (ViewGroup) inflater.inflate(R.layout.fragment_datos_pago, container, false);
+        //return root;
+
+    }*/
+
+    private AlertDialog crearDialogo() {
+        AlertDialog.Builder builder= new AlertDialog.Builder(getActivity());
+
+        LayoutInflater inflater= getActivity().getLayoutInflater();
+        View v= inflater.inflate(R.layout.fragment_datos_pago,null);
+        builder.setView(v);
+
+        txtNumTarjeta= v.findViewById(R.id.txtNumTarjeta);
+        txtMesVencimiento= v.findViewById(R.id.txtMesVencimiento);
+        txtAñoVencimiento= v.findViewById(R.id.txtAñoVencimiento);
+        txtCVV= v.findViewById(R.id.txtCVV);
+
+        //eventosBotones();
+        return builder.create();
+
     }
 
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        return crearDialogo();
+    }
+
+    @Override
+    public void onAttach(@NonNull @NotNull Context context) {
+        super.onAttach(context);
+        if(context instanceof Activity){
+            this.actividad= (Activity) context;
+        }else {
+            throw new RuntimeException( context.toString()
+                    +"must implement OnFragmentInterectionListener");
+        }
+
+    }
 }

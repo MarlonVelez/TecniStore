@@ -25,9 +25,6 @@ public class PagoFargmentAdapter extends FragmentPagerAdapter {
             case 1:
                 DatosPagoFragment datosPagoFragment = new DatosPagoFragment();
                 return datosPagoFragment;
-            case 2:
-                ListaComprasFragment listaComprasFragment = new ListaComprasFragment();
-                return listaComprasFragment;
             default:
                 return null;
         }

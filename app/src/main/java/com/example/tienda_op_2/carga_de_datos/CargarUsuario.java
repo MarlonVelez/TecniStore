@@ -30,15 +30,15 @@ public class CargarUsuario {
 
         if (fila.moveToFirst()){
             do{
-                Usuario carrito= new Usuario();
+                Usuario usuario= new Usuario();
 
 
-                carrito.setNombreUsuario(fila.getString(1));
-                carrito.setTipoUsuario(fila.getString(2));
-                carrito.setClaveUsuario(fila.getString(3));
-                carrito.setEstadoUsuario(fila.getString(4));
+                usuario.setNombreUsuario(fila.getString(1));
+                usuario.setTipoUsuario(fila.getString(2));
+                usuario.setClaveUsuario(fila.getString(3));
+                usuario.setEstadoUsuario(fila.getString(4));
 
-                usuarioArrayList.add(carrito);
+                usuarioArrayList.add(usuario);
             }while (fila.moveToNext());
             base.close();
             open.close();
