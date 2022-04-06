@@ -30,8 +30,7 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
     @NonNull
     @Override
     public ProductoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_producto, parent, false);
-
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_producto, parent, false);
         return new ProductoViewHolder(view);
     }
 
@@ -59,7 +58,6 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
 
                 System.out.println("STOCK¡¡: "+prodcutoList.get(position).getStock());
                 context.startActivity(i);
-
             }
         });
 

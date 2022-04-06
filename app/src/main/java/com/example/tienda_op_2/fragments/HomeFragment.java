@@ -7,12 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.tienda_op_2.R;
-import com.example.tienda_op_2.adapter.CategoryAdapter;
+import com.example.tienda_op_2.adapter.ProductoAdapter;
 import com.example.tienda_op_2.api.servicioApi;
-import com.example.tienda_op_2.modelo.Categoria;
+import com.example.tienda_op_2.modelo.Producto;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,13 +29,13 @@ public class HomeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private CategoryAdapter categoryAdapter;
-    private List<Categoria> categoryList;
+    private ProductoAdapter adapter;
+    private ArrayList<Producto> listProducto;
     private RecyclerView  listaCategorias;
-    private RecyclerView listaProdcutos;
+    private static RecyclerView listaProdcutos;
     private  servicioApi api;
     private View view;
-    private int idCategoria;
+
 
     public HomeFragment() {
         // Required empty public constructor
@@ -78,8 +78,6 @@ public class HomeFragment extends Fragment {
         listaProdcutos= view.findViewById(R.id.listaProductos);
         listaCategorias= view.findViewById(R.id.itemsCategoria);
 
-
-
         api= new servicioApi(getContext(), "producto");
         api.datosList(listaProdcutos);
 
@@ -89,11 +87,11 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    public void onCreate(int id) {
-        // Inflate the layout for this fragment
-
-        api= new servicioApi(getContext());
-        api.listarCategorias(listaProdcutos,id);
-
+    public void actualizar(int id) {
+        api= new servicioApi();
+        listProducto= api.listarCategorias(listaProdcutos,id);
+        adapter=new ProductoAdapter(getContext(),listProducto);
+        listaProdcutos.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 }

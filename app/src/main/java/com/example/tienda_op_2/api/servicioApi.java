@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class servicioApi {
 
     JSONObject jsonObject;
-    Context context;
+    public static Context context;
     //RecyclerView recyclerView;
     //RecyclerView listProductos;
     String endPoint;
@@ -78,7 +78,7 @@ public class servicioApi {
         Volley.newRequestQueue(context).add(usersJSON);
     }
 
-    public void listarCategorias(RecyclerView recyclerView, int id) {
+    public ArrayList<Producto> listarCategorias(RecyclerView recyclerView, int id) {
 
         String URL = "https://tecnistoreaapi.rj.r.appspot.com/producto/categoria/" +id;
 
@@ -88,7 +88,7 @@ public class servicioApi {
 
                 try {
                     apiProductos serviProducto = new apiProductos(context, recyclerView);
-                    serviProducto.parseJSON(response);
+                    productos=serviProducto.parseJSON(response);
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Toast.makeText(null, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -101,6 +101,7 @@ public class servicioApi {
             }
         });
         Volley.newRequestQueue(context).add(usersJSON);
+        return productos;
     }
 
 

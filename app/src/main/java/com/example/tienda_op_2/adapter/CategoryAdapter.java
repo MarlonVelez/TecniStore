@@ -30,7 +30,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     List<Categoria> categoryList;
     private RecyclerView recyclerView;
 
-
     public CategoryAdapter(Context context, List<Categoria> categoryList) {
         this.context = context;
         this.categoryList = categoryList;
@@ -44,7 +43,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(context).inflate(R.layout.rows_categorias, parent, false);
-
         return new CategoryViewHolder(view);
     }
 
@@ -59,7 +57,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                 System.out.println(categoryList.get(position).getId()+ "   categoria ");
                 id=categoryList.get(position).getId();
                 HomeFragment h=new HomeFragment();
-                h.onCreate(id);
+                h.actualizar(id);
             }
         });
 

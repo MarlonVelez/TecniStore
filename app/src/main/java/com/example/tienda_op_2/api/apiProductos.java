@@ -29,7 +29,7 @@ public class apiProductos{
 
     }
 
-    public void parseJSON(JSONArray myJSON) throws JSONException {
+    public ArrayList<Producto>  parseJSON(JSONArray myJSON) throws JSONException {
 
         for (int i =0; i<myJSON.length(); i++){
                 //////
@@ -48,8 +48,11 @@ public class apiProductos{
             productos.add(producto);
 
         }
+
         mostrarPriductos(productos);
-        productoAdapter.notifyDataSetChanged();
+
+        return  productos;
+
     }
 
 
@@ -59,4 +62,6 @@ public class apiProductos{
         productoAdapter = new ProductoAdapter(context,dataList);
         listProductos.setAdapter(productoAdapter);
     }
+
+
 }
