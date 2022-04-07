@@ -53,6 +53,7 @@ public class apiUsuario {
             protected Map<String,String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 for (int i = 0; i < usuario.size(); i++) {
+                    params.put("idUsuario", "0");
                     params.put("usuario", usuario.get(i).getNombreUsuario());
                     params.put("clave", usuario.get(i).getClaveUsuario());
                     //params.put("idUsuario", String.valueOf(9));
