@@ -31,15 +31,14 @@ public class apiUsuario {
 
     public boolean postDatosVolley2(ArrayList<Usuario> usuario){
 
-        String url="https://tecnistoreaapi.rj.r.appspot.com:443/usuario";
+        String url="https://tecnistoreaapi.rj.r.appspot.com/usuario";
         RequestQueue queue = Volley.newRequestQueue(contexto);
         StringRequest request = new StringRequest(Request.Method.POST,url, new com.android.volley.Response.Listener<String>(){
             @Override
             public void onResponse(String response){
-                //txt_usu.setText("");
-                //txt_contra.setText("");
+
                 bandera=true;
-                //txt_nombreU.setText();
+
                 //Toast.makeText(SignUp4.this, "Datos Guardados Correctamente", Toast.LENGTH_SHORT).show();
             }
         }, new com.android.volley.Response.ErrorListener(){
@@ -49,25 +48,21 @@ public class apiUsuario {
                 //Toast.makeText(SignUp4.this,"Falla al obtener la respuesta = " + error,Toast.LENGTH_SHORT).show();
             }
         }){
-            /*@Nullable
+            @Nullable
             @Override
             protected Map<String,String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 for (int i = 0; i < usuario.size(); i++) {
-                    params.put("usuario", usuario.get(i).getUsuario() );
-                    System.out.println("usuario = " + usuario.get(i).getUsuario());
-                    params.put("clave", usuario.get(i).getClave());
-                    System.out.println("clave = " + usuario.get(i).getClave());
+                    params.put("idUsuario", "0");
+                    params.put("usuario", usuario.get(i).getNombreUsuario());
+                    params.put("clave", usuario.get(i).getClaveUsuario());
                     //params.put("idUsuario", String.valueOf(9));
                     params.put("tipoUsuario", "cliente");
                     System.out.println("tipo = " + "cliente");
                     //params.put("idCliente", String.valueOf(usuario.get(i).getIdCliente()));
                 }
                 return params;
-
-
-
-            }*/
+            }
         };
 
         queue.add(request);
