@@ -59,7 +59,6 @@ public class Inicio_Login extends AppCompatActivity implements Validacion_user {
             public void onClick(View view) {
                 obtenerDatos();
                 new LoginAdapter(Inicio_Login.this).execute(txtUsuario.getText(), txtClave.getText(),3000);
-
             }
         });
     }
@@ -117,6 +116,7 @@ public class Inicio_Login extends AppCompatActivity implements Validacion_user {
 
     @Override
     public void showMessage(String msg) {
+
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
 
     }

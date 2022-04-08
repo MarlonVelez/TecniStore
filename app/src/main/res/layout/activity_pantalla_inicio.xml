@@ -5,67 +5,49 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".PantallaInicio" android:background="@color/blanco_azulado">
+        tools:context=".PantallaInicio" android:background="@color/white">
 
-    <androidx.cardview.widget.CardView
-            android:layout_width="424dp"
-            android:layout_height="281dp"
-            android:background="@drawable/gradient_color" app:cardElevation="100dp" android:id="@+id/cardView6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent">
-        <pl.droidsonroids.gif.GifImageView android:layout_width="wrap_content" android:layout_height="match_parent"
-                                           android:layout_marginTop="-5dp"
-                                           android:src="@drawable/gif_presentacion_inicial"
-                                           android:layout_marginStart="3dp"
-                                           android:background="@drawable/gradient_color"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="415dp"
+            android:layout_height="677dp" android:background="@drawable/background_view_inicial"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="0.0"
+            android:id="@+id/constraintLayout2">
+
+        <com.airbnb.lottie.LottieAnimationView android:layout_width="382dp" android:layout_height="371dp"
+                                               android:src="@drawable/ic_launcher_foreground"
+                                               android:id="@+id/imgSplash"
+                                               app:layout_constraintStart_toStartOf="parent"
+                                               app:layout_constraintTop_toTopOf="parent"
+                                               app:layout_constraintBottom_toBottomOf="parent"
+                                               android:layout_marginStart="4dp"
+                                               app:layout_constraintVertical_bias="0.565"/>
         <TextView
                 android:text="Saltar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/btnSaltar"
-                android:layout_marginBottom="16dp"
-                android:textSize="20sp"
-                android:textColor="@color/blaco_arena" android:textStyle="bold"
-                android:layout_marginStart="345dp" android:layout_marginTop="10dp"/>
-    </androidx.cardview.widget.CardView>
+                android:textColor="@color/blanco_azulado"
+                android:textStyle="bold" android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="24dp"
+                app:layout_constraintHorizontal_bias="0.902"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="67dp"
+            android:layout_height="60dp" app:srcCompat="@drawable/icon_login_button"
+            android:id="@+id/btnComenzar"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" android:layout_marginEnd="16dp"
+            app:layout_constraintVertical_bias="0.0"/>
     <TextView
-            android:text="¡Bienvenido a TecniStore Online! "
+            android:text="¡Comencemos! "
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView6"
-            app:layout_constraintTop_toBottomOf="@+id/cardView6"
-            android:layout_marginTop="44dp" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:textSize="22sp" android:textStyle="bold"
-            android:fontFamily="@font/allerta" android:textAlignment="center"/>
-    <pl.droidsonroids.gif.GifImageView
-            android:layout_width="97dp"
-            android:layout_height="84dp"
-            android:src="@drawable/gif_splash"
-            app:layout_constraintTop_toBottomOf="@+id/textView6"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            android:id="@+id/gifImageView"/>
-    <TextView
-            android:text="Si aun te has registrado puedes hacerlo pulsando el boton de Sign Up."
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView7"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0" android:textAlignment="center" android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@+id/gifImageView" android:layout_marginTop="16dp"/>
-    <Button
-            android:text="Sign Up"
-            android:layout_width="260dp"
-            android:layout_height="66dp" android:id="@+id/btnSignUp"
-            app:layout_constraintTop_toBottomOf="@+id/textView7" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="36dp"
-            app:layout_constraintHorizontal_bias="0.503" android:textSize="20sp" android:textStyle="bold"
-            android:textColor="@color/blaco_arena"/>
-    <Button
-            android:text="Sing In"
-            android:layout_width="260dp"
-            android:layout_height="66dp" android:id="@+id/btnSignIn"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnSignUp" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.24" android:textSize="20sp" android:textStyle="bold"
-            android:textColor="@color/blaco_arena"/>
+            android:layout_height="wrap_content" android:id="@+id/txtLabelComenzar"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toStartOf="@+id/btnComenzar"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.915"
+            app:layout_constraintVertical_bias="0.24" android:textStyle="bold"
+            android:textColor="@color/azul_brillante" android:textSize="25sp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
