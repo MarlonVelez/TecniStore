@@ -32,6 +32,7 @@ public class Inicio_Login extends AppCompatActivity implements Validacion_user {
     private ProgressBar progressBar;
     private Button btn_ingresa;
     private TextView txtUsuario,txtClave;
+    private TextView btnRegistrarse;
 
     // HOLA MUNDO
 
@@ -43,6 +44,15 @@ public class Inicio_Login extends AppCompatActivity implements Validacion_user {
         txtUsuario = findViewById(R.id.txt_usuario);
         txtClave = findViewById(R.id.txt_contraseña);
         progressBar=findViewById(R.id.progressBar);
+        btnRegistrarse= findViewById(R.id.btn_registrarse);
+
+        btnRegistrarse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent signUp= new Intent(Inicio_Login.this, SignUp4.class);
+                startActivity(signUp);
+            }
+        });
 
         btn_ingresa.setOnClickListener(new View.OnClickListener() {
             @Override
