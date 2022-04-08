@@ -2,6 +2,7 @@ package com.example.tienda_op_2;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Handler;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -18,7 +19,7 @@ public class PantallaInicio extends AppCompatActivity {
 
     private Button signUp;
     private Button signIn;
-    private TextView saltar, txtlabelComenzar;
+    private TextView saltar, txtlabelComenzar, txtMensajeInicio;
     private LottieAnimationView imgSplash, btnComenzar;
 
     @Override
@@ -30,6 +31,7 @@ public class PantallaInicio extends AppCompatActivity {
         Animation animation2= AnimationUtils.loadAnimation(this,R.anim.desplazamiento_abajo);
 
         txtlabelComenzar= findViewById(R.id.txtLabelComenzar);
+        txtMensajeInicio= findViewById(R.id.txtMensajeInicio);
 
         imgSplash= findViewById(R.id.imgSplash);
         imgSplash.setAnimation(animation2);
@@ -38,6 +40,7 @@ public class PantallaInicio extends AppCompatActivity {
         imgSplash.setRepeatCount(20000);
 
         txtlabelComenzar.setAnimation(animation1);
+        txtMensajeInicio.setAnimation(animation1);
 
         btnComenzar= findViewById(R.id.btnComenzar);
 
@@ -45,11 +48,19 @@ public class PantallaInicio extends AppCompatActivity {
         btnComenzar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                imgSplash.setAnimation(animation1);
+                txtlabelComenzar.setAnimation(animation2);
+                txtMensajeInicio.setAnimation(animation2);
                 btnComenzar.setAnimation(R.raw.effect_btn_comenzar);
                 btnComenzar.playAnimation();
-                Intent login= new Intent( PantallaInicio.this, Inicio_Login.class);
-                startActivity(login);
-                finish();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent login= new Intent( PantallaInicio.this, Inicio_Login.class);
+                        startActivity(login);
+                        finish();
+                    }
+                },3031);
             }
         });
         saltar= findViewById(R.id.btnSaltar);

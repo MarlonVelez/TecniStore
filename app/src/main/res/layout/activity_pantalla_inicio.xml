@@ -8,8 +8,8 @@
         tools:context=".PantallaInicio" android:background="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="415dp"
-            android:layout_height="677dp" android:background="@drawable/background_view_inicial"
+            android:layout_width="416dp"
+            android:layout_height="656dp" android:background="@drawable/background_view_inicial"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="0.0"
@@ -22,7 +22,7 @@
                                                app:layout_constraintTop_toTopOf="parent"
                                                app:layout_constraintBottom_toBottomOf="parent"
                                                android:layout_marginStart="4dp"
-                                               app:layout_constraintVertical_bias="0.565"/>
+                                               app:layout_constraintVertical_bias="0.359"/>
         <TextView
                 android:text="Saltar"
                 android:layout_width="wrap_content"
@@ -32,6 +32,15 @@
                 app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="24dp"
                 app:layout_constraintHorizontal_bias="0.902"/>
+        <MultiAutoCompleteTextView
+                android:text="Ahora podras conseguir nuestros productos desde la comodidad de tu hogar ¡Increible!"
+                android:layout_width="304dp"
+                android:layout_height="117dp" android:id="@+id/txtMensajeInicio"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/imgSplash"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.142"
+                app:layout_constraintVertical_bias="0.227" android:textStyle="bold" android:textSize="24sp"
+                android:textColor="@color/blaco_arena" android:background="@android:color/transparent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
     <com.airbnb.lottie.LottieAnimationView
             android:layout_width="67dp"
@@ -39,7 +48,7 @@
             android:id="@+id/btnComenzar"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" android:layout_marginEnd="16dp"
-            app:layout_constraintVertical_bias="0.0"/>
+            app:layout_constraintVertical_bias="0.125"/>
     <TextView
             android:text="¡Comencemos! "
             android:layout_width="wrap_content"
