@@ -2,44 +2,68 @@ package com.example.tienda_op_2;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Handler;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.tienda_op_2.base_temp.SQLiteOpenHelper;
 
 public class PantallaInicio extends AppCompatActivity {
 
     private Button signUp;
     private Button signIn;
-    private TextView saltar;
+    private TextView saltar, txtlabelComenzar, txtMensajeInicio;
+    private LottieAnimationView imgSplash, btnComenzar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_inicio);
-        signIn= findViewById(R.id.btnSignIn);
-        signUp= findViewById(R.id.btnSignUp);
+
+        Animation animation1= AnimationUtils.loadAnimation(this,R.anim.desplazamiento_arriba);
+        Animation animation2= AnimationUtils.loadAnimation(this,R.anim.desplazamiento_abajo);
+
+        txtlabelComenzar= findViewById(R.id.txtLabelComenzar);
+        txtMensajeInicio= findViewById(R.id.txtMensajeInicio);
+
+        imgSplash= findViewById(R.id.imgSplash);
+        imgSplash.setAnimation(animation2);
+        imgSplash.setAnimation(R.raw.splash);
+        imgSplash.playAnimation();
+        imgSplash.setRepeatCount(20000);
+
+        txtlabelComenzar.setAnimation(animation1);
+        txtMensajeInicio.setAnimation(animation1);
+
+        btnComenzar= findViewById(R.id.btnComenzar);
+
+        //btnComenzar.setRepeatCount(2000);
+        btnComenzar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imgSplash.setAnimation(animation1);
+                txtlabelComenzar.setAnimation(animation2);
+                txtMensajeInicio.setAnimation(animation2);
+                btnComenzar.setAnimation(R.raw.effect_btn_comenzar);
+                btnComenzar.playAnimation();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent login= new Intent( PantallaInicio.this, Inicio_Login.class);
+                        startActivity(login);
+                        finish();
+                    }
+                },3031);
+            }
+        });
         saltar= findViewById(R.id.btnSaltar);
-        signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent signUp1= new Intent(PantallaInicio.this, SignUp1.class);
-                startActivity(signUp1);
-                finish();
-            }
-        });
-        signIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent login= new Intent( PantallaInicio.this, Inicio_Login.class);
-                startActivity(login);
-                finish();
-            }
-        });
 
         saltar.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,5 +1,7 @@
 package com.example.tienda_op_2;
 
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,6 +12,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.cardview.widget.CardView;
+import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -32,6 +36,9 @@ public class Inicio_Login extends AppCompatActivity implements Validacion_user {
     private ProgressBar progressBar;
     private Button btn_ingresa;
     private TextView txtUsuario,txtClave;
+    private TextView btnRegistrarse;
+    private LottieAnimationView imgLoadding, labelLoadding;
+    private CardView cardLoadding;
 
     // HOLA MUNDO
 
@@ -39,17 +46,30 @@ public class Inicio_Login extends AppCompatActivity implements Validacion_user {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        btn_ingresa = findViewById(R.id.btn_ingresar);
+        btn_ingresa= findViewById(R.id.btn_ingresar);
+        imgLoadding= findViewById(R.id.imgLoadding);
+        labelLoadding= findViewById(R.id.labelLoadding);
+        cardLoadding= findViewById(R.id.cardLoadding);
+        cardLoadding.setVisibility(View.GONE);
+
         txtUsuario = findViewById(R.id.txt_usuario);
         txtClave = findViewById(R.id.txt_contraseña);
         progressBar=findViewById(R.id.progressBar);
+        btnRegistrarse= findViewById(R.id.btn_registrarse);
+
+        btnRegistrarse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent signUp= new Intent(Inicio_Login.this, SignUp4.class);
+                startActivity(signUp);
+            }
+        });
 
         btn_ingresa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 obtenerDatos();
                 new LoginAdapter(Inicio_Login.this).execute(txtUsuario.getText(), txtClave.getText(),3000);
-
             }
         });
     }
@@ -92,9 +112,23 @@ public class Inicio_Login extends AppCompatActivity implements Validacion_user {
     @Override
     public void toggleProgressBar(boolean status) {
         if (status) {
-            progressBar.setVisibility(View.VISIBLE);
+            btn_ingresa.setVisibility(View.GONE);
+
+            cardLoadding.setVisibility(View.VISIBLE);
+            imgLoadding.setAnimation(R.raw.effect_loadding);
+            imgLoadding.playAnimation();
+            imgLoadding.setRepeatCount(10);
+
+            labelLoadding.setAnimation(R.raw.label_loadding);
+            labelLoadding.playAnimation();
+            labelLoadding.setRepeatCount(10);
+
+            //progressBar.setVisibility(View.VISIBLE);
+
         } else {
-            progressBar.setVisibility(View.GONE);
+            cardLoadding.setVisibility(View.GONE);
+            btn_ingresa.setVisibility(View.VISIBLE);
+            //progressBar.setVisibility(View.GONE);
         }
 
     }
@@ -107,6 +141,7 @@ public class Inicio_Login extends AppCompatActivity implements Validacion_user {
 
     @Override
     public void showMessage(String msg) {
+
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
 
     }

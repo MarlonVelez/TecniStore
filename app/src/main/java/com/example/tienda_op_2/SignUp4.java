@@ -2,14 +2,11 @@ package com.example.tienda_op_2;
 
 import android.content.Intent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.*;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -30,6 +27,7 @@ public class SignUp4 extends AppCompatActivity {
     private ImageView backView;
     private Button btnSiguiente;
 
+
     private EditText txt_usu, txt_contra, txt_confir_contra;
 
     @Override
@@ -41,6 +39,9 @@ public class SignUp4 extends AppCompatActivity {
         txt_contra=findViewById(R.id.txt_contraseñaRegistro);
         txt_confir_contra=findViewById(R.id.txt_confirmarRegistro);
         backView= findViewById(R.id.btnBackView);
+
+
+
         backView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,6 +50,8 @@ public class SignUp4 extends AppCompatActivity {
                 finish();
             }
         });
+
+
 
 
         btnSiguiente= findViewById(R.id.btn_siguiente_datos_usuario);
