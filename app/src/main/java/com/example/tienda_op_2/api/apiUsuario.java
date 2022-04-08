@@ -31,7 +31,7 @@ public class apiUsuario {
 
     public boolean postDatosVolley2(ArrayList<Usuario> usuario){
 
-        String url="https://tecnistoreaapi.rj.r.appspot.com/usuario";
+        String url="https://tecnistoreaapi.rj.r.appspot.com/usuario/create";
         RequestQueue queue = Volley.newRequestQueue(contexto);
         StringRequest request = new StringRequest(Request.Method.POST,url, new com.android.volley.Response.Listener<String>(){
             @Override
@@ -48,12 +48,11 @@ public class apiUsuario {
                 //Toast.makeText(SignUp4.this,"Falla al obtener la respuesta = " + error,Toast.LENGTH_SHORT).show();
             }
         }){
-            @Nullable
             @Override
             protected Map<String,String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 for (int i = 0; i < usuario.size(); i++) {
-                    params.put("idUsuario", "0");
+                    //params.put("idUsuario", "0");
                     params.put("usuario", usuario.get(i).getNombreUsuario());
                     params.put("clave", usuario.get(i).getClaveUsuario());
                     //params.put("idUsuario", String.valueOf(9));
@@ -64,7 +63,6 @@ public class apiUsuario {
                 return params;
             }
         };
-
         queue.add(request);
         return bandera;
     }
