@@ -15,17 +15,55 @@ import com.example.tienda_op_2.R;
 import com.example.tienda_op_2.modelo.Producto;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ProductoViewHolder>{
+public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ProductoViewHolder> {
 
     Context context;
-    List<Producto> prodcutoList;
+ static List<Producto> prodcutoList;
+  static   List<Producto> listaOriginal;
+
 
     public ProductoAdapter(Context context, List<Producto> prodcutoList) {
         this.context = context;
         this.prodcutoList = prodcutoList;
+        this.listaOriginal = new ArrayList<>();
+        listaOriginal.addAll(prodcutoList);
+        System.out.println(listaOriginal.size() + " contructor");
     }
+
+    public ProductoAdapter() {
+
+    }
+
+    public void filtrado(String txt_buscar) {
+
+        int longitud = txt_buscar.length();
+
+        if (longitud == 0) {
+            prodcutoList.clear();
+            prodcutoList.addAll(listaOriginal);
+        } else {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                List<Producto> coleccion = prodcutoList.stream().filter(i -> i.getNombre().toLowerCase().
+                        contains(txt_buscar.toLowerCase())).collect(Collectors.toList());
+                prodcutoList.clear();
+                prodcutoList.addAll(coleccion);
+                System.out.println(coleccion.size() + " coleeciio");
+                System.out.println(prodcutoList.size() + " pproducto tamño");
+            } else {
+                for (Producto p : listaOriginal) {
+                    if (p.getNombre().toLowerCase().contains(txt_buscar.toLowerCase())) {
+                        prodcutoList.add(p);
+                    }
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
 
     @NonNull
     @Override
@@ -49,14 +87,13 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
             @Override
             public void onClick(View view) {
 
-                Intent i=new Intent(context, DetalleProducto.class);
+                Intent i = new Intent(context, DetalleProducto.class);
                 i.putExtra("name", prodcutoList.get(position).getNombre());
                 i.putExtra("image", prodcutoList.get(position).getFotoUrl());
-                i.putExtra("price",prodcutoList.get(position).getPrecio());
-                i.putExtra("desc",prodcutoList.get(position).getDescripcion());
-                i.putExtra("qty",String.valueOf(prodcutoList.get(position).getStock()));
-
-                System.out.println("STOCK¡¡: "+prodcutoList.get(position).getStock());
+                i.putExtra("price", prodcutoList.get(position).getPrecio());
+                i.putExtra("desc", prodcutoList.get(position).getDescripcion());
+                i.putExtra("qty", String.valueOf(prodcutoList.get(position).getStock()));
+                System.out.println("STOCK¡¡: " + prodcutoList.get(position).getStock());
                 context.startActivity(i);
             }
         });
@@ -68,7 +105,7 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
         return prodcutoList.size();
     }
 
-    public static class ProductoViewHolder extends RecyclerView.ViewHolder{
+    public static class ProductoViewHolder extends RecyclerView.ViewHolder {
 
         ImageView productoImg;
         TextView nombreProdcuto;
@@ -79,9 +116,9 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
             super(itemView);
 
             productoImg = itemView.findViewById(R.id.imgProducto);
-            nombreProdcuto= itemView.findViewById(R.id.txtNombreProducto);
-            detalleProducto= itemView.findViewById(R.id.txtDetalleProdcuto);
-            precioProdcuto= itemView.findViewById(R.id.txtPrecioProducto);
+            nombreProdcuto = itemView.findViewById(R.id.txtNombreProducto);
+            detalleProducto = itemView.findViewById(R.id.txtDetalleProdcuto);
+            precioProdcuto = itemView.findViewById(R.id.txtPrecioProducto);
 
         }
     }

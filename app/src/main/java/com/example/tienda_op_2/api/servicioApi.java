@@ -22,8 +22,6 @@ public class servicioApi {
 
     JSONObject jsonObject;
     public static Context context;
-    //RecyclerView recyclerView;
-    //RecyclerView listProductos;
     String endPoint;
 
     int id_categoria;
@@ -89,6 +87,7 @@ public class servicioApi {
                 try {
                     apiProductos serviProducto = new apiProductos(context, recyclerView);
                     productos=serviProducto.parseJSON(response);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Toast.makeText(null, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -101,8 +100,43 @@ public class servicioApi {
             }
         });
         Volley.newRequestQueue(context).add(usersJSON);
+
+        System.out.println(productos.size()+" tamañoooooooooooooo");
+
         return productos;
     }
+
+
+    public ArrayList<Producto> listarProductos(RecyclerView recyclerView) {
+
+        String URL =  "https://tecnistoreaapi.rj.r.appspot.com/producto";
+        JsonArrayRequest usersJSON = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                System.out.println("hola listara productos");
+
+                try {
+                    apiProductos serviProducto = new apiProductos();
+                    productos=serviProducto.parseJSON2(response);
+                    System.out.println(productos.size()+" eeeeeeeeeeeeeeeeeeee");
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println(" catch");
+                    Toast.makeText(null, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        Volley.newRequestQueue(context).add(usersJSON);
+        System.out.println(productos.size()+"  333333333333333333");
+        return productos;
+    }
+
 
 
 }

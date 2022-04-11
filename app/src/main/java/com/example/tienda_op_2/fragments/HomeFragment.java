@@ -90,6 +90,7 @@ public class HomeFragment extends Fragment {
     public void actualizar(int id) {
         api= new servicioApi();
         listProducto= api.listarCategorias(listaProdcutos,id);
+        System.out.println(listProducto.size()+ " lista actulizar");
         adapter=new ProductoAdapter(getContext(),listProducto);
         listaProdcutos.setAdapter(adapter);
         adapter.notifyDataSetChanged();
