@@ -1,7 +1,5 @@
 package com.example.tienda_op_2;
 
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -52,7 +50,7 @@ public class Inicio_Login extends AppCompatActivity implements Validacion_user {
         cardLoadding= findViewById(R.id.cardLoadding);
         cardLoadding.setVisibility(View.GONE);
 
-        txtUsuario = findViewById(R.id.txt_usuario);
+        txtUsuario = findViewById(R.id.txt_usuarioSignUp);
         txtClave = findViewById(R.id.txt_contraseña);
         progressBar=findViewById(R.id.progressBar);
         btnRegistrarse= findViewById(R.id.btn_registrarse);
@@ -62,6 +60,7 @@ public class Inicio_Login extends AppCompatActivity implements Validacion_user {
             public void onClick(View view) {
                 Intent signUp= new Intent(Inicio_Login.this, SignUp4.class);
                 startActivity(signUp);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
 

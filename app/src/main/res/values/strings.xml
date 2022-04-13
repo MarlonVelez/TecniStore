@@ -36,8 +36,8 @@
     <string name="hint_txt_direccion">Dirección Domicilio</string>
     <string name="titulo_home_productos">Productos</string>
     <string name="login_txt_username">Usuario</string>
-    <string name="login_txt_password">Contraseña</string>
-    <string name="login_txt_password_repi">Confirmar Contraseña</string>
+    <string name="login_txt_password">Clave</string>
+    <string name="login_txt_password_repi">Confirmar Clave</string>
     <string name="title_listaCarrito">Mi Carrito</string>
     <string name="btn_comprar">Comprar Ahora</string>
     <string name="btn_cancelarCarrito">Cancelar Carrito</string>

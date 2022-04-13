@@ -1,7 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Tienda_op_2" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.Tienda_op_2" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
         <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/azul_brillante</item>
         <item name="colorPrimaryVariant">@color/azul_brillante</item>
         <item name="colorOnPrimary">@color/azul_brillante</item>
         <!-- Secondary brand color. -->
@@ -11,12 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/azul_claro</item>
         <!-- Customize your theme here. -->
-
-        <item name="colorPrimary">@color/primaryColor</item>
-        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
-        <item name="colorAccent">@color/accentColor</item>
-
-
-
     </style>
+
+
 </resources>

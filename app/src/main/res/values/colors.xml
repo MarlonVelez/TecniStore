@@ -24,6 +24,6 @@
     <color name="verde_comprar">#B8E369</color>
     <color name="verde_comprar_title">#5A8B02</color>
     <color name="rojo_opaco">#F7979B</color>
-
+    <!--<color name="mtrl_textinput_default_box_stroke_color">#005DFF</color>-->
 
 </resources>

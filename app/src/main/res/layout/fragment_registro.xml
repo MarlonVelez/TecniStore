@@ -14,7 +14,7 @@
                 android:inputType="number"
                 android:ems="10"
                 android:id="@+id/txtCedulaPago"
-                android:background="@drawable/brackgraund_txt_register" android:padding="15dp"
+                android:padding="15dp"
                 android:layout_marginTop="45dp" android:layout_marginStart="52dp" android:hint="Cedula"
                 android:textColor="@color/azul_claro" android:textSize="18sp"/>
         <EditText
@@ -23,7 +23,6 @@
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:id="@+id/txtNombrePago" android:minHeight="48dp"
-                android:background="@drawable/brackgraund_txt_register"
                 android:layout_marginStart="52dp" android:layout_marginTop="18dp" android:padding="15dp"
                 android:hint="Nombre" android:textColor="@color/azul_claro" android:textSize="18sp"/>
         <EditText
@@ -32,7 +31,7 @@
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:id="@+id/txtApellidoPago" android:minHeight="48dp" android:layout_marginTop="20dp"
-                android:background="@drawable/brackgraund_txt_register" android:layout_marginStart="52dp"
+                android:layout_marginStart="52dp"
                 android:padding="15dp" android:hint="Apellido" android:textColor="@color/azul_claro"
                 android:textSize="18sp"/>
         <EditText
@@ -44,7 +43,7 @@
                 android:clickable="true"
                 android:maxLines="1"
                 android:minHeight="48dp" android:layout_marginTop="20dp"
-                android:background="@drawable/brackgraund_txt_register" android:layout_marginStart="52dp"
+                android:layout_marginStart="52dp"
                 android:padding="15dp" android:id="@+id/txtFechaNacPago" android:hint="Fecha de Nacimiento"
                 android:textColor="@color/azul_claro" android:textSize="18sp"/>
         <EditText
@@ -53,7 +52,7 @@
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:id="@+id/txtDireccionPago" android:minHeight="48dp" android:layout_marginTop="20dp"
-                android:background="@drawable/brackgraund_txt_register" android:layout_marginStart="52dp"
+                android:layout_marginStart="52dp"
                 android:padding="15dp" android:hint="Direccion Domicilio" android:textColor="@color/azul_claro"
                 android:textSize="18sp"/>
         <EditText
@@ -62,7 +61,7 @@
                 android:inputType="phone"
                 android:ems="10"
                 android:id="@+id/txtTelefonoPago" android:minHeight="48dp" android:layout_marginTop="20dp"
-                android:background="@drawable/brackgraund_txt_register" android:layout_marginStart="52dp"
+                android:layout_marginStart="52dp"
                 android:padding="15dp" android:hint="Telefono/Celular" android:textColor="@color/azul_claro"
                 android:textSize="18sp"/>
         <EditText
@@ -71,7 +70,7 @@
                 android:inputType="textEmailAddress"
                 android:ems="10"
                 android:id="@+id/txtEmailPago" android:minHeight="48dp" android:layout_marginTop="20dp"
-                android:background="@drawable/brackgraund_txt_register" android:layout_marginStart="52dp"
+                android:layout_marginStart="52dp"
                 android:padding="15dp" android:hint="Email" android:textColor="@color/azul_claro"
                 android:textSize="18sp"/>
         <Button
@@ -81,6 +80,6 @@
                 android:layout_height="61dp" android:id="@+id/btnSiguientePago" android:layout_marginStart="75dp"
                 android:layout_marginTop="70dp" android:background="@drawable/backgraund_button"
                 android:backgroundTint="@color/azul_claro" android:textStyle="bold" android:textSize="20sp"
-                android:fontFamily="@font/allerta" android:textAllCaps="false"/>
+                android:fontFamily="@font/allerta" android:textAllCaps="false" android:textColor="#FFFFFF"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

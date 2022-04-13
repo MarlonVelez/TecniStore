@@ -21,15 +21,6 @@
                 android:name=".SignUp4"
                 android:exported="true"/>
         <activity
-                android:name=".SignUp3"
-                android:exported="true"/>
-        <activity
-                android:name=".SignUp2"
-                android:exported="true"/>
-        <activity
-                android:name=".SignUp1"
-                android:exported="true"/>
-        <activity
                 android:name=".PantallaInicio"
                 android:exported="true"/>
         <activity

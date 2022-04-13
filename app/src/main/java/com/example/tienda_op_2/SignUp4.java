@@ -2,42 +2,48 @@ package com.example.tienda_op_2;
 
 import android.content.Intent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.*;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.tienda_op_2.api.apiUsuario;
 import com.example.tienda_op_2.modelo.Usuario;
-import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class SignUp4 extends AppCompatActivity {
 
     private ImageView backView;
-    private Button btnSiguiente;
+    private LottieAnimationView imgSignUp;
+    private Button btnRegistrarme;
 
 
     private EditText txt_usu, txt_contra, txt_confir_contra;
+    private TextInputLayout labelUsuario, labelContraseña, labelConfirmContraseña;
+    private ConstraintLayout layoutInputDatos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up4);
 
-        txt_usu=findViewById(R.id.txt_usuarioRregistro);
-        txt_contra=findViewById(R.id.txt_contraseñaRegistro);
-        txt_confir_contra=findViewById(R.id.txt_confirmarRegistro);
+        imgSignUp= findViewById(R.id.ingSignUp);
+        labelUsuario=findViewById(R.id.labelUsuarioSignup);
+        labelContraseña=findViewById(R.id.labelContraseñaSignUp);
+        labelConfirmContraseña=findViewById(R.id.labelCofirmContraseñaSignUp);
+        layoutInputDatos= findViewById(R.id.layoutSignUp);
+        setAnimation();
+
+        txt_usu=findViewById(R.id.txt_usuarioSignUp);
+        txt_contra=findViewById(R.id.txt_contraseñaSignUp);
+        txt_confir_contra=findViewById(R.id.txt_contraseñaConfirmarSignUp);
+
         backView= findViewById(R.id.btnBackView);
 
 
@@ -45,8 +51,9 @@ public class SignUp4 extends AppCompatActivity {
         backView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent pantallaInicial= new Intent(SignUp4.this, SignUp3.class);
-                startActivity(pantallaInicial);
+                Intent loginBack= new Intent(SignUp4.this, Inicio_Login.class);
+                startActivity(loginBack);
+                overridePendingTransition(R.anim.zoom_back_in, R.anim.zoom_back_out);
                 finish();
             }
         });
@@ -54,8 +61,8 @@ public class SignUp4 extends AppCompatActivity {
 
 
 
-        btnSiguiente= findViewById(R.id.btn_siguiente_datos_usuario);
-        btnSiguiente.setOnClickListener(new View.OnClickListener() {
+        btnRegistrarme= findViewById(R.id.btnRegistrarme);
+        btnRegistrarme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -118,4 +125,22 @@ public class SignUp4 extends AppCompatActivity {
 
         queue.add(request);
     }*/
+
+    private void setAnimation(){
+        Animation desplazamientoIzquierdaDerecha= AnimationUtils.loadAnimation(this,R.anim.desplazamiento_izquierda_derecha);
+
+        labelUsuario.setAnimation(desplazamientoIzquierdaDerecha);
+        labelContraseña.setAnimation(desplazamientoIzquierdaDerecha);
+        labelConfirmContraseña.setAnimation(desplazamientoIzquierdaDerecha);
+
+        Animation desplazamientoAbajo= AnimationUtils.loadAnimation(this,R.anim.desplazamiento_arriba);
+
+        layoutInputDatos.setAnimation(desplazamientoAbajo);
+
+        ///AMIMACION DE IMAGEN ENCABEZADO DE ACTIVITY SIGN UP
+        imgSignUp.setAnimation(desplazamientoIzquierdaDerecha);
+        imgSignUp.setAnimation(R.raw.effect_sigup_img);
+        imgSignUp.playAnimation();
+        imgSignUp.setRepeatCount(2000);
+    }
 }
