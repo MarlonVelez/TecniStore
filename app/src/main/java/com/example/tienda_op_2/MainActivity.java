@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -15,13 +15,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.tienda_op_2.adapter.ProductoAdapter;
 import com.example.tienda_op_2.api.servicioApi;
 import com.example.tienda_op_2.fragments.HomeFragment;
 import com.example.tienda_op_2.modelo.Producto;
 import com.google.android.material.navigation.NavigationView;
+
 
 import java.util.ArrayList;
 
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private servicioApi api;
     private  ProductoAdapter adapter;
     private  ArrayList<Producto> listProducto;
-    private  RecyclerView recyclerlistaProdcutos;
+    private   RecyclerView recyclerlistaProdcutos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout= findViewById(R.id.contenidoPrincipal);
         navigationView= findViewById(R.id.nav_view_bar);
         toolbar= findViewById(R.id.toolBar);
+
 
         //Configurar Fragment por defecto (El que aparece al principio)
         getSupportFragmentManager().beginTransaction().add(R.id.contentFrame, new HomeFragment()).commit();
@@ -86,7 +88,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         listerSelectedItem(item);
-
         return true;
     }
 
@@ -108,9 +109,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(carritoActi);
                 finish();
                 break;
-
         }
-
         setTitle(item.getTitle());
         drawerLayout.closeDrawers();
     }
@@ -129,30 +128,40 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         MenuItem menuItem= menu.findItem(R.id.search_button);
         txt_buscar = (SearchView) menuItem.getActionView();
         txt_buscar.setQueryHint("Busca un prodcuto");
-        txt_buscar.setOnQueryTextListener(this);
-
         recyclerlistaProdcutos=findViewById(R.id.listaProductos);
-      //  LinearLayoutManager manager= new LinearLayoutManager(this);
-       // recyclerlistaProdcutos.setLayoutManager(manager);
+        //  LinearLayoutManager manager= new LinearLayoutManager(this);
+        // recyclerlistaProdcutos.setLayoutManager(manager);
+        listProducto =new ArrayList<>();
+        Producto p= new Producto(1,"P1",10,null,"hola a todos","100");
+        Producto p1= new Producto(1,"P3",10,null,"hola a todos","100");
+        Producto p2= new Producto(1,"P2",10,null,"hola a todos","100");
+        Producto p3= new Producto(1,"P4",10,null,"hola a todos","100");
+        listProducto.add(p);
+        listProducto.add(p1);
+        listProducto.add(p2);
+        listProducto.add(p3);
+        /*  api=new servicioApi(this);
+        listProducto=api.listarProductos(recyclerlistaProdcutos);*/
 
-        api=new servicioApi(this);
-        listProducto=api.listarProductos(recyclerlistaProdcutos);
         System.out.println(listProducto.size()+" aquiiiiiiiiiiii");
-
-         adapter=new ProductoAdapter();
-         recyclerlistaProdcutos.setAdapter(adapter);
-
+        adapter=new ProductoAdapter(getApplicationContext(),listProducto);
+        recyclerlistaProdcutos.setAdapter(adapter);
+        txt_buscar.setOnQueryTextListener(this);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onQueryTextSubmit(String query) {
+
         return false;
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
+        //adapter=new ProductoAdapter(getApplicationContext(),listProducto);
+        recyclerlistaProdcutos.setAdapter(adapter);
         adapter.filtrado(newText);
         return false;
     }
+
 }

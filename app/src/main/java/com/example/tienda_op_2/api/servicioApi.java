@@ -15,10 +15,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-//import static com.example.tecnitienda.MainActivity.VARIABLE_GLOBAL;
-
-
 public class servicioApi {
+
 
     JSONObject jsonObject;
     public static Context context;
@@ -133,9 +131,9 @@ public class servicioApi {
             }
         });
         Volley.newRequestQueue(context).add(usersJSON);
-        System.out.println(productos.size()+"  333333333333333333");
         return productos;
     }
+
 
 
 

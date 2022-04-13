@@ -32,7 +32,7 @@ public class HomeFragment extends Fragment {
     private ProductoAdapter adapter;
     private ArrayList<Producto> listProducto;
     private RecyclerView  listaCategorias;
-    private static RecyclerView listaProdcutos;
+    public static RecyclerView listaProdcutos;
     private  servicioApi api;
     private View view;
 

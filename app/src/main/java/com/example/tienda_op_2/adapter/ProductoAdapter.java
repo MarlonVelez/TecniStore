@@ -15,6 +15,7 @@ import com.example.tienda_op_2.R;
 import com.example.tienda_op_2.modelo.Producto;
 import com.squareup.picasso.Picasso;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,8 +23,8 @@ import java.util.stream.Collectors;
 public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ProductoViewHolder> {
 
     Context context;
- static List<Producto> prodcutoList;
-  static   List<Producto> listaOriginal;
+     List<Producto> prodcutoList;
+     List<Producto> listaOriginal;
 
 
     public ProductoAdapter(Context context, List<Producto> prodcutoList) {
@@ -34,9 +35,7 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
         System.out.println(listaOriginal.size() + " contructor");
     }
 
-    public ProductoAdapter() {
 
-    }
 
     public void filtrado(String txt_buscar) {
 
@@ -122,5 +121,6 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
 
         }
     }
+
 
 }

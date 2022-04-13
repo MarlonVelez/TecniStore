@@ -32,7 +32,7 @@ public class apiProductos{
     public ArrayList<Producto>  parseJSON(JSONArray myJSON) throws JSONException {
 
         for (int i =0; i<myJSON.length(); i++){
-                //////
+
             JSONObject jsonObject= null;
 
             //Users user= new Users();
@@ -65,16 +65,13 @@ public class apiProductos{
 
             //Users user= new Users();
             Producto producto= new Producto();
-
             jsonObject= myJSON.getJSONObject(i);
-
             producto.setNombre(jsonObject.getString("nombre"));
             producto.setDescripcion(jsonObject.getString("descripcion"));
             producto.setStock(jsonObject.getInt("stock"));
             producto.setPrecio("$"+String.valueOf(jsonObject.getDouble("precio")));
             producto.setFotoUrl(jsonObject.getString("fotoUrl"));
             productos.add(producto);
-
         }
         System.out.println( productos.size()+ " roductos aquiiiii");
         return  productos;
@@ -88,6 +85,4 @@ public class apiProductos{
         productoAdapter = new ProductoAdapter(context,dataList);
         listProductos.setAdapter(productoAdapter);
     }
-
-
 }
