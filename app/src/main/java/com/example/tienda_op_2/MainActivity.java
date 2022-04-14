@@ -143,14 +143,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-
         return false;
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        //adapter=new ProductoAdapter(getApplicationContext(),listProducto);
-        recyclerlistaProdcutos.setAdapter(adapter);
+       recyclerlistaProdcutos.setAdapter(adapter);
         adapter.filtrado(newText);
         return false;
     }
@@ -180,7 +178,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
             @Override
             public void onFailure(Call<List<Producto>> call, Throwable t) {
-                System.out.println(3);
             }
         });
 

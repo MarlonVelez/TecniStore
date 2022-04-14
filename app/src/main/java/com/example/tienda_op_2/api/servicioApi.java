@@ -17,15 +17,8 @@ import java.util.ArrayList;
 
 public class servicioApi {
 
-
-    JSONObject jsonObject;
     public static Context context;
     String endPoint;
-
-    int id_categoria;
-    apiProductos api = new apiProductos();
-
-    ProductoAdapter productoAdapter;
     ArrayList<Producto> productos = new ArrayList<>();
 
     public servicioApi() {
@@ -103,38 +96,5 @@ public class servicioApi {
 
         return productos;
     }
-
-
-    public ArrayList<Producto> listarProductos(RecyclerView recyclerView) {
-
-        String URL =  "https://tecnistoreaapi.rj.r.appspot.com/producto";
-        JsonArrayRequest usersJSON = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                System.out.println("hola listara productos");
-
-                try {
-                    apiProductos serviProducto = new apiProductos();
-                    productos=serviProducto.parseJSON2(response);
-                    System.out.println(productos.size()+" eeeeeeeeeeeeeeeeeeee");
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    System.out.println(" catch");
-                    Toast.makeText(null, e.getMessage(), Toast.LENGTH_LONG).show();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, error.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-        Volley.newRequestQueue(context).add(usersJSON);
-        return productos;
-    }
-
-
-
 
 }
