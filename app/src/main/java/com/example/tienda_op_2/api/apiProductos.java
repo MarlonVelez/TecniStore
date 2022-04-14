@@ -25,19 +25,13 @@ public class apiProductos{
         mostrarPriductos(productos);
     }
 
-    public apiProductos() {
-
-    }
-
     public ArrayList<Producto>  parseJSON(JSONArray myJSON) throws JSONException {
 
         for (int i =0; i<myJSON.length(); i++){
-                //////
-            JSONObject jsonObject= null;
 
+            JSONObject jsonObject= null;
             //Users user= new Users();
             Producto producto= new Producto();
-
             jsonObject= myJSON.getJSONObject(i);
 
             producto.setNombre(jsonObject.getString("nombre"));
@@ -48,12 +42,11 @@ public class apiProductos{
             productos.add(producto);
 
         }
-
         mostrarPriductos(productos);
-
         return  productos;
 
     }
+
 
 
     public void mostrarPriductos(List<Producto> dataList ) {
@@ -62,6 +55,4 @@ public class apiProductos{
         productoAdapter = new ProductoAdapter(context,dataList);
         listProductos.setAdapter(productoAdapter);
     }
-
-
 }

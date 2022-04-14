@@ -15,21 +15,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-//import static com.example.tecnitienda.MainActivity.VARIABLE_GLOBAL;
-
-
 public class servicioApi {
 
-    JSONObject jsonObject;
     public static Context context;
-    //RecyclerView recyclerView;
-    //RecyclerView listProductos;
     String endPoint;
-
-    int id_categoria;
-    apiProductos api = new apiProductos();
-
-    ProductoAdapter productoAdapter;
     ArrayList<Producto> productos = new ArrayList<>();
 
     public servicioApi() {
@@ -89,6 +78,7 @@ public class servicioApi {
                 try {
                     apiProductos serviProducto = new apiProductos(context, recyclerView);
                     productos=serviProducto.parseJSON(response);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Toast.makeText(null, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -101,8 +91,10 @@ public class servicioApi {
             }
         });
         Volley.newRequestQueue(context).add(usersJSON);
+
+        System.out.println(productos.size()+" tamañoooooooooooooo");
+
         return productos;
     }
-
 
 }
