@@ -21,9 +21,14 @@ import com.example.tienda_op_2.adapter.LoginAdapter;
 import com.example.tienda_op_2.modelo.Login;
 import com.example.tienda_op_2.validaciones.Validacion_user;
 
+import com.example.tienda_op_2.weblogin.modelo.Usuario;
+import com.example.tienda_op_2.weblogin.utildades.Apis;
+import com.example.tienda_op_2.weblogin.utildades.UsuarioService;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import retrofit2.Call;
+import retrofit2.Callback;
 
 import java.util.ArrayList;
 
@@ -144,4 +149,8 @@ public class Inicio_Login extends AppCompatActivity implements Validacion_user {
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
 
     }
+
+
+
+
 }
