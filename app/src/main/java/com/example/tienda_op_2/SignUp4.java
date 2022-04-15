@@ -80,6 +80,9 @@ public class SignUp4 extends AppCompatActivity {
                         usuario.setClave(txt_contra.getText().toString());
                         addUsuario(usuario);
                         limpiarCampos();
+                        Intent home= new Intent(SignUp4.this, MainActivity.class);
+                        startActivity(home);
+                        finish();
                     }else{
                         Toast.makeText(SignUp4.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
                     }
