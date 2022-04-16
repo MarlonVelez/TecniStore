@@ -24,7 +24,7 @@ public class ListaComprasFragment extends Fragment {
         listaCompra= root.findViewById(R.id.listaProductosCompra);
         txtTotalCompra= root.findViewById(R.id.txtTotalListaCompra);
 
-        CargaProductos datosProductos= new CargaProductos(getContext(), listaCompra, txtTotalCompra);
+        CargaProductos datosProductos= new CargaProductos(getContext(), listaCompra, txtTotalCompra, null, null);
         datosProductos.listarProductosCarrito(null, "Lista Compras");
         return root;
     }

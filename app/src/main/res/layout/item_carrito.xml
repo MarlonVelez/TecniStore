@@ -20,11 +20,6 @@
                 style="@null" android:backgroundTint="@color/rojo_eliminar"
                 android:textColor="@color/blaco_arena"
                 android:layout_marginStart="250dp" android:layout_marginTop="242dp"/>
-        <CheckBox android:id="@+id/checkbox_verificar"
-                  android:layout_width="48dp"
-                  android:layout_height="wrap_content"
-                  android:layout_marginStart="10dp"
-                  android:layout_marginTop="5dp"/>
         <androidx.cardview.widget.CardView
                 android:layout_width="160dp"
                 android:layout_height="44dp" app:cardCornerRadius="20dp" android:layout_marginStart="10dp"

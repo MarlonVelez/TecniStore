@@ -16,9 +16,7 @@ import com.example.tienda_op_2.weblogin.utildades.Apis;
 import com.example.tienda_op_2.weblogin.utildades.UsuarioService;
 import com.google.android.material.textfield.TextInputLayout;
 import retrofit2.Call;
-import retrofit2.Callback;
-
-import java.util.ArrayList;
+import retrofit2.Callback;/**/
 
 public class SignUp4 extends AppCompatActivity {
 
@@ -36,7 +34,7 @@ public class SignUp4 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up4);
 
-        imgSignUp= findViewById(R.id.ingSignUp);
+        imgSignUp= findViewById(R.id.imgRegistir);
         labelUsuario=findViewById(R.id.labelUsuarioSignup);
         labelContraseña=findViewById(R.id.labelContraseñaSignUp);
         labelConfirmContraseña=findViewById(R.id.labelCofirmContraseñaSignUp);
@@ -113,10 +111,10 @@ public class SignUp4 extends AppCompatActivity {
             }
         });
     }
-
+    ////////////////////////////////////////////////////////////////////////////////////////////////
     UsuarioService usuarioService;
 
-    public void addUsuario(com.example.tienda_op_2.weblogin.modelo.Usuario usuario) {
+    /**/public void addUsuario(com.example.tienda_op_2.weblogin.modelo.Usuario usuario) {
         usuarioService = Apis.getUsuarioService();
         Call<com.example.tienda_op_2.weblogin.modelo.Usuario> call = usuarioService.addUsuario(usuario);
         call.enqueue(new Callback<com.example.tienda_op_2.weblogin.modelo.Usuario>() {
@@ -139,7 +137,7 @@ public class SignUp4 extends AppCompatActivity {
         txt_contra.setText("");
         txt_confir_contra.setText("");
     }
-
+       //////////////////////////////////////////////////////////////////////////////////
     /*private void postDatosVolley2(String usuario, String contraseña){
 
         String url="https://tecnistoreaapi.rj.r.appspot.com:443/usuario";

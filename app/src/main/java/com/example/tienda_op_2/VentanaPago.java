@@ -1,15 +1,21 @@
 package com.example.tienda_op_2;
 
+import android.content.Context;
 import android.content.Intent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.ViewPager;
 import com.example.tienda_op_2.fragments.PagoFargmentAdapter;
 import com.google.android.material.tabs.TabLayout;
 
-public class VentanaPago extends AppCompatActivity {
+public class VentanaPago extends AppCompatActivity  {
 
     private TabLayout tab;
     private ViewPager vp;
@@ -28,12 +34,13 @@ public class VentanaPago extends AppCompatActivity {
         tab.addTab(tab.newTab().setText("Lista de Compras"));
         tab.setTabGravity(TabLayout.GRAVITY_FILL);
 
+        LinearLayout contenedor = (LinearLayout) findViewById(R.id.contenedorRegistro);
+
         final PagoFargmentAdapter adapter= new PagoFargmentAdapter(getSupportFragmentManager(), this, tab.getTabCount());
         vp.setAdapter(adapter);
 
+        System.out.println("A");
         vp.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tab));
-
-
 
 
         /*CONFIGURACION TOOL BAR*/

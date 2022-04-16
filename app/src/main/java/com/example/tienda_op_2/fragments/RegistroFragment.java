@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import androidx.fragment.app.Fragment;
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.tienda_op_2.R;
 
 public class RegistroFragment extends Fragment {
@@ -14,6 +15,7 @@ public class RegistroFragment extends Fragment {
     EditText txtCedula, txtNombre, txtApellido, txtFechaNac, txtDireccion, txtTelefono, txtEmail;
     Button btnSiguiente;
     String fechaSeleccionada;
+    LottieAnimationView imgRegister;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -26,8 +28,13 @@ public class RegistroFragment extends Fragment {
         txtDireccion= root.findViewById(R.id.txtDireccionPago);
         txtTelefono= root.findViewById(R.id.txtTelefonoPago);
         txtEmail= root.findViewById(R.id.txtEmailPago);
+        imgRegister= root.findViewById(R.id.imgRegistir);
 
         btnSiguiente= root.findViewById(R.id.btnSiguientePago);
+
+        imgRegister.setAnimation(R.raw.animate_register);
+        imgRegister.playAnimation();
+        imgRegister.setRepeatCount(2000);
 
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,8 +47,9 @@ public class RegistroFragment extends Fragment {
                         !txtDireccion.getText().toString().isEmpty() &&
                         !txtTelefono.getText().toString().isEmpty() &&
                         !txtEmail.getText().toString().isEmpty()){
-                    DatosPagoFragment dialogPago= new DatosPagoFragment();
-                    dialogPago.show(getActivity().getSupportFragmentManager(), "Metodo Pafgo");
+                    //Muestro el Dialogo personalizado
+                    /*DatosPagoFragment dialogPago= new DatosPagoFragment();
+                    dialogPago.show(getActivity().getSupportFragmentManager(), "Metodo Pafgo");*/
                 }else{
                     Toast.makeText(root.getContext(), "Tienes que llenar todos los campos", Toast.LENGTH_SHORT).show();
                 }

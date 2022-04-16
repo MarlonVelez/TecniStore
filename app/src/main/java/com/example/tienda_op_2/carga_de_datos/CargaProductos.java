@@ -3,11 +3,15 @@ package com.example.tienda_op_2.carga_de_datos;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.tienda_op_2.CarritoCompras;
+import com.example.tienda_op_2.R;
 import com.example.tienda_op_2.adapter.CarritoAdapter;
 import com.example.tienda_op_2.adapter.ListaComprasAdapter;
 import com.example.tienda_op_2.base_temp.SQLiteOpenHelper;
@@ -25,13 +29,17 @@ public class CargaProductos {
     CarritoAdapter carritoAdapter;
     ListaComprasAdapter listaComprasAdapter;
     TextView txtTotal;
+    CardView cardCarritoVacio;
+    LottieAnimationView imgCarritoVacio;
     ArrayList<Carrito> arrayList= new ArrayList<>();
 
 
-    public CargaProductos(Context context, RecyclerView recyclerView, TextView txtTotal) {
+    public CargaProductos(Context context, RecyclerView recyclerView, TextView txtTotal, CardView cardCarritoVacio, LottieAnimationView imgCarritoVacio) {
         this.context = context;
         this.recyclerView = recyclerView;
         this.txtTotal = txtTotal;
+        this.cardCarritoVacio = cardCarritoVacio;
+        this.imgCarritoVacio = imgCarritoVacio;
     }
 
     public CargaProductos() {
@@ -65,13 +73,17 @@ public class CargaProductos {
             base.close();
             open.close();
             if (layout.equalsIgnoreCase("Carrito")){
-                System.out.println("CARRITO!! CARRITO!! CARRITO!! CARRITO!! CARRITO!! CARRITO!! CARRITO!! CARRITO!! ");
-                mostrarCarrito(arrayList);
-                carritoAdapter.notifyDataSetChanged();
+                if (arrayList.size()>0){
+                    cardCarritoVacio.setVisibility(View.GONE);
+                    mostrarCarrito(arrayList);
+                    carritoAdapter.notifyDataSetChanged();
+                }else{
+                    cardCarritoVacio.setVisibility(View.VISIBLE);
+                }
+
             }
 
             if (layout.equalsIgnoreCase("Lista Compras")){
-                System.out.println("LISTA C!! LISTA C!! LISTA C!! LISTA C!! LISTA C!! LISTA C!! LISTA C!! LISTA C!! ");
                 mostrarListaCompras(arrayList);
                 listaComprasAdapter.notifyDataSetChanged();
             }
@@ -79,7 +91,9 @@ public class CargaProductos {
 
 
         }else{
-            Toast.makeText(context, "No hay datos registrados", Toast.LENGTH_LONG).show();
+            //Toast.makeText(context, "No hay datos registrados", Toast.LENGTH_LONG).show();
+            mostrarListaCompras(arrayList);
+            listaComprasAdapter.notifyDataSetChanged();
         }
     }
 

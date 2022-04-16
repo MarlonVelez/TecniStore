@@ -239,7 +239,7 @@ public class DetalleProducto extends AppCompatActivity {
 
             Toast.makeText(this, "Prodcuto añadido al carrito", Toast.LENGTH_LONG).show();
         }else{
-            Toast.makeText(this, "El cliente con este id ya se encuentra registrado", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Este producto ya fue registrado", Toast.LENGTH_LONG).show();
 
         }
 

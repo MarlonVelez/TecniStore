@@ -1,9 +1,7 @@
 package com.example.tienda_op_2;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,7 +10,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.tienda_op_2.base_temp.SQLiteOpenHelper;
 import com.example.tienda_op_2.carga_de_datos.CargaProductos;
 
@@ -23,6 +23,9 @@ public class CarritoCompras extends AppCompatActivity{
     TextView txtTotal;
     RecyclerView listaCarrito;
     Button btnComprarCarrito, btnCancelarCarrito;
+
+    CardView cardCarritoVacio;
+    LottieAnimationView imgCarritoVacio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,12 @@ public class CarritoCompras extends AppCompatActivity{
         txtTotal= findViewById(R.id.txtTotalCompra);
         btnComprarCarrito= findViewById(R.id.btnCompraAhoraCarrito);
         btnCancelarCarrito= findViewById(R.id.btnCancelarCarrito);
+        cardCarritoVacio= findViewById(R.id.card_carritoVacio);
+        imgCarritoVacio= findViewById(R.id.imgCarritoVacio);
+
+        imgCarritoVacio.setAnimation(R.raw.carrito_vacio);
+        imgCarritoVacio.playAnimation();
+        imgCarritoVacio.setRepeatCount(2000);
 
         //Configuracion de ToolBar
         setSupportActionBar(toolbar);
@@ -103,7 +112,8 @@ public class CarritoCompras extends AppCompatActivity{
             }
         });
 
-        CargaProductos datosProductos= new CargaProductos(this, listaCarrito, txtTotal);
+
+        CargaProductos datosProductos= new CargaProductos(this, listaCarrito, txtTotal, cardCarritoVacio, imgCarritoVacio);
         datosProductos.listarProductosCarrito(null, "Carrito");
     }
 
