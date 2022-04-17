@@ -5,8 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
-import android.view.inputmethod.EditorInfo;
 import android.widget.*;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +22,7 @@ public class DetalleProducto extends AppCompatActivity {
     ImageView img, btn_mas, btn_menos;
     TextView nombreProdcuto, precioProdcuto, descripcionProducto, stockProdcuto;
     EditText cantidad;
-    Button btnAñadirCarrito, btnComprarAhora;
+    Button btnAñadirCarrito;
 
     String nombre, precio, descripcion, stock;
     String image;
@@ -43,7 +41,6 @@ public class DetalleProducto extends AppCompatActivity {
         cantidad=findViewById(R.id.txt_cantidadProductoDetPro);
 
         btnAñadirCarrito=findViewById(R.id.btnAñadirCarrito);
-        btnComprarAhora= findViewById(R.id.btnCompraAhora);
 
         //Referencias UI
         toolbar= findViewById(R.id.toolBar);
@@ -149,13 +146,9 @@ public class DetalleProducto extends AppCompatActivity {
                                 .show();
                         btnAñadirCarrito.setEnabled(false);
                         btnAñadirCarrito.setTextColor(R.color.rojo_eliminar);
-                        btnComprarAhora.setEnabled(false);
-                        btnComprarAhora.setTextColor(R.color.rojo_eliminar);
                     }else {
                         btnAñadirCarrito.setEnabled(true);
                         btnAñadirCarrito.setTextColor(R.color.azul_brillante);
-                        btnComprarAhora.setEnabled(true);
-                        btnComprarAhora.setTextColor(R.color.azul_brillante);
                     }
 
                 }catch (NumberFormatException ex){ /*capturamos el error si es que el usuario ingrese cualquier valor que no sea un numero entero*/
@@ -199,13 +192,12 @@ public class DetalleProducto extends AppCompatActivity {
                             })
                             .show();
                 }else{
-                    addCarrito();
+                    addCarrito(true);
                 }
 
             }
         });
 
-        //////////////////////////////////////////////////////////////////////////////////////////////
 
     }
 
@@ -221,7 +213,7 @@ public class DetalleProducto extends AppCompatActivity {
         cantidad.setText(String.valueOf(resta));
     }
 
-    private void addCarrito(){
+    private void addCarrito(boolean estado){
 
         SQLiteOpenHelper base= new SQLiteOpenHelper(this);
 
@@ -233,16 +225,14 @@ public class DetalleProducto extends AppCompatActivity {
         String imagen= image;
         int stock= Integer.parseInt(stockProdcuto.getText().toString());
 
-        boolean bandera= base.agregarCarrito(nombreP, descP, precioP, cantidadCompra, imagen, stock);
+        boolean bandera= base.agregarCarrito(nombreP, descP, precioP, cantidadCompra, imagen, stock, estado);
 
-        if (bandera!=false){
-
-            Toast.makeText(this, "Prodcuto añadido al carrito", Toast.LENGTH_LONG).show();
-        }else{
-            Toast.makeText(this, "Este producto ya fue registrado", Toast.LENGTH_LONG).show();
-
+        if (estado!=false){
+            if (bandera!=false){
+                Toast.makeText(this, "Prodcuto añadido al carrito", Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(this, "Este producto ya fue registrado", Toast.LENGTH_LONG).show();
+            }
         }
-
     }
-
 }

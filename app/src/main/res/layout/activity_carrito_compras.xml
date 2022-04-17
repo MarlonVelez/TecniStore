@@ -101,11 +101,11 @@
                     android:textColor="@color/azul_brillante" android:textSize="16sp" android:textStyle="bold"
                     android:layout_marginStart="10dp" android:layout_marginTop="5dp"/>
             <TextView
-                    android:text="$0"
-                    android:layout_width="118dp"
+                    android:layout_width="186dp"
                     android:layout_height="wrap_content" android:id="@+id/txtTotalCompra"
                     android:textColor="@color/azul_marino" android:textSize="19sp" android:textStyle="bold"
-                    android:textAlignment="viewEnd" android:layout_marginStart="220dp" android:layout_marginTop="5dp"/>
+                    android:textAlignment="viewEnd" android:layout_marginStart="150dp" android:layout_marginTop="5dp"
+                    android:text="$0"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

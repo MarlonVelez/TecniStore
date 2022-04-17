@@ -121,6 +121,7 @@ public class CarritoCompras extends AppCompatActivity{
     public void refrescar(View view, String nombre){
         SQLiteOpenHelper base = new SQLiteOpenHelper(view.getContext());
         base.eliminarCarrito(nombre);
+
         /*CargaProductos datosProductos= new CargaProductos(this, listaCarrito, myTextView);
         datosProductos.listarProductosCarrito(null);*/
 

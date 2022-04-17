@@ -27,14 +27,14 @@
             app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/linearLayout3">
         <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="304dp"
+                android:layout_height="234dp"
                 android:id="@+id/cardView2" app:cardElevation="20dp" android:layout_marginTop="50dp">
             <ImageView
                     android:id="@+id/big_image"
                     android:layout_width="316dp"
-                    android:layout_height="274dp"
+                    android:layout_height="200dp"
                     app:srcCompat="@drawable/icon_shopping_car"
-                    android:layout_marginTop="16dp" android:layout_marginStart="33dp" android:layout_marginEnd="0dp"/>
+                    android:layout_marginTop="16dp" android:layout_marginStart="40dp" android:layout_marginEnd="0dp"/>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -169,27 +169,22 @@
                     android:layout_width="193dp"
                     android:layout_height="93dp" android:id="@+id/linearLayout"
                     android:elevation="10dp" android:background="@android:color/transparent"
-                    android:layout_marginStart="2dp">
+                    android:layout_marginStart="2dp" android:layout_weight="1">
                 <Button
-                        android:text="Añadir "
+                        android:text="Añadir al carrito"
                         android:layout_width="match_parent"
-                        android:layout_height="99dp" android:id="@+id/btnAñadirCarrito" android:layout_weight="1"
-                        android:backgroundTint="@color/blanco_azulado" android:textColor="@color/azul_brillante"
-                        android:drawableLeft="@drawable/icon_add_shopping_cart" android:textSize="16sp"
-                        android:layout_marginTop="2dp" android:elevation="0dp"/>
-            </LinearLayout>
-            <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="@color/azul_brillante" android:layout_marginStart="8dp">
-                <Button
-                        android:text="Comprar"
-                        android:layout_width="213dp"
-                        android:layout_height="101dp" android:id="@+id/btnCompraAhora" android:layout_weight="1"
-                        android:backgroundTint="@color/azul_brillante" android:drawableLeft="@drawable/icon_get_cash_"
-                        android:textAlignment="viewStart" android:textSize="16sp"
-                        android:textColor="@color/blaco_arena"/>
+                        android:layout_height="99dp"
+                        android:id="@+id/btnAñadirCarrito"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        android:layout_marginTop="2dp"
+                        android:elevation="0dp"
+                        android:background="@color/azul_claro"
+                        android:textAllCaps="false"
+                        android:layout_marginStart="-1dp"
+                        android:drawableStart="@drawable/icon_add_shopping_cart"
+                        android:paddingLeft="80dp"
+                        android:textAlignment="viewStart"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
