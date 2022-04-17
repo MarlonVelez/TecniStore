@@ -12,6 +12,9 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.Tienda_op_2">
         <activity
+                android:name=".PerfilUsuario"
+                android:exported="true"/>
+        <activity
                 android:name=".VentanaPago"
                 android:exported="true"/>
         <activity
