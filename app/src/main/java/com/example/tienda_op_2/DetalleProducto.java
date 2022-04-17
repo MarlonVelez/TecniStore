@@ -148,7 +148,7 @@ public class DetalleProducto extends AppCompatActivity {
                         btnAñadirCarrito.setTextColor(R.color.rojo_eliminar);
                     }else {
                         btnAñadirCarrito.setEnabled(true);
-                        btnAñadirCarrito.setTextColor(R.color.azul_brillante);
+                        btnAñadirCarrito.setTextColor(R.color.white);
                     }
 
                 }catch (NumberFormatException ex){ /*capturamos el error si es que el usuario ingrese cualquier valor que no sea un numero entero*/

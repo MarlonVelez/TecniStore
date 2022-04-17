@@ -20,17 +20,8 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
             "cantidadCompra int, " +
             "stock int, " +
             "imagenProducto text,"+
-            "estado boolean)";
+            "estado int)";
 
-
-    private static String TABLA_COMPRAR_AHORA= "create table comprar_ahora (" +
-            "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-            "nombreProducto text UNIQUE, " +
-            "descripcionProducto text, " +
-            "precioProducto double, " +
-            "cantidadCompra"+
-            "strock int, " +
-            "imagenProducto text)";
 
     private static String TABLA_USUARIO= "create table usuario (" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
@@ -48,7 +39,6 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase base) {
         base.execSQL(TABLA_CARRITO);
         base.execSQL(TABLA_USUARIO);
-        base.execSQL(TABLA_COMPRAR_AHORA);
     }
 
     //
@@ -57,16 +47,20 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
         //sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+TABLA_CARRITO);
         sqLiteDatabase.execSQL(TABLA_CARRITO);
         sqLiteDatabase.execSQL(TABLA_USUARIO);
-        sqLiteDatabase.execSQL(TABLA_COMPRAR_AHORA);
     }
 
     public boolean agregarCarrito(/*int id,*/ String nombre, String descripcion, String precio, String cantidad, String img, int stock, boolean estado){
         SQLiteDatabase bd= getWritableDatabase();
-
+        int tipo=0;
+        if (estado!=false){
+            tipo=1;
+        }else {
+            tipo=0;
+        }
         if (bd!=null){
             try{
                 //bd.execSQL("INSERT INTO carrito VALUES('"+id+"','"+cedula+"','"+nombre+"','"+apellido+"','"+telefono+"','"+email+"')");
-                bd.execSQL("INSERT INTO carrito VALUES("+null+",'"+nombre+"','"+descripcion+"',"+precio+","+cantidad+","+stock+",'"+img+"', "+true+")");
+                bd.execSQL("INSERT INTO carrito VALUES("+null+",'"+nombre+"','"+descripcion+"',"+precio+","+cantidad+","+stock+",'"+img+"', "+tipo+")");
                 bd.close();
                 return true;
             }catch (SQLiteConstraintException e){
