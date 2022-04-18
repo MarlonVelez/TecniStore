@@ -130,4 +130,9 @@ public class CarritoCompras extends AppCompatActivity{
         /*¿COMO PUEDO HACER REFERENCIA A UN ELEMENTO FUERA DEL METODO ONCREATE O DESDE OTRA CLASE SIN QUE ME SAlGA LA SIGUIENTE EXEPCION
         * Attempt to invoke virtual method 'java.io.File android.content.Context.getDatabasePath(java.lang.String)' on a null object referenc*/
     }
+
+    public void editarCarrito(View view, String cantidad, String nombre){
+        SQLiteOpenHelper base = new SQLiteOpenHelper(view.getContext());
+        base.editarCarrito(nombre, cantidad);
+    }
 }

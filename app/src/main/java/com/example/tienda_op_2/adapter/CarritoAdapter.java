@@ -21,6 +21,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+import static java.security.AccessController.getContext;
+
 public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoViewHolder>{
 
     Context context;
@@ -65,6 +67,10 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
                 if (total<itemList.get(position).getStock()) {
                     total= total+1;
                     holder.cantidad.setText(String.valueOf(total));
+
+                    //Actualizamos datos en la base temporal
+                    CarritoCompras carritoCompras= new CarritoCompras();
+                    carritoCompras.editarCarrito(view, String.valueOf(total), holder.nombre.getText().toString());
                 }else{
                     Toast.makeText(context, "No hay mas stock", Toast.LENGTH_SHORT).show();
                 }
@@ -81,6 +87,11 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
                 if (total!=0){
                     total= total-1;
                     holder.cantidad.setText(String.valueOf(total));
+
+                    //Actualizamos datos en la base temporal
+                    CarritoCompras carritoCompras= new CarritoCompras();
+                    carritoCompras.editarCarrito(view, String.valueOf(total), holder.nombre.getText().toString());
+
                 }
 
             }
@@ -139,6 +150,10 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
             listaCart= itemView.findViewById(R.id.listaCarrito);
 
         }
+    }
+
+    private void EditarCarrito(){
+
     }
 
 }

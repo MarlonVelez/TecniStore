@@ -28,13 +28,13 @@ public class RegistroFragment extends Fragment {
         txtDireccion= root.findViewById(R.id.txtDireccionPago);
         txtTelefono= root.findViewById(R.id.txtTelefonoPago);
         txtEmail= root.findViewById(R.id.txtEmailPago);
-        imgRegister= root.findViewById(R.id.imgRegistir);
+        //imgRegister= root.findViewById(R.id.imgRegistir);
 
         btnSiguiente= root.findViewById(R.id.btnSiguientePago);
 
-        imgRegister.setAnimation(R.raw.animate_register);
+        /*imgRegister.setAnimation(R.raw.animate_register);
         imgRegister.playAnimation();
-        imgRegister.setRepeatCount(2000);
+        imgRegister.setRepeatCount(2000);*/
 
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
