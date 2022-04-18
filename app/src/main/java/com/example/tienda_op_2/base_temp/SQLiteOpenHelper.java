@@ -75,9 +75,9 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
         }
     }
 
-    public void editarCarrito(String id, String nombre, String descripcion, double precion, int cantidadCompra, String imgProdcuto){
+    public void editarCarrito(String nombre, String cantidadCompra){
         SQLiteDatabase bd= getWritableDatabase();
-        bd.execSQL("UPDATE carrito SET nombreProducto='"+nombre+"', descripcionProducto='"+descripcion+"', precioProducto="+precion+", cantidadCompra="+cantidadCompra+", imagenProducto='"+imgProdcuto+"' WHERE id="+id);
+        bd.execSQL("UPDATE carrito SET cantidadCompra="+cantidadCompra+" WHERE nombreProducto='"+nombre+"'");
         bd.close();
     }
 

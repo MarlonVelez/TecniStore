@@ -16,30 +16,7 @@
         />
     </group>
 
-    <item android:title="Compras">
-
-        <menu>
-            <group>
-
-                <item
-                        android:id="@+id/nav_compras"
-                        android:title="Compras"
-                        android:icon="@drawable/icon_shopping_bag"
-                />
-
-                <item
-                android:id="@+id/nav_notificaciones"
-                android:title="Notificaciones"
-                android:icon="@drawable/icon_notification"
-                />
-
-
-            </group>
-        </menu>
-
-    </item>
-
-    <item android:title="Configuracion y Atencion al Cliente">
+    <item android:title="Usuario y Atencion al Cliente">
 
         <menu>
             <group>
@@ -47,7 +24,7 @@
                 <item
                         android:id="@+id/nav_configUser"
                         android:title="Usuario"
-                        android:icon="@drawable/icon_notification"
+                        android:icon="@drawable/icon_user_nav"
                 />
 
                 <item

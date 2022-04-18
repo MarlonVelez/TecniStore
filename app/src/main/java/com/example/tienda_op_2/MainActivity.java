@@ -2,8 +2,7 @@ package com.example.tienda_op_2;
 
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -16,6 +15,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.tienda_op_2.adapter.ProductoAdapter;
 import com.example.tienda_op_2.api.servicioApi;
 import com.example.tienda_op_2.fragments.HomeFragment;
@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ProductoAdapter adapter;
     private ArrayList<Producto> listProducto;
     private RecyclerView recyclerlistaProdcutos;
+    LottieAnimationView fondoMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //Dar acciones a los items del menu
         navigationView.setNavigationItemSelectedListener(this);
+
+        /**/
+
+
     }
 
 
@@ -109,7 +114,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ft.replace(R.id.contentFrame, new HomeFragment()).commit();
                 break;
             case R.id.nav_configUser:
-
+                Intent configUser = new Intent(this, PerfilUsuario.class);
+                startActivity(configUser);
+                finish();
                 break;
             case R.id.nav_carrito:
                 Intent carritoActi = new Intent(this, CarritoCompras.class);

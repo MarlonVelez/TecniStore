@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.tienda_op_2.R;
 import com.example.tienda_op_2.adapter.ProductoAdapter;
 import com.example.tienda_op_2.api.servicioApi;
@@ -37,19 +38,11 @@ public class HomeFragment extends Fragment {
     private View view;
 
 
+
     public HomeFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Home.
-     */
-    // TODO: Rename and change types and number of parameters
     @NotNull
     public static HomeFragment newInstance(String param1, String param2) {
         HomeFragment fragment = new HomeFragment();

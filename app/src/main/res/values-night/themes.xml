@@ -6,8 +6,8 @@
         <item name="colorPrimaryVariant">@color/azul_brillante</item>
         <item name="colorOnPrimary">@color/azul_brillante</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorSecondary">@color/azul_claro</item>
+        <item name="colorSecondaryVariant">@color/azul_brillante</item>
         <item name="colorOnSecondary">@color/azul_claro</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/azul_claro</item>
