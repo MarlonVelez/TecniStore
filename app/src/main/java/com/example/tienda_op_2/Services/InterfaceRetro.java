@@ -1,4 +1,4 @@
-package com.example.tienda_op_2.validaciones;
+package com.example.tienda_op_2.Services;
 
 import java.util.List;
 

@@ -8,10 +8,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tienda_op_2.adapter.ProductoAdapter;
+import com.example.tienda_op_2.modelo.Cliente;
 import com.example.tienda_op_2.modelo.Producto;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.util.ArrayList;
 
@@ -20,6 +23,8 @@ public class servicioApi {
     public static Context context;
     String endPoint;
     ArrayList<Producto> productos = new ArrayList<>();
+
+    ArrayList<Cliente> clientes = new ArrayList<>();
 
     public servicioApi() {
 
@@ -92,9 +97,41 @@ public class servicioApi {
         });
         Volley.newRequestQueue(context).add(usersJSON);
 
-        System.out.println(productos.size()+" tamañoooooooooooooo");
-
         return productos;
+    }
+
+
+
+    public ArrayList<Cliente> listarClientes() {
+
+        String URL = "https://tecnistoreaapi.rj.r.appspot.com/cliente";
+
+        JsonArrayRequest usersJSON = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    apiClientes apiClientes = new apiClientes(context);
+                    clientes = apiClientes.parseJSON(response);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(null, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        Volley.newRequestQueue(context).add(usersJSON);
+        return clientes;
+    }
+
+
+
+    public static Retrofit getRetro(String baseUrl) {
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(GsonConverterFactory.create()).build();
+        return retrofit;
     }
 
 }
