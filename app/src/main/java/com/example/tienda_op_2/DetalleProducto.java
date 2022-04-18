@@ -26,6 +26,7 @@ public class DetalleProducto extends AppCompatActivity {
 
     String nombre, precio, descripcion, stock;
     String image;
+    int id_producto;
 
     CarritoAdapter carritoAdapter;
 
@@ -72,6 +73,8 @@ public class DetalleProducto extends AppCompatActivity {
         precio = i.getStringExtra("price");
         descripcion = i.getStringExtra("desc");
         stock = i.getStringExtra("qty");
+        id_producto= i.getIntExtra("id",0);
+        System.out.println(id_producto+" dddddddddddddddddddddddddddddddddddd");
 
         nombreProdcuto = findViewById(R.id.productName);
         descripcionProducto = findViewById(R.id.prodDesc);
@@ -218,6 +221,7 @@ public class DetalleProducto extends AppCompatActivity {
         SQLiteOpenHelper base= new SQLiteOpenHelper(this);
 
         //String id= idCliente.getText().toString();
+
         String nombreP= nombreProdcuto.getText().toString();
         String descP= descripcionProducto.getText().toString();
         String precioP= precioProdcuto.getText().toString().substring(1,precioProdcuto.getText().toString().length());
@@ -225,7 +229,8 @@ public class DetalleProducto extends AppCompatActivity {
         String imagen= image;
         int stock= Integer.parseInt(stockProdcuto.getText().toString());
 
-        boolean bandera= base.agregarCarrito(nombreP, descP, precioP, cantidadCompra, imagen, stock, estado);
+        boolean bandera= base.agregarCarrito(id_producto,nombreP, descP, precioP, cantidadCompra, imagen, stock, estado);
+
 
         if (estado!=false){
             if (bandera!=false){
@@ -235,4 +240,6 @@ public class DetalleProducto extends AppCompatActivity {
             }
         }
     }
+
+
 }

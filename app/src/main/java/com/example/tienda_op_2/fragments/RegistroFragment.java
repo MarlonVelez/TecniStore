@@ -9,6 +9,17 @@ import android.widget.*;
 import androidx.fragment.app.Fragment;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.tienda_op_2.R;
+import com.example.tienda_op_2.Services.PedidoService;
+import com.example.tienda_op_2.api.apiClientes;
+import com.example.tienda_op_2.api.apiPedido;
+import com.example.tienda_op_2.api.servicioApi;
+import com.example.tienda_op_2.modelo.Cliente;
+import com.example.tienda_op_2.modelo.Pedido;
+import retrofit2.Call;
+import retrofit2.Callback;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RegistroFragment extends Fragment {
 
@@ -16,6 +27,8 @@ public class RegistroFragment extends Fragment {
     Button btnSiguiente;
     String fechaSeleccionada;
     LottieAnimationView imgRegister;
+
+    List<Cliente> listaCliente= new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -83,8 +96,52 @@ public class RegistroFragment extends Fragment {
                 txtFechaNac.setText(fechaSeleccionada);
             }
         });
-
         newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
+    }
+
+
+    public void  agregarDatosPedido(){
+
+        servicioApi serv= new servicioApi();
+        serv.listarClientes();
+        listaCliente=apiClientes.listacliente;
+
+        System.out.println(listaCliente.size());
+
+
+        /*   Pedido p=new Pedido();
+        p.setIdCliente();
+        p.setFecha();
+        p.setDespachado("false");
+        p.setTotalGeneral();*/
+
+
 
     }
+
+
+    PedidoService pedidoService;
+    public void addPedido(Pedido pedido){
+        pedidoService= apiPedido.getpedidoService();
+        Call<Pedido> call = pedidoService.addPedido(pedido);
+        call.enqueue(new Callback<Pedido>() {
+            @Override
+            public void onResponse(Call<Pedido> call, retrofit2.Response<Pedido> response) {
+                if (response.isSuccessful()) {
+                    //Toast.makeText(SignUp4.this, "Pedido agregado automaticamente", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Pedido> call, Throwable t) {
+                //  Toast.makeText(SignUp4.this, "Error al agregar usuario", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+
+
+
+
 }

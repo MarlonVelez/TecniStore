@@ -20,7 +20,8 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
             "cantidadCompra int, " +
             "stock int, " +
             "imagenProducto text,"+
-            "estado int)";
+            "estado int,"+
+            "id_producto)";
 
 
     private static String TABLA_USUARIO= "create table usuario (" +
@@ -49,7 +50,7 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
         sqLiteDatabase.execSQL(TABLA_USUARIO);
     }
 
-    public boolean agregarCarrito(/*int id,*/ String nombre, String descripcion, String precio, String cantidad, String img, int stock, boolean estado){
+    public boolean agregarCarrito(int id_producto, String nombre, String descripcion, String precio, String cantidad, String img, int stock, boolean estado){
         SQLiteDatabase bd= getWritableDatabase();
         int tipo=0;
         if (estado!=false){
@@ -60,7 +61,9 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
         if (bd!=null){
             try{
                 //bd.execSQL("INSERT INTO carrito VALUES('"+id+"','"+cedula+"','"+nombre+"','"+apellido+"','"+telefono+"','"+email+"')");
-                bd.execSQL("INSERT INTO carrito VALUES("+null+",'"+nombre+"','"+descripcion+"',"+precio+","+cantidad+","+stock+",'"+img+"', "+tipo+")");
+
+                bd.execSQL("INSERT INTO carrito VALUES("+null+",'"+nombre+"','"+descripcion+"',"+precio+","+cantidad+","+stock+",'"+img+"', "+tipo+","+id_producto+")");
+                System.out.println(" base creada"+ id_producto);
                 bd.close();
                 return true;
             }catch (SQLiteConstraintException e){
@@ -114,22 +117,24 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
     }
 
     ///// TABLA COMPRAR AHORA ///////
-    public boolean agregarProductoComprarAhora(/*int id,*/ String nombre, String descripcion, String precio, String cantidad, String img, int stock){
-        SQLiteDatabase bd= getWritableDatabase();
 
-        if (bd!=null){
-            try{
+   public boolean agregarProductoComprarAhora(int id, String nombre, String descripcion, String precio, String cantidad, String img, int stock) {
+        SQLiteDatabase bd = getWritableDatabase();
+
+        if (bd != null) {
+            try {
                 //bd.execSQL("INSERT INTO carrito VALUES('"+id+"','"+cedula+"','"+nombre+"','"+apellido+"','"+telefono+"','"+email+"')");
-                bd.execSQL("INSERT INTO comprar_ahora VALUES("+null+",'"+nombre+"','"+descripcion+"',"+precio+","+cantidad+","+stock+",'"+img+"')");
+                bd.execSQL("INSERT INTO comprar_ahora VALUES(" + null + ",'" + nombre + "','" + descripcion + "'," + precio + "," + cantidad + "," + stock + ",'" + img + "')");
                 bd.close();
                 return true;
-            }catch (SQLiteConstraintException e){
+            } catch (SQLiteConstraintException e) {
                 return false;
             }
 
-        }else{
+        } else {
             return false;
         }
     }
+
 
 }
