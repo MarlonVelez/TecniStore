@@ -6,6 +6,6 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface ClienteService {
-    @POST("Cliente")
+    @POST("cliente")
     Call<Cliente> addCliente(@Body Cliente cliente);
 }

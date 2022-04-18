@@ -13,8 +13,7 @@ import com.example.tienda_op_2.weblogin.modelo.Cliente;
 import com.example.tienda_op_2.weblogin.utildades.ApiClient;
 import com.example.tienda_op_2.weblogin.utildades.Apis;
 import com.example.tienda_op_2.weblogin.utildades.ClienteService;
-import retrofit2.Call;
-import retrofit2.Callback;
+import retrofit2.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,7 +23,6 @@ import com.example.tienda_op_2.Services.PedidoService;
 import com.example.tienda_op_2.api.apiClientes;
 import com.example.tienda_op_2.api.apiPedido;
 import com.example.tienda_op_2.api.servicioApi;
-import com.example.tienda_op_2.modelo.Cliente;
 import com.example.tienda_op_2.modelo.Pedido;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -63,7 +61,7 @@ public class RegistroFragment extends Fragment {
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+                String dt = txtFechaNac.getText().toString();
 
                 if (!txtCedula.getText().toString().isEmpty() &&
                         !txtNombre.getText().toString().isEmpty() &&
@@ -79,11 +77,7 @@ public class RegistroFragment extends Fragment {
                     cliente.setCorreo(txtEmail.getText().toString());
                     cliente.setDireccion(txtDireccion.getText().toString());
                     cliente.setEstadoCliente("true");
-                    try {
-                        cliente.setFechaNacimiento(formato.parse(txtFechaNac.getText().toString()));
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
+                    cliente.setFechaNacimiento(dt);
                     cliente.setIdCliente(0);
                     cliente.setIdUsuario(8);
                     cliente.setNombre(txtNombre.getText().toString());
@@ -122,19 +116,44 @@ public class RegistroFragment extends Fragment {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 // +1 porque enero es 0
+                if (month >= 1 && month <= 9 && day >= 1 && day <= 9){
+                    fechaSeleccionada = ""+year + "-0" + (month+1) + "-0" + day+"";
+                    txtFechaNac.setText(fechaSeleccionada);
+                }else if (month >= 1 && month <= 9 && day > 9){
+                    fechaSeleccionada = ""+year + "-0" + (month+1) + "-" + day+"";
+                    txtFechaNac.setText(fechaSeleccionada);
+                }else if (day >= 1 && day <= 9 && month > 9){
+                    fechaSeleccionada = ""+year + "-" + (month+1) + "-0" + day+"";
+                    txtFechaNac.setText(fechaSeleccionada);
+                }else {
+                    fechaSeleccionada = "" + year + "-" + (month + 1) + "-" + day + "";
+                    txtFechaNac.setText(fechaSeleccionada);
+                }
+            }
+        });
+
+        newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
+
+    }
+    /*private void showDatePickerDialog() {
+
+        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                // +1 porque enero es 0
                 fechaSeleccionada = day + " / " + (month+1) + " / " + year;
                 txtFechaNac.setText(fechaSeleccionada);
             }
         });
         newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
-    }
+    }*/
 
 
     public void  agregarDatosPedido(){
 
         servicioApi serv= new servicioApi();
         serv.listarClientes();
-        listaCliente=apiClientes.listacliente;
+        //listaCliente=apiClientes.listacliente;
 
         System.out.println(listaCliente.size());
 
@@ -155,30 +174,14 @@ public class RegistroFragment extends Fragment {
         Call<Cliente> call = clienteService.addCliente(cliente);
         call.enqueue(new Callback<Cliente>() {
             @Override
-            public void onResponse(Call<com.example.tienda_op_2.weblogin.modelo.Cliente> call, retrofit2.Response<com.example.tienda_op_2.weblogin.modelo.Cliente> response) {
-                if (response.isSuccessful()) {
-                    //Toast.makeText(RegistroFragment.this,"",Toast.LENGTH_LONG).show();
-                    System.out.println("USUARIO REGISTRADO.........................................................");
+            public void onResponse(Call<Cliente> call, Response<Cliente> response) {
 
-    PedidoService pedidoService;
-    public void addPedido(Pedido pedido){
-        pedidoService= apiPedido.getpedidoService();
-        Call<Pedido> call = pedidoService.addPedido(pedido);
-        call.enqueue(new Callback<Pedido>() {
-            @Override
-            public void onResponse(Call<Pedido> call, retrofit2.Response<Pedido> response) {
-                if (response.isSuccessful()) {
-                    //Toast.makeText(SignUp4.this, "Pedido agregado automaticamente", Toast.LENGTH_SHORT).show();
-                }
             }
 
             @Override
-            public void onFailure(Call<com.example.tienda_op_2.weblogin.modelo.Cliente> call, Throwable t) {
-                //Toast.makeText(RegistroFragment.this, "error al agregar usuario", Toast.LENGTH_SHORT).show();
-                System.out.println("ERROR DE AGREGACION ...........................................................");
+            public void onFailure(Call<Cliente> call, Throwable t) {
+
             }
-
-
         });
     }
     public  void limpiarCampos(){
@@ -190,10 +193,7 @@ public class RegistroFragment extends Fragment {
         txtApellido.setText("");
         txtDireccion.setText("");
     }
-            public void onFailure(Call<Pedido> call, Throwable t) {
-                //  Toast.makeText(SignUp4.this, "Error al agregar usuario", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+//marlinga
+
 
 }

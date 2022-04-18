@@ -23,7 +23,7 @@ public class Cliente {
     private String estadoCliente;
     @SerializedName("fechaNacimiento")
     @Expose
-    private Date fechaNacimiento;
+    private String fechaNacimiento;
     @SerializedName("idCliente")
     @Expose
     private Integer idCliente;
@@ -57,7 +57,7 @@ public class Cliente {
      * @param telefono
      * @param nombre
      */
-    public Cliente(String apellido, String cedula, String correo, String direccion, String estadoCliente, Date fechaNacimiento, Integer idCliente, Integer idUsuario, String nombre, String telefono) {
+    public Cliente(String apellido, String cedula, String correo, String direccion, String estadoCliente, String fechaNacimiento, Integer idCliente, Integer idUsuario, String nombre, String telefono) {
         super();
         this.apellido = apellido;
         this.cedula = cedula;
@@ -111,11 +111,12 @@ public class Cliente {
         this.estadoCliente = estadoCliente;
     }
 
-    public Date getFechaNacimiento() {
+
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
