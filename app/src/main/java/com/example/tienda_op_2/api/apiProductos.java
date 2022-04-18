@@ -8,7 +8,6 @@ import com.example.tienda_op_2.modelo.Producto;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class apiProductos{
             //Users user= new Users();
             Producto producto= new Producto();
             jsonObject= myJSON.getJSONObject(i);
-
+            producto.setIdProducto(jsonObject.getInt("idProducto"));
             producto.setNombre(jsonObject.getString("nombre"));
             producto.setDescripcion(jsonObject.getString("descripcion"));
             producto.setStock(jsonObject.getInt("stock"));
@@ -46,8 +45,6 @@ public class apiProductos{
         return  productos;
 
     }
-
-
 
     public void mostrarPriductos(List<Producto> dataList ) {
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context, 2);

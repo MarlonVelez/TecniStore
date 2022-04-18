@@ -1,4 +1,4 @@
-package com.example.tienda_op_2.validaciones;
+package com.example.tienda_op_2.Services;
 
 public interface Validacion_user {
     void toggleProgressBar(boolean status);

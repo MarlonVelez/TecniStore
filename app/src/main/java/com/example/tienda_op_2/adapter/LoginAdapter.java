@@ -7,7 +7,7 @@ import android.os.AsyncTask;
 import com.example.tienda_op_2.Inicio_Login;
 import com.example.tienda_op_2.MainActivity;
 import com.example.tienda_op_2.modelo.Login;
-import com.example.tienda_op_2.validaciones.Validacion_user;
+import com.example.tienda_op_2.Services.Validacion_user;
 
 import java.util.ArrayList;
 
