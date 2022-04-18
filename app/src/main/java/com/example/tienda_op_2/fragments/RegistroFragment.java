@@ -1,35 +1,34 @@
 package com.example.tienda_op_2.fragments;
 
 import android.app.DatePickerDialog;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.tienda_op_2.R;
+import com.example.tienda_op_2.weblogin.modelo.Cliente;
+import com.example.tienda_op_2.weblogin.utildades.ApiClient;
+import com.example.tienda_op_2.weblogin.utildades.Apis;
+import com.example.tienda_op_2.weblogin.utildades.ClienteService;
+import retrofit2.*;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+
 import com.example.tienda_op_2.Services.PedidoService;
 import com.example.tienda_op_2.api.apiClientes;
 import com.example.tienda_op_2.api.apiPedido;
-
-import com.example.tienda_op_2.carga_de_datos.CargaProductos;
-import com.example.tienda_op_2.modelo.Cliente;
+import com.example.tienda_op_2.api.servicioApi;
 import com.example.tienda_op_2.modelo.Pedido;
-import com.example.tienda_op_2.modelo.Producto;
-
-
 import retrofit2.Call;
 import retrofit2.Callback;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RegistroFragment extends Fragment {
 
@@ -62,6 +61,7 @@ public class RegistroFragment extends Fragment {
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String dt = txtFechaNac.getText().toString();
 
                 if (!txtCedula.getText().toString().isEmpty() &&
                         !txtNombre.getText().toString().isEmpty() &&
@@ -69,15 +69,27 @@ public class RegistroFragment extends Fragment {
                         !txtFechaNac.getText().toString().isEmpty() &&
                         !txtDireccion.getText().toString().isEmpty() &&
                         !txtTelefono.getText().toString().isEmpty() &&
-                        !txtEmail.getText().toString().isEmpty()){
+                        !txtEmail.getText().toString().isEmpty()) {
+
+                    Cliente cliente = new Cliente();
+                    cliente.setApellido(txtApellido.getText().toString());
+                    cliente.setCedula(txtCedula.getText().toString());
+                    cliente.setCorreo(txtEmail.getText().toString());
+                    cliente.setDireccion(txtDireccion.getText().toString());
+                    cliente.setEstadoCliente("true");
+                    cliente.setFechaNacimiento(dt);
+                    cliente.setIdCliente(0);
+                    cliente.setIdUsuario(8);
+                    cliente.setNombre(txtNombre.getText().toString());
+                    cliente.setTelefono(txtTelefono.getText().toString());
+                    addCliente(cliente);
+                    limpiarCampos();
                     //Muestro el Dialogo personalizado
                     /*DatosPagoFragment dialogPago= new DatosPagoFragment();
                     dialogPago.show(getActivity().getSupportFragmentManager(), "Metodo Pafgo");*/
                 }else{
                     Toast.makeText(root.getContext(), "Tienes que llenar todos los campos", Toast.LENGTH_SHORT).show();
                 }
-
-                agregarDatosPedido();
             }
         });
 
@@ -104,69 +116,84 @@ public class RegistroFragment extends Fragment {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 // +1 porque enero es 0
+                if (month >= 1 && month <= 9 && day >= 1 && day <= 9){
+                    fechaSeleccionada = ""+year + "-0" + (month+1) + "-0" + day+"";
+                    txtFechaNac.setText(fechaSeleccionada);
+                }else if (month >= 1 && month <= 9 && day > 9){
+                    fechaSeleccionada = ""+year + "-0" + (month+1) + "-" + day+"";
+                    txtFechaNac.setText(fechaSeleccionada);
+                }else if (day >= 1 && day <= 9 && month > 9){
+                    fechaSeleccionada = ""+year + "-" + (month+1) + "-0" + day+"";
+                    txtFechaNac.setText(fechaSeleccionada);
+                }else {
+                    fechaSeleccionada = "" + year + "-" + (month + 1) + "-" + day + "";
+                    txtFechaNac.setText(fechaSeleccionada);
+                }
+            }
+        });
+
+        newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
+
+    }
+    /*private void showDatePickerDialog() {
+
+        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                // +1 porque enero es 0
                 fechaSeleccionada = day + " / " + (month+1) + " / " + year;
                 txtFechaNac.setText(fechaSeleccionada);
             }
         });
         newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
-    }
-
+    }*/
 
 
     public void  agregarDatosPedido(){
-        int id_cliente = 0;
-        double totalGeneral;
 
-        totalGeneral=CargaProductos.total;
+        servicioApi serv= new servicioApi();
+        serv.listarClientes();
+        //listaCliente=apiClientes.listacliente;
 
-        System.out.println(totalGeneral+ " totalllllllllll");
-
-        listaCliente=apiClientes.listacliente;
-        System.out.println(listaCliente.size()+ " gggggg");
-
-            for (Cliente p : listaCliente) {
-                if (p.getCedula().contains(txtCedula.getText())) {
-                  id_cliente=p.getIdCliente();
-                }
-            }
-        System.out.println(id_cliente+ " xxxx");
+        System.out.println(listaCliente.size());
 
 
-        Date fecha= new Date();
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String date = sdf.format(fecha);
-        Pedido p=new Pedido();
-        p.setIdCliente(id_cliente);
-        p.setFecha(date);
+        /*   Pedido p=new Pedido();
+        p.setIdCliente();
+        p.setFecha();
         p.setDespachado("false");
-        p.setTotalGeneral(totalGeneral);
-        addPedido(p);
+        p.setTotalGeneral();*/
+
+
+
     }
 
-
-    PedidoService pedidoService;
-    public void addPedido(Pedido pedido){
-        pedidoService= apiPedido.getpedidoService();
-        Call<Pedido> call = pedidoService.addPedido(pedido);
-        call.enqueue(new Callback<Pedido>() {
+    ClienteService clienteService;
+    public void addCliente(com.example.tienda_op_2.weblogin.modelo.Cliente cliente) {
+        clienteService = ApiClient.getClienteService();
+        Call<Cliente> call = clienteService.addCliente(cliente);
+        call.enqueue(new Callback<Cliente>() {
             @Override
-            public void onResponse(Call<Pedido> call, retrofit2.Response<Pedido> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(getContext(), "Pedido agregado automaticamente", Toast.LENGTH_SHORT).show();
-                }
+            public void onResponse(Call<Cliente> call, Response<Cliente> response) {
+
             }
 
             @Override
-            public void onFailure(Call<Pedido> call, Throwable t) {
-                Toast.makeText(getContext(), "Error al agregar usuario", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<Cliente> call, Throwable t) {
+
             }
         });
     }
-
-
-
-
+    public  void limpiarCampos(){
+        txtCedula.setText("");
+        txtTelefono.setText("");
+        txtNombre.setText("");
+        txtEmail.setText("");
+        txtFechaNac.setText("");
+        txtApellido.setText("");
+        txtDireccion.setText("");
+    }
+//marlinga
 
 
 }
