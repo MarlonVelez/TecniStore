@@ -193,7 +193,7 @@ public class RegistroFragment extends Fragment {
         txtApellido.setText("");
         txtDireccion.setText("");
     }
-
+//marlinga
 
 
 }
