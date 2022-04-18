@@ -9,6 +9,17 @@ import android.widget.*;
 import androidx.fragment.app.Fragment;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.tienda_op_2.R;
+import com.example.tienda_op_2.weblogin.modelo.Cliente;
+import com.example.tienda_op_2.weblogin.utildades.ApiClient;
+import com.example.tienda_op_2.weblogin.utildades.Apis;
+import com.example.tienda_op_2.weblogin.utildades.ClienteService;
+import retrofit2.Call;
+import retrofit2.Callback;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+
 
 public class RegistroFragment extends Fragment {
 
@@ -28,17 +39,18 @@ public class RegistroFragment extends Fragment {
         txtDireccion= root.findViewById(R.id.txtDireccionPago);
         txtTelefono= root.findViewById(R.id.txtTelefonoPago);
         txtEmail= root.findViewById(R.id.txtEmailPago);
-        imgRegister= root.findViewById(R.id.imgRegistir);
+        //imgRegister= root.findViewById(R.id.imgRegistir);
 
         btnSiguiente= root.findViewById(R.id.btnSiguientePago);
 
-        imgRegister.setAnimation(R.raw.animate_register);
+        /*imgRegister.setAnimation(R.raw.animate_register);
         imgRegister.playAnimation();
-        imgRegister.setRepeatCount(2000);
+        imgRegister.setRepeatCount(2000);*/
 
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
 
                 if (!txtCedula.getText().toString().isEmpty() &&
                         !txtNombre.getText().toString().isEmpty() &&
@@ -46,7 +58,25 @@ public class RegistroFragment extends Fragment {
                         !txtFechaNac.getText().toString().isEmpty() &&
                         !txtDireccion.getText().toString().isEmpty() &&
                         !txtTelefono.getText().toString().isEmpty() &&
-                        !txtEmail.getText().toString().isEmpty()){
+                        !txtEmail.getText().toString().isEmpty()) {
+
+                    Cliente cliente = new Cliente();
+                    cliente.setApellido(txtApellido.getText().toString());
+                    cliente.setCedula(txtCedula.getText().toString());
+                    cliente.setCorreo(txtEmail.getText().toString());
+                    cliente.setDireccion(txtDireccion.getText().toString());
+                    cliente.setEstadoCliente("true");
+                    try {
+                        cliente.setFechaNacimiento(formato.parse(txtFechaNac.getText().toString()));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    cliente.setIdCliente(0);
+                    cliente.setIdUsuario(8);
+                    cliente.setNombre(txtNombre.getText().toString());
+                    cliente.setTelefono(txtTelefono.getText().toString());
+                    addCliente(cliente);
+                    limpiarCampos();
                     //Muestro el Dialogo personalizado
                     /*DatosPagoFragment dialogPago= new DatosPagoFragment();
                     dialogPago.show(getActivity().getSupportFragmentManager(), "Metodo Pafgo");*/
@@ -86,5 +116,37 @@ public class RegistroFragment extends Fragment {
 
         newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
 
+    }
+
+    ClienteService clienteService;
+    public void addCliente(com.example.tienda_op_2.weblogin.modelo.Cliente cliente) {
+        clienteService = ApiClient.getClienteService();
+        Call<Cliente> call = clienteService.addCliente(cliente);
+        call.enqueue(new Callback<Cliente>() {
+            @Override
+            public void onResponse(Call<com.example.tienda_op_2.weblogin.modelo.Cliente> call, retrofit2.Response<com.example.tienda_op_2.weblogin.modelo.Cliente> response) {
+                if (response.isSuccessful()) {
+                    //Toast.makeText(RegistroFragment.this,"",Toast.LENGTH_LONG).show();
+                    System.out.println("USUARIO REGISTRADO.........................................................");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<com.example.tienda_op_2.weblogin.modelo.Cliente> call, Throwable t) {
+                //Toast.makeText(RegistroFragment.this, "error al agregar usuario", Toast.LENGTH_SHORT).show();
+                System.out.println("ERROR DE AGREGACION ...........................................................");
+            }
+
+
+        });
+    }
+    public  void limpiarCampos(){
+        txtCedula.setText("");
+        txtTelefono.setText("");
+        txtNombre.setText("");
+        txtEmail.setText("");
+        txtFechaNac.setText("");
+        txtApellido.setText("");
+        txtDireccion.setText("");
     }
 }
