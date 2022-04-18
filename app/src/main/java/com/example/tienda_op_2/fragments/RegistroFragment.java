@@ -9,6 +9,7 @@ import android.widget.*;
 import androidx.fragment.app.Fragment;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.tienda_op_2.R;
+import com.example.tienda_op_2.carga_de_datos.CargaProductos;
 import com.example.tienda_op_2.weblogin.modelo.Cliente;
 import com.example.tienda_op_2.weblogin.utildades.ApiClient;
 import com.example.tienda_op_2.weblogin.utildades.Apis;
@@ -28,6 +29,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class RegistroFragment extends Fragment {
@@ -37,7 +39,7 @@ public class RegistroFragment extends Fragment {
     String fechaSeleccionada;
     LottieAnimationView imgRegister;
 
-    List<Cliente> listaCliente= new ArrayList<>();
+    ArrayList<com.example.tienda_op_2.modelo.Cliente> listaCliente= new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -90,6 +92,8 @@ public class RegistroFragment extends Fragment {
                 }else{
                     Toast.makeText(root.getContext(), "Tienes que llenar todos los campos", Toast.LENGTH_SHORT).show();
                 }
+
+                agregarDatosPedido();
             }
         });
 
@@ -135,37 +139,37 @@ public class RegistroFragment extends Fragment {
         newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
 
     }
-    /*private void showDatePickerDialog() {
-
-        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                // +1 porque enero es 0
-                fechaSeleccionada = day + " / " + (month+1) + " / " + year;
-                txtFechaNac.setText(fechaSeleccionada);
-            }
-        });
-        newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
-    }*/
 
 
     public void  agregarDatosPedido(){
-
+        int id_cliente = 0;
+        double totalGeneral;
+        totalGeneral= CargaProductos.total;
         servicioApi serv= new servicioApi();
         serv.listarClientes();
-        //listaCliente=apiClientes.listacliente;
+        listaCliente=apiClientes.listacliente;
 
-        System.out.println(listaCliente.size());
+        System.out.println(totalGeneral+ " totalllllllllll");
 
+        // listaCliente=apiClientes.listacliente;
+        System.out.println(listaCliente.size()+ " gggggg");
 
-        /*   Pedido p=new Pedido();
-        p.setIdCliente();
-        p.setFecha();
+        for (com.example.tienda_op_2.modelo.Cliente p : listaCliente) {
+            if (p.getCedula().contains(txtCedula.getText())) {
+                id_cliente=p.getIdCliente();
+            }
+        }
+        System.out.println(id_cliente+ " xxxx");
+
+        Date fecha= new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String date = sdf.format(fecha);
+        Pedido p=new Pedido();
+        p.setIdCliente(id_cliente);
+        p.setFecha(date);
         p.setDespachado("false");
-        p.setTotalGeneral();*/
-
-
-
+        p.setTotalGeneral(totalGeneral);
+        addPedido(p);
     }
 
     ClienteService clienteService;
@@ -175,15 +179,34 @@ public class RegistroFragment extends Fragment {
         call.enqueue(new Callback<Cliente>() {
             @Override
             public void onResponse(Call<Cliente> call, Response<Cliente> response) {
-
             }
-
             @Override
             public void onFailure(Call<Cliente> call, Throwable t) {
 
             }
         });
     }
+
+
+    PedidoService pedidoService;
+    public void addPedido(Pedido pedido){
+        pedidoService= apiPedido.getpedidoService();
+        Call<Pedido> call = pedidoService.addPedido(pedido);
+        call.enqueue(new Callback<Pedido>() {
+            @Override
+            public void onResponse(Call<Pedido> call, retrofit2.Response<Pedido> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(getContext(), "Pedido agregado automaticamente", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<Pedido> call, Throwable t) {
+                Toast.makeText(getContext(), "Error al agregar usuario", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
     public  void limpiarCampos(){
         txtCedula.setText("");
         txtTelefono.setText("");
@@ -193,7 +216,5 @@ public class RegistroFragment extends Fragment {
         txtApellido.setText("");
         txtDireccion.setText("");
     }
-//marlinga
-
 
 }
