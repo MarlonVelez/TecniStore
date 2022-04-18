@@ -11,14 +11,13 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.example.tienda_op_2.R;
 import com.example.tienda_op_2.weblogin.modelo.Cliente;
 import com.example.tienda_op_2.weblogin.utildades.ApiClient;
-import com.example.tienda_op_2.weblogin.utildades.Apis;
 import com.example.tienda_op_2.weblogin.utildades.ClienteService;
 import retrofit2.Call;
 import retrofit2.Callback;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 
 public class RegistroFragment extends Fragment {
@@ -50,8 +49,8 @@ public class RegistroFragment extends Fragment {
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
-
+                //SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                String fec = txtFechaNac.getText().toString();
                 if (!txtCedula.getText().toString().isEmpty() &&
                         !txtNombre.getText().toString().isEmpty() &&
                         !txtApellido.getText().toString().isEmpty() &&
@@ -66,11 +65,13 @@ public class RegistroFragment extends Fragment {
                     cliente.setCorreo(txtEmail.getText().toString());
                     cliente.setDireccion(txtDireccion.getText().toString());
                     cliente.setEstadoCliente("true");
-                    try {
+                    /*try {
                         cliente.setFechaNacimiento(formato.parse(txtFechaNac.getText().toString()));
                     } catch (ParseException e) {
                         e.printStackTrace();
-                    }
+                    }*/
+                    //cliente.setFechaNacimiento(parseFecha(txtFechaNac.getText().toString()));
+                    cliente.setFechaNacimiento(""+fec+"");
                     cliente.setIdCliente(0);
                     cliente.setIdUsuario(8);
                     cliente.setNombre(txtNombre.getText().toString());
@@ -109,8 +110,19 @@ public class RegistroFragment extends Fragment {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 // +1 porque enero es 0
-                fechaSeleccionada = day + " / " + (month+1) + " / " + year;
-                txtFechaNac.setText(fechaSeleccionada);
+                if (month >= 1 && month <= 9 && day >= 1 && day <= 9){
+                    fechaSeleccionada = ""+year + "-0" + (month+1) + "-0" + day+"";
+                    txtFechaNac.setText(fechaSeleccionada);
+                }else if (month >= 1 && month <= 9 && day > 9){
+                    fechaSeleccionada = ""+year + "-0" + (month+1) + "-" + day+"";
+                    txtFechaNac.setText(fechaSeleccionada);
+                }else if (day >= 1 && day <= 9 && month > 9){
+                    fechaSeleccionada = ""+year + "-" + (month+1) + "-0" + day+"";
+                    txtFechaNac.setText(fechaSeleccionada);
+                }else {
+                    fechaSeleccionada = "" + year + "-" + (month + 1) + "-" + day + "";
+                    txtFechaNac.setText(fechaSeleccionada);
+                }
             }
         });
 
@@ -148,5 +160,15 @@ public class RegistroFragment extends Fragment {
         txtFechaNac.setText("");
         txtApellido.setText("");
         txtDireccion.setText("");
+    }
+    private Date parseFecha(String fechaCadena){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date outFecReg =  sdf.parse(fechaCadena);
+            return outFecReg;
+        } catch (ParseException e) {
+            System.out.println("ERROR!! ERROR!! ERROR!! ERROR!! ERROR!! ERROR!! ERROR!! ERROR!! ERROR!! "+e);
+            return null;
+        }
     }
 }
