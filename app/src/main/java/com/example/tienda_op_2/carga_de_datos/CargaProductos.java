@@ -126,4 +126,7 @@ public class CargaProductos {
         listaComprasAdapter = new ListaComprasAdapter(context,array);
         recyclerView.setAdapter(listaComprasAdapter);
     }
+
+
+
 }
