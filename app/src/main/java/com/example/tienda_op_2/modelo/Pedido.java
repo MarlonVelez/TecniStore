@@ -13,7 +13,7 @@ public class Pedido {
 
     @SerializedName("totalGeneral")
     @Expose
-    private Integer totalGeneral;
+    private double totalGeneral;
 
     @SerializedName("despachado")
     @Expose
@@ -21,10 +21,10 @@ public class Pedido {
 
     @SerializedName("fecha")
     @Expose
-    private Date fecha;
+    private String fecha;
 
 
-    public Pedido(Integer idCliente, Integer totalGeneral, String despachado, Date fecha) {
+    public Pedido(Integer idCliente, double totalGeneral, String despachado, String fecha) {
         this.idCliente = idCliente;
         this.totalGeneral = totalGeneral;
         this.despachado = despachado;
@@ -43,12 +43,16 @@ public class Pedido {
         this.idCliente = idCliente;
     }
 
-    public Integer getTotalGeneral() {
+    public double getTotalGeneral() {
         return totalGeneral;
     }
 
-    public void setTotalGeneral(Integer totalGeneral) {
+    public void setTotalGeneral(double totalGeneral) {
         this.totalGeneral = totalGeneral;
+    }
+
+    public String getDespachado() {
+        return despachado;
     }
 
     public String isDespachado() {
@@ -58,11 +62,11 @@ public class Pedido {
     public void setDespachado(String despachado) {this.despachado = despachado;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 }

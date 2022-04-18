@@ -76,7 +76,7 @@ public class HomeFragment extends Fragment {
 
         api= new servicioApi(getContext(), "categoria");
         api.datosList(listaCategorias);
-
+        api.listarClientes();
         return view;
     }
 

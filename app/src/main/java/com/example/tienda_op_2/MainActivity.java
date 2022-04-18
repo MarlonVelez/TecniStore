@@ -69,9 +69,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Dar acciones a los items del menu
         navigationView.setNavigationItemSelectedListener(this);
 
-        /**/
-
-
     }
 
 

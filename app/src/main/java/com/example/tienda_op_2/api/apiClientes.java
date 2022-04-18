@@ -28,7 +28,7 @@ public class apiClientes {
     }
 
     public ArrayList<Cliente>  parseJSON(JSONArray myJSON) throws JSONException {
-
+        listacliente.clear();
         for (int i =0; i<myJSON.length(); i++){
 
             JSONObject jsonObject= null;
@@ -39,6 +39,7 @@ public class apiClientes {
             cl.setIdCliente(jsonObject.getInt("idCliente"));
             listacliente.add(cl);
         }
+
         return  listacliente;
     }
 

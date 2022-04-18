@@ -32,6 +32,7 @@ public class CargaProductos {
     CardView cardCarritoVacio;
     LottieAnimationView imgCarritoVacio;
     ArrayList<Carrito> arrayList= new ArrayList<>();
+    public static  double total=0;
 
 
     public CargaProductos(Context context, RecyclerView recyclerView, TextView txtTotal, CardView cardCarritoVacio, LottieAnimationView imgCarritoVacio) {
@@ -56,17 +57,15 @@ public class CargaProductos {
         }
 
         if (fila.moveToFirst()){
+
             do{
                 Carrito carrito= new Carrito();
-
-
                 carrito.setNombreProducto(fila.getString(1));
                 carrito.setDescripcionProducto(fila.getString(2));
                 carrito.setPrecioProducto(fila.getDouble(3));
                 carrito.setCatidadProducto(fila.getInt(4));
                 carrito.setImgProducto(fila.getString(6));
                 carrito.setStock(fila.getInt(5));
-
                 arrayList.add(carrito);
 
             }while (fila.moveToNext());
@@ -89,7 +88,6 @@ public class CargaProductos {
             }
 
 
-
         }else{
             //Toast.makeText(context, "No hay datos registrados", Toast.LENGTH_LONG).show();
             mostrarListaCompras(arrayList);
@@ -100,10 +98,9 @@ public class CargaProductos {
 
 
     public void mostrarCarrito(ArrayList<Carrito> array) {
-        double total=0;
 
+        total=0;
         for (int i = 0; i < array.size(); i++) {
-
             total=(array.get(i).getCatidadProducto()*array.get(i).getPrecioProducto())+total;
         }
         txtTotal.setText("$"+total);
@@ -112,6 +109,9 @@ public class CargaProductos {
         carritoAdapter = new CarritoAdapter(context,array);
         recyclerView.setAdapter(carritoAdapter);
     }
+
+
+
 
     public void mostrarListaCompras(ArrayList<Carrito> array) {
         double total=0;
@@ -126,7 +126,5 @@ public class CargaProductos {
         listaComprasAdapter = new ListaComprasAdapter(context,array);
         recyclerView.setAdapter(listaComprasAdapter);
     }
-
-
 
 }

@@ -1,25 +1,35 @@
 package com.example.tienda_op_2.fragments;
 
 import android.app.DatePickerDialog;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.tienda_op_2.R;
 import com.example.tienda_op_2.Services.PedidoService;
 import com.example.tienda_op_2.api.apiClientes;
 import com.example.tienda_op_2.api.apiPedido;
-import com.example.tienda_op_2.api.servicioApi;
+
+import com.example.tienda_op_2.carga_de_datos.CargaProductos;
 import com.example.tienda_op_2.modelo.Cliente;
 import com.example.tienda_op_2.modelo.Pedido;
+import com.example.tienda_op_2.modelo.Producto;
+
+
 import retrofit2.Call;
 import retrofit2.Callback;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RegistroFragment extends Fragment {
 
@@ -66,6 +76,8 @@ public class RegistroFragment extends Fragment {
                 }else{
                     Toast.makeText(root.getContext(), "Tienes que llenar todos los campos", Toast.LENGTH_SHORT).show();
                 }
+
+                agregarDatosPedido();
             }
         });
 
@@ -100,23 +112,36 @@ public class RegistroFragment extends Fragment {
     }
 
 
+
     public void  agregarDatosPedido(){
+        int id_cliente = 0;
+        double totalGeneral;
 
-        servicioApi serv= new servicioApi();
-        serv.listarClientes();
+        totalGeneral=CargaProductos.total;
+
+        System.out.println(totalGeneral+ " totalllllllllll");
+
         listaCliente=apiClientes.listacliente;
+        System.out.println(listaCliente.size()+ " gggggg");
 
-        System.out.println(listaCliente.size());
+            for (Cliente p : listaCliente) {
+                if (p.getCedula().contains(txtCedula.getText())) {
+                  id_cliente=p.getIdCliente();
+                }
+            }
+        System.out.println(id_cliente+ " xxxx");
 
 
-        /*   Pedido p=new Pedido();
-        p.setIdCliente();
-        p.setFecha();
+        Date fecha= new Date();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String date = sdf.format(fecha);
+        Pedido p=new Pedido();
+        p.setIdCliente(id_cliente);
+        p.setFecha(date);
         p.setDespachado("false");
-        p.setTotalGeneral();*/
-
-
-
+        p.setTotalGeneral(totalGeneral);
+        addPedido(p);
     }
 
 
@@ -128,13 +153,13 @@ public class RegistroFragment extends Fragment {
             @Override
             public void onResponse(Call<Pedido> call, retrofit2.Response<Pedido> response) {
                 if (response.isSuccessful()) {
-                    //Toast.makeText(SignUp4.this, "Pedido agregado automaticamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Pedido agregado automaticamente", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Pedido> call, Throwable t) {
-                //  Toast.makeText(SignUp4.this, "Error al agregar usuario", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Error al agregar usuario", Toast.LENGTH_SHORT).show();
             }
         });
     }
