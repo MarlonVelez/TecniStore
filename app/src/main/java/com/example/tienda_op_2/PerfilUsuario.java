@@ -12,7 +12,11 @@ import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.tienda_op_2.carga_de_datos.CargarUsuario;
+import com.example.tienda_op_2.modelo.Cliente;
+import com.example.tienda_op_2.modelo.Usuario;
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.ArrayList;
 
 public class PerfilUsuario extends AppCompatActivity {
 
@@ -95,7 +99,8 @@ public class PerfilUsuario extends AppCompatActivity {
     /*ESTE METODO SIRVE PARA VERIFICAR SI ES QUE EL USUARIO HAYA GENERADO UNA CUENTA EN EL APLICATIVO*/
     private void comprobarUsuario(){
         CargarUsuario usu= new CargarUsuario(PerfilUsuario.this);
-        String estadoUsuario= usu.listarUsuarioP().get(0).getEstadoUsuario();
+        ArrayList<Usuario> usuario= usu.listarUsuarioP();
+        String estadoUsuario= usuario.get(0).getEstadoUsuario();
 
         if (estadoUsuario.equalsIgnoreCase("por registrar")){
             new AlertDialog.Builder(PerfilUsuario.this)
