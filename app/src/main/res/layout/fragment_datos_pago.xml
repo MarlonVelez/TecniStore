@@ -15,10 +15,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="79dp">
             <TextView
-                    android:text="Número Tarjeta"
+                    android:text="Número de Tarjeta"
                     android:layout_width="134dp"
                     android:layout_height="wrap_content" android:id="@+id/textView11" android:layout_marginTop="5dp"
-                    android:layout_marginStart="10dp"/>
+                    android:layout_marginStart="10dp" android:textColor="@color/azul_brillante"/>
             <EditText
                     android:layout_width="330dp"
                     android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
                     android:id="@+id/txtNumTarjeta" android:layout_marginTop="5dp"
                     android:layout_marginStart="10dp" android:minHeight="48dp"
                     android:background="@android:color/transparent" android:hint="0000 0000 0000 0000"
-                    android:drawableRight="@drawable/icon_card_txt_pago"/>
+                    android:drawableRight="@drawable/icon_card_txt_pago" android:textColor="@color/azul_brillante"/>
         </LinearLayout>
         <View
                 android:id="@+id/divider2"
@@ -44,10 +44,11 @@
                     android:layout_width="209dp"
                     android:layout_height="match_parent">
                 <TextView
-                        android:text="Fecha Vencimiento"
-                        android:layout_width="141dp"
+                        android:text="Fecha de Vencimiento"
+                        android:layout_width="157dp"
                         android:layout_height="wrap_content" android:id="@+id/textView12"
-                        android:layout_marginTop="5dp" android:layout_marginStart="10dp"/>
+                        android:layout_marginTop="5dp" android:layout_marginStart="10dp"
+                        android:textColor="@color/azul_brillante"/>
                 <View
                         android:id="@+id/divider6"
                         android:layout_width="match_parent"
@@ -65,7 +66,8 @@
                             android:ems="10"
                             android:id="@+id/txtMesVencimiento"
                             android:minHeight="48dp" android:layout_marginTop="10dp" android:layout_marginStart="10dp"
-                            android:background="@android:color/transparent" android:hint="Mes"/>
+                            android:background="@android:color/transparent" android:hint="Mes"
+                            android:textColor="@color/azul_brillante"/>
                     <View
                             android:id="@+id/divider3"
                             android:layout_width="1dp"
@@ -79,7 +81,8 @@
                             android:ems="10"
                             android:id="@+id/txtAñoVencimiento"
                             android:minHeight="48dp" android:layout_marginTop="10dp" android:layout_marginStart="5dp"
-                            android:background="@android:color/transparent" android:hint="Año"/>
+                            android:background="@android:color/transparent" android:hint="Año"
+                            android:textColor="@color/azul_brillante"/>
                 </LinearLayout>
             </LinearLayout>
             <View
@@ -96,15 +99,17 @@
                         android:text="CVV"
                         android:layout_width="154dp"
                         android:layout_height="wrap_content" android:id="@+id/textView14"
-                        android:layout_marginTop="6dp" android:layout_marginStart="5dp"/>
+                        android:layout_marginTop="6dp" android:layout_marginStart="5dp"
+                        android:textColor="@color/azul_brillante"/>
                 <EditText
-                        android:layout_width="185dp"
+                        android:layout_width="135dp"
                         android:layout_height="wrap_content"
                         android:inputType="number"
                         android:ems="10"
                         android:id="@+id/txtCVV" android:layout_marginTop="9dp"
                         android:minHeight="48dp" android:layout_marginStart="5dp"
-                        android:background="@android:color/transparent" android:hint="000"/>
+                        android:background="@android:color/transparent" android:hint="000"
+                        android:textColor="@color/azul_brillante"/>
             </LinearLayout>
         </LinearLayout>
         <View
@@ -119,10 +124,10 @@
                 android:layout_height="match_parent">
             <Button
                     android:text="Aceptar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/button3" android:layout_marginStart="130dp"
+                    android:layout_width="102dp"
+                    android:layout_height="40dp" android:id="@+id/btnAceptarDP" android:layout_marginStart="130dp"
                     android:layout_marginTop="20dp" android:textColor="@color/blaco_arena" android:textStyle="bold"
-                    android:textAllCaps="false"/>
+                    android:textAllCaps="false" android:background="@drawable/backgraund_button"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

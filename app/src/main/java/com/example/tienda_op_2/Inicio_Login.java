@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tienda_op_2.adapter.LoginAdapter;
+import com.example.tienda_op_2.base_temp.SQLiteOpenHelper;
 import com.example.tienda_op_2.modelo.Login;
 import com.example.tienda_op_2.Services.Validacion_user;
 
@@ -134,18 +135,26 @@ public class Inicio_Login extends AppCompatActivity implements Validacion_user {
 
     @Override
     public void lanzarActividad(Class<?> tipoActividad) {
+        /*AQUI GUARDAMOS LOS DATOS DEL USUARIO PARA PODER VALIDAD EL INGRESO A LA APP*/
+        String usuario="", clave="";
+
+        for (int i = 0; i < arrayDatos.size(); i++) {
+            if (arrayDatos.get(i).getUsuario().equalsIgnoreCase(txtUsuario.getText().toString())){
+                usuario= arrayDatos.get(i).getUsuario();
+                clave= arrayDatos.get(i).getClave();
+            }
+        }
+
+        SQLiteOpenHelper bd= new SQLiteOpenHelper(Inicio_Login.this);
+        bd.agregarUsuario(usuario, "cliente", clave, "registrado");
+
         Intent intent = new Intent(this, tipoActividad);
         startActivity(intent);
     }
 
     @Override
     public void showMessage(String msg) {
-
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
-
     }
-
-
-
 
 }

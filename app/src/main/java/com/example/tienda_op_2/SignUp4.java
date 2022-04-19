@@ -11,6 +11,7 @@ import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.tienda_op_2.base_temp.SQLiteOpenHelper;
 import com.example.tienda_op_2.weblogin.modelo.Usuario;
 import com.example.tienda_op_2.weblogin.utildades.Apis;
 import com.example.tienda_op_2.weblogin.utildades.UsuarioService;
@@ -96,6 +97,10 @@ public class SignUp4 extends AppCompatActivity {
             public void onResponse(Call<com.example.tienda_op_2.weblogin.modelo.Usuario> call, retrofit2.Response<com.example.tienda_op_2.weblogin.modelo.Usuario> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(SignUp4.this, "Usuario agregado", Toast.LENGTH_SHORT).show();
+
+                    /*GUARDAMOS EL USUARIO EN LA BASE TEMP PARA VALIDAR EL INGRESO A LA APP*/
+                    SQLiteOpenHelper bd= new SQLiteOpenHelper(SignUp4.this);
+                    bd.agregarUsuario(txt_usu.getText().toString(), "cliente", txt_contra.getText().toString(), "registrado");
                 }
             }
 

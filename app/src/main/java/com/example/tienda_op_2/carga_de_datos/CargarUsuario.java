@@ -22,16 +22,17 @@ public class CargarUsuario {
     public CargarUsuario() {
     }
 
-    public String listarProductosCarrito(){
+    public ArrayList<Usuario> listarProductosCarrito(){
+        System.out.println("A");
         SQLiteOpenHelper base= new SQLiteOpenHelper(context);
         SQLiteDatabase open= base.getReadableDatabase();
 
         Cursor fila= open.rawQuery("select * from usuario",null );
 
         if (fila.moveToFirst()){
+            System.out.println("B");
             do{
                 Usuario usuario= new Usuario();
-
 
                 usuario.setNombreUsuario(fila.getString(1));
                 usuario.setTipoUsuario(fila.getString(2));
@@ -43,20 +44,12 @@ public class CargarUsuario {
             base.close();
             open.close();
 
-            for (int i = 0; i < usuarioArrayList.size(); i++) {
-                System.out.println(usuarioArrayList.get(i).getEstadoUsuario());
-            }
-
-            return usuarioArrayList.get(0).getEstadoUsuario();
-
-            //mostrarCarrito(usuarioArrayList);
-            //carritoAdapter.notifyDataSetChanged();
+            return usuarioArrayList;
 
         }else{
-            Toast.makeText(context, "No hay datos registrados", Toast.LENGTH_LONG).show();
-            return "U";
+            System.out.println("C");
+            Toast.makeText(context, "No olvides registrarte", Toast.LENGTH_LONG).show();
+            return null;
         }
     }
-
-
 }

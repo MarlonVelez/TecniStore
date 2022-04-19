@@ -22,12 +22,18 @@
                 android:layout_height="38dp"
                 tools:ignore="SpeakableTextPresentCheck"
         />
-        <androidx.viewpager.widget.ViewPager
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/fragmentContenedor">
+
+        </FrameLayout>
+        <!--<androidx.viewpager.widget.ViewPager
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintHeight_percent=".7"
-                tools:ignore="SpeakableTextPresentCheck"/>
+                tools:ignore="SpeakableTextPresentCheck"/>-->
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

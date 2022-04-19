@@ -19,7 +19,7 @@ public class PantallaInicio extends AppCompatActivity {
 
     private Button signUp;
     private Button signIn;
-    private TextView saltar, txtlabelComenzar, txtMensajeInicio;
+    private TextView saltar, txtMensajeInicio;
     private LottieAnimationView imgSplash, btnComenzar;
 
     @Override
@@ -30,7 +30,6 @@ public class PantallaInicio extends AppCompatActivity {
         Animation animation1= AnimationUtils.loadAnimation(this,R.anim.desplazamiento_arriba);
         Animation animation2= AnimationUtils.loadAnimation(this,R.anim.desplazamiento_abajo);
 
-        txtlabelComenzar= findViewById(R.id.txtLabelComenzar);
         txtMensajeInicio= findViewById(R.id.txtMensajeInicio);
 
         imgSplash= findViewById(R.id.imgSplash);
@@ -39,7 +38,6 @@ public class PantallaInicio extends AppCompatActivity {
         imgSplash.playAnimation();
         imgSplash.setRepeatCount(20000);
 
-        txtlabelComenzar.setAnimation(animation1);
         txtMensajeInicio.setAnimation(animation1);
 
         btnComenzar= findViewById(R.id.btnComenzar);
@@ -49,7 +47,6 @@ public class PantallaInicio extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 imgSplash.setAnimation(animation1);
-                txtlabelComenzar.setAnimation(animation2);
                 txtMensajeInicio.setAnimation(animation2);
                 btnComenzar.setAnimation(R.raw.effect_btn_comenzar);
                 btnComenzar.playAnimation();

@@ -11,6 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.example.tienda_op_2.base_temp.SQLiteOpenHelper;
 import com.example.tienda_op_2.carga_de_datos.CargarUsuario;
+import com.example.tienda_op_2.modelo.Usuario;
+
+import java.util.ArrayList;
 
 public class SplashScream extends AppCompatActivity {
 
@@ -37,8 +40,16 @@ public class SplashScream extends AppCompatActivity {
             public void run() {
 
                 CargarUsuario usu= new CargarUsuario(SplashScream.this);
-                String bandera= usu.listarProductosCarrito();
-                if (bandera.equalsIgnoreCase("por registrar")) {
+                String bandera;
+
+                /*IF PARA EVITAR QUE EL STRING SEA NULO SI NO HAY DATOS REGISTRADOS EN LA BDD TEMPORAL*/
+                if (usu.listarProductosCarrito()==null){
+                    bandera="";
+                }else {
+                    bandera=usu.listarProductosCarrito().get(0).getEstadoUsuario();
+                }
+
+                if (bandera.equalsIgnoreCase("por registrar") || bandera.equalsIgnoreCase("registrado")) {
                     Intent vist_home= new Intent(SplashScream.this, MainActivity.class);
                     startActivity(vist_home);
                     finish();

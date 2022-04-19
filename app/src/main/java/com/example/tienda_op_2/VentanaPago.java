@@ -5,21 +5,31 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainerView;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
+import com.example.tienda_op_2.fragments.ListaComprasFragment;
 import com.example.tienda_op_2.fragments.PagoFargmentAdapter;
+import com.example.tienda_op_2.fragments.RegistroFragment;
 import com.google.android.material.tabs.TabLayout;
 
 public class VentanaPago extends AppCompatActivity  {
 
-    private TabLayout tab;
-    private ViewPager vp;
+    private static TabLayout tab;
+    public static FragmentManager fm;
     Toolbar toolbar;
+    public static FrameLayout fragmentContenedor;
+    public static FragmentTransaction ft;
+    Fragment fragmentRegistro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,21 +38,18 @@ public class VentanaPago extends AppCompatActivity  {
         setTitle("Formulario de Pago y Envio");
 
         tab= findViewById(R.id.tab_layout);
-        vp= findViewById(R.id.view_pager);
-
         tab.addTab(tab.newTab().setText("Datos de Envio"));
         tab.addTab(tab.newTab().setText("Lista de Compras"));
         tab.setTabGravity(TabLayout.GRAVITY_FILL);
+        fm= getSupportFragmentManager();
+        fragmentContenedor= findViewById(R.id.fragmentContenedor);
 
-        LinearLayout contenedor = (LinearLayout) findViewById(R.id.contenedorRegistro);
+        fragmentRegistro= new RegistroFragment();
 
-        final PagoFargmentAdapter adapter= new PagoFargmentAdapter(getSupportFragmentManager(), this, tab.getTabCount());
-        vp.setAdapter(adapter);
+        getSupportFragmentManager().beginTransaction().add(R.id.fragmentContenedor, fragmentRegistro).commit();
+        ft= getSupportFragmentManager().beginTransaction();
 
-        System.out.println("A");
-        vp.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tab));
-
-
+        final PagoFargmentAdapter adapter= new PagoFargmentAdapter(fm, this, tab.getTabCount());
         /*CONFIGURACION TOOL BAR*/
 
         toolbar= findViewById(R.id.toolBar);

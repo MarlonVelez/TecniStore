@@ -9,7 +9,7 @@
         android:background="@color/blanco_azulado"
         tools:context=".CarritoCompras">
 
-    <androidx.cardview.widget.CardView
+    <!----><androidx.cardview.widget.CardView
             android:layout_width="415dp"
             android:layout_height="542dp"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"

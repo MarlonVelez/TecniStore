@@ -8,8 +8,8 @@
         tools:context=".PantallaInicio" android:background="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="416dp"
-            android:layout_height="656dp" android:background="@drawable/background_view_inicial"
+            android:layout_width="413dp"
+            android:layout_height="657dp" android:background="@drawable/background_view_inicial"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="0.0"
@@ -23,15 +23,6 @@
                                                app:layout_constraintBottom_toBottomOf="parent"
                                                android:layout_marginStart="4dp"
                                                app:layout_constraintVertical_bias="0.359"/>
-        <TextView
-                android:text="Saltar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/btnSaltar"
-                android:textColor="@color/blanco_azulado"
-                android:textStyle="bold" android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="24dp"
-                app:layout_constraintHorizontal_bias="0.902"/>
         <MultiAutoCompleteTextView
                 android:text="Ahora podras conseguir nuestros productos desde la comodidad de tu hogar ¡Increible!"
                 android:layout_width="304dp"
@@ -39,8 +30,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/imgSplash"
                 app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.142"
-                app:layout_constraintVertical_bias="0.227" android:textStyle="bold" android:textSize="24sp"
-                android:textColor="@color/blaco_arena" android:background="@android:color/transparent"/>
+                app:layout_constraintVertical_bias="0.136" android:textStyle="bold" android:textSize="22sp"
+                android:textColor="@color/blaco_arena" android:background="@android:color/transparent"
+                android:enabled="false"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
     <com.airbnb.lottie.LottieAnimationView
             android:layout_width="67dp"
@@ -50,13 +42,14 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" android:layout_marginEnd="16dp"
             app:layout_constraintVertical_bias="0.125"/>
     <TextView
-            android:text="¡Comencemos! "
+            android:text="Saltar"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/txtLabelComenzar"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toStartOf="@+id/btnComenzar"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.915"
-            app:layout_constraintVertical_bias="0.24" android:textStyle="bold"
-            android:textColor="@color/azul_brillante" android:textSize="25sp"/>
+            android:layout_height="wrap_content" android:id="@+id/btnSaltar"
+            android:textColor="@color/azul_brillante"
+            android:textStyle="bold" android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/btnComenzar"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.102"
+            app:layout_constraintVertical_bias="0.309"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

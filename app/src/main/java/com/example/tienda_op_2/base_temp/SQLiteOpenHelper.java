@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import androidx.annotation.Nullable;
-import com.example.tienda_op_2.CarritoCompras;
+
 
 public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
 
@@ -31,6 +31,23 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
             "clave text, " +
             "estado text)"; //ESTADOS: REGISTRADO / POR REGISTAR
 
+    private static String TABLA_DATOS_TARJETA= "create table datos_tarjeta (" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+            "numeroTarjeta text, " +
+            "mesVencimiento text, " +
+            "anioVenciomiento text, " +
+            "cvv text)";
+
+    private static String TABLA_DATOS_CLIENTE= "create table datos_cliente (" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+            "nombre text, " +
+            "apellido text, " +
+            "cedula text, " +
+            "fecha_nac text, " +
+            "email text, " +
+            "telefono text, " +
+            "direccion text)";
+
 
     public SQLiteOpenHelper(@Nullable Context context) {
         super(context, NOMBRE_BD, null, VERSION_BD);
@@ -40,6 +57,8 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase base) {
         base.execSQL(TABLA_CARRITO);
         base.execSQL(TABLA_USUARIO);
+        base.execSQL(TABLA_DATOS_TARJETA);
+        base.execSQL(TABLA_DATOS_CLIENTE);
     }
 
     //
@@ -48,6 +67,8 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
         //sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+TABLA_CARRITO);
         sqLiteDatabase.execSQL(TABLA_CARRITO);
         sqLiteDatabase.execSQL(TABLA_USUARIO);
+        sqLiteDatabase.execSQL(TABLA_DATOS_TARJETA);
+        sqLiteDatabase.execSQL(TABLA_DATOS_CLIENTE);
     }
 
     public boolean agregarCarrito(int id_producto, String nombre, String descripcion, String precio, String cantidad, String img, int stock, boolean estado){
@@ -103,7 +124,7 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
 
         if (bd!=null){
             try{
-                //bd.execSQL("INSERT INTO carrito VALUES('"+id+"','"+cedula+"','"+nombre+"','"+apellido+"','"+telefono+"','"+email+"')");
+                bd.execSQL("DELETE FROM usuario");
                 bd.execSQL("INSERT INTO usuario VALUES("+null+",'"+nombreUsu+"','"+tipoUsu+"','"+claveUsu+"','"+estado+"')");
                 bd.close();
                 return true;
@@ -116,15 +137,45 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
         }
     }
 
-    ///// TABLA COMPRAR AHORA ///////
+    ///// TABLA DATOS PAGO ///////
 
-   public boolean agregarProductoComprarAhora(int id, String nombre, String descripcion, String precio, String cantidad, String img, int stock) {
+   public boolean agregarDatosPago(String numeroTarjeta, String mesVencimiento, String anioVencimiento, String cvv) {
+       SQLiteDatabase bd = getWritableDatabase();
+
+       if (bd != null) {
+           try {
+               bd.execSQL("INSERT INTO datos_tarjeta VALUES(" + null + ",'" + numeroTarjeta + "','" + mesVencimiento + "','"+ anioVencimiento + "','" + cvv + "')");
+               bd.close();
+
+               return true;
+           } catch (SQLiteConstraintException e) {
+               return false;
+           }
+
+       } else {
+           return false;
+       }
+   }
+
+    public void eliminarDatosPago(String numTarjeta){
+
+        SQLiteDatabase bd= getWritableDatabase();
+        String sql=null;
+        sql= "DELETE FROM datos_tarjeta";
+        bd.execSQL(sql);
+        bd.close();
+
+    }
+
+    ///// TABLA DATOS CLIENTE ///////
+
+    public boolean agregarDatosCliente(String nombre, String apellido, String cedula, String fecha_nac, String email, String telefono, String direccion) {
         SQLiteDatabase bd = getWritableDatabase();
 
         if (bd != null) {
             try {
                 //bd.execSQL("INSERT INTO carrito VALUES('"+id+"','"+cedula+"','"+nombre+"','"+apellido+"','"+telefono+"','"+email+"')");
-                bd.execSQL("INSERT INTO comprar_ahora VALUES(" + null + ",'" + nombre + "','" + descripcion + "'," + precio + "," + cantidad + "," + stock + ",'" + img + "')");
+                bd.execSQL("INSERT INTO datos_cliente VALUES("+null+",'"+nombre+"','"+apellido+"','"+cedula+"','"+fecha_nac+"','"+email+"','"+telefono+"','"+direccion+"')");
                 bd.close();
                 return true;
             } catch (SQLiteConstraintException e) {
@@ -136,5 +187,14 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
         }
     }
 
+    public void eliminarDatosCliente(String numTarjeta){
+
+        SQLiteDatabase bd= getWritableDatabase();
+        String sql=null;
+        sql= "DELETE FROM datos_cliente";
+        bd.execSQL(sql);
+        bd.close();
+
+    }
 
 }

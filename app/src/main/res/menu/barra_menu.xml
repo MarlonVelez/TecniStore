@@ -16,7 +16,7 @@
         />
     </group>
 
-    <item android:title="Usuario y Atencion al Cliente">
+    <item android:title="Usuario">
 
         <menu>
             <group>
@@ -25,12 +25,6 @@
                         android:id="@+id/nav_configUser"
                         android:title="Usuario"
                         android:icon="@drawable/icon_user_nav"
-                />
-
-                <item
-                        android:id="@+id/nav_atencionCliente"
-                        android:title="Atencion"
-                        android:icon="@drawable/icon_technical_support"
                 />
 
             </group>

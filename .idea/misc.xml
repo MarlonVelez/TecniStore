@@ -10,6 +10,8 @@
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/drawable/backgraound_signup.xml" value="0.33935185185185185" />
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/drawable/backgraund_button.xml" value="0.33470319634703194" />
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/drawable/backgraund_button_back.xml" value="0.33935185185185185" />
+        <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/drawable/background_button_cancelar.xml" value="0.33935185185185185" />
+        <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/drawable/background_button_comprar.xml" value="0.3402777777777778" />
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/drawable/background_radius_border.xml" value="0.3356164383561644" />
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/drawable/background_view_inicial.xml" value="0.3402777777777778" />
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/drawable/brackgraund_txt_register.xml" value="0.33470319634703194" />
@@ -25,7 +27,7 @@
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/activity_detalle_producto.xml" value="0.23097826086956522" />
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/activity_main.xml" value="0.22916666666666666" />
-        <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/activity_pantalla_inicio.xml" value="0.33" />
+        <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/activity_pantalla_inicio.xml" value="0.25" />
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/activity_pedidos.xml" value="0.32592592592592595" />
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/activity_perfil_usuario.xml" value="0.32592592592592595" />
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/activity_sign_up1.xml" value="0.2966485507246377" />
@@ -39,8 +41,8 @@
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/fragment_datos_pago.xml" value="0.325" />
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/fragment_editar_eliminar.xml" value="0.23550724637681159" />
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/fragment_home.xml" value="0.22916666666666666" />
-        <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/fragment_lista_compras.xml" value="0.325" />
-        <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/fragment_registro.xml" value="0.325" />
+        <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/fragment_lista_compras.xml" value="0.33" />
+        <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/fragment_registro.xml" value="0.33" />
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/header_nav.xml" value="0.23369565217391305" />
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/item_carrito.xml" value="0.33" />
         <entry key="..\:/Users/Administrador/IntelliJIDEAProjects/TecniStore/app/src/main/res/layout/item_lista_compras.xml" value="0.32592592592592595" />
