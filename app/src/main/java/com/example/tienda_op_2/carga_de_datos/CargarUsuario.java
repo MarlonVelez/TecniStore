@@ -22,7 +22,7 @@ public class CargarUsuario {
     public CargarUsuario() {
     }
 
-    public ArrayList<Usuario> listarProductosCarrito(){
+    public ArrayList<Usuario> listarUsuarioP(){
         System.out.println("A");
         SQLiteOpenHelper base= new SQLiteOpenHelper(context);
         SQLiteDatabase open= base.getReadableDatabase();

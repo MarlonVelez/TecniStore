@@ -95,7 +95,7 @@ public class PerfilUsuario extends AppCompatActivity {
     /*ESTE METODO SIRVE PARA VERIFICAR SI ES QUE EL USUARIO HAYA GENERADO UNA CUENTA EN EL APLICATIVO*/
     private void comprobarUsuario(){
         CargarUsuario usu= new CargarUsuario(PerfilUsuario.this);
-        String estadoUsuario= usu.listarProductosCarrito().get(0).getEstadoUsuario();
+        String estadoUsuario= usu.listarUsuarioP().get(0).getEstadoUsuario();
 
         if (estadoUsuario.equalsIgnoreCase("por registrar")){
             new AlertDialog.Builder(PerfilUsuario.this)

@@ -285,7 +285,7 @@ public class RegistroFragment extends Fragment {
     /*ESTE METODO SIRVE PARA VERIFICAR SI ES QUE EL USUARIO HAYA GENERADO UNA CUENTA EN EL APLICATIVO*/
     private void comprobarUsuario(){
         CargarUsuario usu= new CargarUsuario(getContext());
-        String estadoUsuario= usu.listarProductosCarrito().get(0).getEstadoUsuario();
+        String estadoUsuario= usu.listarUsuarioP().get(0).getEstadoUsuario();
 
         if (estadoUsuario.equalsIgnoreCase("por registrar")){
             new AlertDialog.Builder(getContext())
@@ -308,8 +308,8 @@ public class RegistroFragment extends Fragment {
                     })
                     .show();
         }else{
-            txtUsuario.setText(usu.listarProductosCarrito().get(0).getNombreUsuario());
-            txtContraseña.setText(usu.listarProductosCarrito().get(0).getClaveUsuario());
+            txtUsuario.setText(usu.listarUsuarioP().get(0).getNombreUsuario());
+            txtContraseña.setText(usu.listarUsuarioP().get(0).getClaveUsuario());
             cargarDatosExistentes();
         }
     }
