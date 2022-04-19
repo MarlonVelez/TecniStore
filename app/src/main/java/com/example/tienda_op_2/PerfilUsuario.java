@@ -1,5 +1,7 @@
 package com.example.tienda_op_2;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.tienda_op_2.carga_de_datos.CargarUsuario;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class PerfilUsuario extends AppCompatActivity {
@@ -20,11 +23,13 @@ public class PerfilUsuario extends AppCompatActivity {
     TextView btnEditarDatos;
     Button btnGuardarCambios;
     Toolbar toolbar;
+    boolean bandera=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_usuario);
+        setTitle("Mi Perfil");
 
         toolbar= findViewById(R.id.toolBar);
 
@@ -77,12 +82,43 @@ public class PerfilUsuario extends AppCompatActivity {
         btnEditarDatos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 txtUserNameProfile.setEnabled(true);
                 txtEmailProfile.setEnabled(true);
                 txtClaveProfile.setEnabled(true);
                 btnGuardarCambios.setEnabled(true);
             }
         });
+        comprobarUsuario();
+    }
 
+    /*ESTE METODO SIRVE PARA VERIFICAR SI ES QUE EL USUARIO HAYA GENERADO UNA CUENTA EN EL APLICATIVO*/
+    private void comprobarUsuario(){
+        CargarUsuario usu= new CargarUsuario(PerfilUsuario.this);
+        String estadoUsuario= usu.listarProductosCarrito().get(0).getEstadoUsuario();
+
+        if (estadoUsuario.equalsIgnoreCase("por registrar")){
+            new AlertDialog.Builder(PerfilUsuario.this)
+                    .setTitle("¡Ups! Parece que no te has registrado aun")
+                    .setMessage("Si deseas continuar debes crearte un perfil en la aplicacion."+"\n¿Estas de acuerdo con esto?")
+                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent ventanaRegistro= new Intent(PerfilUsuario.this, SignUp4.class);
+                            startActivity(ventanaRegistro);
+                            //onStop();
+                        }
+                    })
+                    .setNegativeButton("Quizas luego", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent home= new Intent(PerfilUsuario.this, MainActivity.class);
+                            startActivity(home);
+                        }
+                    })
+                    .show();
+        }else{
+            /*CARGAR DATOS AQUI SI ES QUE EXISTIERA UN USUARIO*/
+        }
     }
 }

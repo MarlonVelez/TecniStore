@@ -139,7 +139,7 @@
                 app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintVertical_bias="0.04"/>
         <TextView
-                android:text="bill_gates987@hotmail.com"
+                android:text="invitado987@hotmail.com"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/labelEmailUsuario"
                 app:layout_constraintTop_toBottomOf="@+id/labelNombreUsuario"
@@ -147,7 +147,7 @@
                 app:layout_constraintEnd_toEndOf="parent" android:textColor="@color/white"
                 app:layout_constraintVertical_bias="0.0"/>
         <TextView
-                android:text="Bill Gates"
+                android:text="Invitado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/labelNombreUsuario"
                 app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
@@ -157,7 +157,7 @@
                 android:id="@+id/imgUsuarioMenu"
                 android:layout_width="96dp"
                 android:layout_height="96dp"
-                android:src="@drawable/bill_gates_test"
+                android:src="@drawable/user_photo_profile"
                 app:civ_border_width="2dp"
                 app:civ_border_color="@color/white"
                 app:layout_constraintStart_toStartOf="parent"

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.*;
 import androidx.fragment.app.Fragment;
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.tienda_op_2.CarritoCompras;
 import com.example.tienda_op_2.R;
 import com.example.tienda_op_2.SignUp4;
 import com.example.tienda_op_2.SplashScream;
@@ -301,7 +302,8 @@ public class RegistroFragment extends Fragment {
                     .setNegativeButton("Quizas luego", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-
+                            Intent carrito= new Intent(getContext(), CarritoCompras.class);
+                            startActivity(carrito);
                         }
                     })
                     .show();
@@ -341,7 +343,8 @@ public class RegistroFragment extends Fragment {
     }
 
     private String parseDateToStrign(Date fecha){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String fechaComoCadena = sdf.format(fecha);
         return fechaComoCadena;
     }

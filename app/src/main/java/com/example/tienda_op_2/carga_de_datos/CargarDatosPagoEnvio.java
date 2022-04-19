@@ -39,6 +39,8 @@ public class CargarDatosPagoEnvio {
 
         if (fila.moveToFirst()) {
 
+
+
             do {
                 Cliente cliente = new Cliente();
                 cliente.setNombre(fila.getString(1));
@@ -88,7 +90,7 @@ public class CargarDatosPagoEnvio {
 
 
     private Date parseDate(String fechaCadena){
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         try {
             Date fecha = formato.parse(fechaCadena);
             return fecha;
