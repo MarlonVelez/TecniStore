@@ -43,10 +43,10 @@ public class SplashScream extends AppCompatActivity {
                 String bandera;
 
                 /*IF PARA EVITAR QUE EL STRING SEA NULO SI NO HAY DATOS REGISTRADOS EN LA BDD TEMPORAL*/
-                if (usu.listarProductosCarrito()==null){
+                if (usu.listarUsuarioP()==null){
                     bandera="";
                 }else {
-                    bandera=usu.listarProductosCarrito().get(0).getEstadoUsuario();
+                    bandera=usu.listarUsuarioP().get(0).getEstadoUsuario();
                 }
 
                 if (bandera.equalsIgnoreCase("por registrar") || bandera.equalsIgnoreCase("registrado")) {
