@@ -2,15 +2,22 @@ package com.example.tienda_op_2.base_temp;
 
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import androidx.annotation.Nullable;
+import com.example.tienda_op_2.modelo.Carrito;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
 
     private static String NOMBRE_BD= "base_temp";
     private static int VERSION_BD= 1;
+
+    ArrayList<Carrito> listaCarrito=new ArrayList<>();
 
     private static String TABLA_CARRITO= "create table carrito (" +
             "idPrdocuto INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
@@ -196,5 +203,34 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
         bd.close();
 
     }
+
+    public List<Carrito> listar() {
+
+        String sql = "SELECT * FROM carrito";
+        Cursor cursor = query(sql);
+        while (cursor.moveToNext()) {
+            Carrito car = new Carrito();
+            car.setId_carrito(cursor.getInt(0));
+            car.setNombreProducto(cursor.getString(1));
+            car.setDescripcionProducto(cursor.getString(2));
+            car.setPrecioProducto(cursor.getDouble(3));
+            car.setCatidadProducto(cursor.getInt(4));
+            car.setStock(cursor.getInt(5));
+            car.setImgProducto(cursor.getString(6));
+            car.setId_producto(cursor.getInt(7));
+            listaCarrito.add(car);
+        }
+        return listaCarrito;
+    }
+
+
+    public Cursor query(String sql) {
+        return this.getReadableDatabase().rawQuery(sql, null);
+    }
+
+    public void noQuery(String sql) {
+        this.getWritableDatabase().execSQL(sql);
+    }
+
 
 }

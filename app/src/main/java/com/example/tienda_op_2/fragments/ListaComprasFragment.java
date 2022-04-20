@@ -15,8 +15,10 @@ import com.example.tienda_op_2.Services.PedidoService;
 import com.example.tienda_op_2.api.apiClientes;
 import com.example.tienda_op_2.api.apiDetallePedido;
 import com.example.tienda_op_2.api.apiPedido;
+import com.example.tienda_op_2.base_temp.SQLiteOpenHelper;
 import com.example.tienda_op_2.carga_de_datos.CargaProductos;
 import com.example.tienda_op_2.carga_de_datos.CargarDatosPagoEnvio;
+import com.example.tienda_op_2.modelo.Carrito;
 import com.example.tienda_op_2.modelo.Cliente;
 import com.example.tienda_op_2.modelo.Detalle_pedido;
 import com.example.tienda_op_2.modelo.Pedido;
@@ -25,6 +27,7 @@ import retrofit2.Callback;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static com.example.tienda_op_2.VentanaPago.ft;
 
@@ -83,7 +86,7 @@ public class ListaComprasFragment extends Fragment {
             labelTelefonoCliente.setText(cliente.get(i).getTelefono());
             labelNumeroTarjeta.setText(numeroTarjeta);
 
-            //aqui extraigo de la cedula de la base de datos sqlite
+
         }
     }
 
@@ -119,10 +122,28 @@ public class ListaComprasFragment extends Fragment {
 
     }
 
+
+
+
+
     public void cargarDatosDetalle(){
+        List<Carrito> lista_car=new ArrayList<>();
 
+        SQLiteOpenHelper base=new SQLiteOpenHelper(getContext());
+        lista_car=base.listar();
 
+        for(int i=0;i<lista_car.size();i++){
+            Detalle_pedido det=new Detalle_pedido();
+            det.setIdProducto(lista_car.get(i).getId_producto());
+            det.setCantidad(lista_car.get(i).getCatidadProducto());
+            det.setIdPedido(2);
+            det.setPrecioUnitario(lista_car.get(i).getPrecioProducto());
+            det.setDespachado("false");
+            agregarDetalle(det);
 
+            System.out.println(lista_car.get(i).getId_producto()+ "ddd"+ lista_car.get(i).getCatidadProducto() );
+            System.out.println("añadirrrrrrrrrrrrr");
+        }
 
     }
 

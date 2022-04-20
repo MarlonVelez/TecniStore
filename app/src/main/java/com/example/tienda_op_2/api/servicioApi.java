@@ -9,6 +9,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tienda_op_2.adapter.ProductoAdapter;
 import com.example.tienda_op_2.modelo.Cliente;
+import com.example.tienda_op_2.modelo.Pedido;
 import com.example.tienda_op_2.modelo.Producto;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,6 +26,7 @@ public class servicioApi {
     ArrayList<Producto> productos = new ArrayList<>();
 
     ArrayList<Cliente> clientes = new ArrayList<>();
+    ArrayList<Pedido> pedidos= new ArrayList<>();
 
     public servicioApi() {
 
@@ -129,6 +131,30 @@ public class servicioApi {
     }
 
 
+    public void listarPedido() {
+
+        String URL = "https://tecnistoreaapi.rj.r.appspot.com/pedido";
+
+        JsonArrayRequest usersJSON = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    apiPedido apiP = new apiPedido(context);
+                    pedidos = apiP.parseJSON(response)  ;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(null, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        Volley.newRequestQueue(context).add(usersJSON);
+
+    }
 
     public static Retrofit getRetro(String baseUrl) {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(GsonConverterFactory.create()).build();

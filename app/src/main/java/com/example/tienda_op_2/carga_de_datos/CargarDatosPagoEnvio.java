@@ -39,8 +39,6 @@ public class CargarDatosPagoEnvio {
 
         if (fila.moveToFirst()) {
 
-
-
             do {
                 Cliente cliente = new Cliente();
                 cliente.setNombre(fila.getString(1));

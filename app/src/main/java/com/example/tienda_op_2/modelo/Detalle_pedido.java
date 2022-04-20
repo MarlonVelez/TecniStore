@@ -25,6 +25,30 @@ public class Detalle_pedido {
     @Expose
     private double precioUnitario;
 
+    @SerializedName("despachado")
+    @Expose
+    private String despachado;
+
+
+    public Detalle_pedido(Integer idDetalle, Integer idPedido, Integer idProducto, Integer cantidad, double precioUnitario, String despachado) {
+        this.idDetalle = idDetalle;
+        this.idPedido = idPedido;
+        this.idProducto = idProducto;
+        this.cantidad = cantidad;
+        this.precioUnitario = precioUnitario;
+        this.despachado = despachado;
+    }
+
+    public Detalle_pedido() {
+    }
+
+    public String getDespachado() {
+        return despachado;
+    }
+
+    public void setDespachado(String despachado) {
+        this.despachado = despachado;
+    }
 
     public Integer getIdDetalle() {
         return idDetalle;

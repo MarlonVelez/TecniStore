@@ -25,7 +25,7 @@ public class DatosPagoFragment extends DialogFragment {
     EditText txtNumTarjeta, txtMesVencimiento, txtAnioVencimiento, txtCVV;
     Activity actividad;
     Button btnAceptarDP;
-    Button btn_confirmarPago;
+
 
 
     /*@Override

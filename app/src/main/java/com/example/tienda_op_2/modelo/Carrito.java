@@ -7,13 +7,17 @@ public class Carrito {
     private double precioProducto;
     private int catidadProducto, stock;
     private String imgProducto;
+    private int id_producto;
+    private int id_carrito;
+    private String despachado;
 
-    public Carrito(String nombreProducto, String descripcionProducto, double precioProducto, int catidadProducto, String imgProducto) {
-        this.nombreProducto = nombreProducto;
-        this.descripcionProducto = descripcionProducto;
-        this.precioProducto = precioProducto;
-        this.catidadProducto = catidadProducto;
-        this.imgProducto = imgProducto;
+
+    public String getDespachado() {
+        return despachado;
+    }
+
+    public void setDespachado(String despachado) {
+        this.despachado = despachado;
     }
 
     public Carrito() {
@@ -65,5 +69,22 @@ public class Carrito {
 
     public void setImgProducto(String imgProducto) {
         this.imgProducto = imgProducto;
+    }
+
+
+    public int getId_producto() {
+        return id_producto;
+    }
+
+    public void setId_producto(int id_producto) {
+        this.id_producto = id_producto;
+    }
+
+    public int getId_carrito() {
+        return id_carrito;
+    }
+
+    public void setId_carrito(int id_carrito) {
+        this.id_carrito = id_carrito;
     }
 }
