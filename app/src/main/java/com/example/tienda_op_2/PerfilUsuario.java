@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.tienda_op_2.carga_de_datos.CargarDatosPagoEnvio;
 import com.example.tienda_op_2.carga_de_datos.CargarUsuario;
 import com.example.tienda_op_2.modelo.Cliente;
 import com.example.tienda_op_2.modelo.Usuario;
@@ -98,9 +99,14 @@ public class PerfilUsuario extends AppCompatActivity {
 
     /*ESTE METODO SIRVE PARA VERIFICAR SI ES QUE EL USUARIO HAYA GENERADO UNA CUENTA EN EL APLICATIVO*/
     private void comprobarUsuario(){
+        // Guardar los datos en un array de usuario
         CargarUsuario usu= new CargarUsuario(PerfilUsuario.this);
         ArrayList<Usuario> usuario= usu.listarUsuarioP();
+
         String estadoUsuario= usuario.get(0).getEstadoUsuario();
+        //Guardar los datos en un array de cliente
+        CargarDatosPagoEnvio cli = new CargarDatosPagoEnvio(PerfilUsuario.this);
+        ArrayList<Cliente> cliente = cli.listarDatosCliente();
 
         if (estadoUsuario.equalsIgnoreCase("por registrar")){
             new AlertDialog.Builder(PerfilUsuario.this)
@@ -124,6 +130,15 @@ public class PerfilUsuario extends AppCompatActivity {
                     .show();
         }else{
             /*CARGAR DATOS AQUI SI ES QUE EXISTIERA UN USUARIO*/
+
+            for (int i = 0; i <usuario.size(); i++) {
+                txtUserNameProfile.setText(usuario.get(i).getNombreUsuario());
+                txtClaveProfile.setText(usuario.get(i).getClaveUsuario());
+            }
+            
+            for (int i = 0; i < cliente.size(); i++) {
+                txtEmailProfile.setText(cliente.get(i).getCorreo());
+            }
         }
     }
 }
