@@ -30,7 +30,7 @@ public class apiClientes {
             cl.setIdCliente(jsonObject.getInt("idCliente"));
             listacliente.add(cl);
         }
-
+        System.out.println(" tamaño de la lista cliente"+ listacliente.size());
         return  listacliente;
     }
 

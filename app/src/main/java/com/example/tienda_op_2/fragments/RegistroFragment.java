@@ -48,6 +48,8 @@ public class RegistroFragment extends Fragment {
     String fechaSeleccionada;
     LottieAnimationView imgRegister;
 
+    public static String cedula;
+
     ArrayList<com.example.tienda_op_2.modelo.Cliente> listaCliente= new ArrayList<>();
 
     @Override
@@ -90,11 +92,15 @@ public class RegistroFragment extends Fragment {
                         !txtNumTarjeta.getText().toString().isEmpty() &&
                         !txtMesVencimiento.getText().toString().isEmpty() &&
                         !txtAnioVencimiento.getText().toString().isEmpty() &&
-                        !txtCVV.getText().toString().isEmpty()) {
+                        !txtCVV.getText().toString().isEmpty()){
 
                     Cliente cliente = new Cliente();
                     cliente.setApellido(txtApellido.getText().toString());
                     cliente.setCedula(txtCedula.getText().toString());
+                    cedula=txtCedula.getText().toString();
+
+                    System.out.println("aquiiiiiiiiiiii esta la cedulaaaaaaaaaaaaaaaaaaaaaa"+ cedula);
+
                     cliente.setCorreo(txtEmail.getText().toString());
                     cliente.setDireccion(txtDireccion.getText().toString());
                     cliente.setEstadoCliente("true");
@@ -106,14 +112,13 @@ public class RegistroFragment extends Fragment {
                     //AQUI REGISTRAMOS LOS DATOS DEL CLIENTE Y TARJETA DENTRO DE UNA BDD TEMPORAL
                     registrarDatosClienteSQL();
                     registrarDatosPago();
-                    //addCliente(cliente);
+                    addCliente(cliente);
                     limpiarCampos();
                     cambiarFragment();
-                }else{
-                    Toast.makeText(root.getContext(), "Tienes que llenar todos los campos", Toast.LENGTH_SHORT).show();
+               }else{
+                   Toast.makeText(root.getContext(), "Tienes que llenar todos los campos", Toast.LENGTH_SHORT).show();
                 }
 
-                agregarDatosPedido();
             }
         });
 
@@ -164,65 +169,21 @@ public class RegistroFragment extends Fragment {
     /*METODO PARA GUARDAR UN CLIENTE DENTRO DEL API DEL APLICATIVO*/
     ClienteService clienteService;
     public void addCliente(com.example.tienda_op_2.weblogin.modelo.Cliente cliente) {
+
         clienteService = ApiClient.getClienteService();
         Call<Cliente> call = clienteService.addCliente(cliente);
         call.enqueue(new Callback<Cliente>() {
             @Override
             public void onResponse(Call<Cliente> call, Response<Cliente> response) {
-            }
-            @Override
-            public void onFailure(Call<Cliente> call, Throwable t) {
-
-            }
-        });
-    }
-
-    /*CODIGO GENERADO POR WILLIAM*/
-    public void  agregarDatosPedido(){
-        int id_cliente = 0;
-        double totalGeneral;
-        totalGeneral= CargaProductos.total;
-        servicioApi serv= new servicioApi();
-        serv.listarClientes();
-        listaCliente=apiClientes.listacliente;
-
-        System.out.println(totalGeneral+ " totalllllllllll");
-
-        // listaCliente=apiClientes.listacliente;
-        System.out.println(listaCliente.size()+ " gggggg");
-
-        for (com.example.tienda_op_2.modelo.Cliente p : listaCliente) {
-            if (p.getCedula().contains(txtCedula.getText())) {
-                id_cliente=p.getIdCliente();
-            }
-        }
-        System.out.println(id_cliente+ " xxxx");
-
-        Date fecha= new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String date = sdf.format(fecha);
-        Pedido p=new Pedido();
-        p.setIdCliente(id_cliente);
-        p.setFecha(date);
-        p.setDespachado("false");
-        p.setTotalGeneral(totalGeneral);
-        addPedido(p);
-    }
-
-    PedidoService pedidoService;
-    public void addPedido(Pedido pedido){
-        pedidoService= apiPedido.getpedidoService();
-        Call<Pedido> call = pedidoService.addPedido(pedido);
-        call.enqueue(new Callback<Pedido>() {
-            @Override
-            public void onResponse(Call<Pedido> call, retrofit2.Response<Pedido> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(getContext(), "Pedido agregado automaticamente", Toast.LENGTH_SHORT).show();
+                if(response.isSuccessful()){
+                    Toast.makeText(getContext(), "Cliente Registrado", Toast.LENGTH_SHORT).show();
+                    System.out.println("Cliente Registrado");
+                    servicioApi ser=new servicioApi();
+                    ser.listarClientes();
                 }
             }
             @Override
-            public void onFailure(Call<Pedido> call, Throwable t) {
-                Toast.makeText(getContext(), "Error al agregar usuario", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<Cliente> call, Throwable t) {
             }
         });
     }
@@ -238,8 +199,6 @@ public class RegistroFragment extends Fragment {
         txtUsuario.setText("");
         txtContraseña.setText("");
     }
-
-
 
     /*CODIGO GENERADO POR MARLON*/
 
@@ -258,7 +217,7 @@ public class RegistroFragment extends Fragment {
         boolean bandera= base.agregarDatosCliente(nombre, apellido, cedula, fehcaNac, email, telefono,direccion);
 
         if (bandera!=false){
-            Toast.makeText(getContext(), "Datos del cliente registrados", Toast.LENGTH_SHORT).show();
+           Toast.makeText(getContext(), "Datos del cliente registrados", Toast.LENGTH_SHORT).show();
         }else {
             Toast.makeText(getContext(), "No se pudo registar sus datos", Toast.LENGTH_SHORT).show();
         }

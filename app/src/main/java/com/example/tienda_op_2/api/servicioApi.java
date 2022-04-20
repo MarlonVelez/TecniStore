@@ -102,8 +102,9 @@ public class servicioApi {
 
 
 
-    public ArrayList<Cliente> listarClientes() {
+   public void listarClientes() {
 
+        System.out.println("liatar clienmtessssssssssssss");
         String URL = "https://tecnistoreaapi.rj.r.appspot.com/cliente";
 
         JsonArrayRequest usersJSON = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
@@ -123,8 +124,8 @@ public class servicioApi {
                 Toast.makeText(context, error.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+
         Volley.newRequestQueue(context).add(usersJSON);
-        return clientes;
     }
 
 

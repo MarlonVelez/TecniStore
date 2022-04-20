@@ -9,5 +9,5 @@ import retrofit2.http.POST;
 public interface DetalleService {
 
     @POST("detallepedido")
-    Call<Usuario> addDetalle(@Body Detalle_pedido detalle);
+    Call<Detalle_pedido> addDetalle(@Body Detalle_pedido detalle);
 }

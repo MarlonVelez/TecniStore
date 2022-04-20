@@ -7,6 +7,10 @@ import java.util.Date;
 
 public class Pedido {
 
+    @SerializedName("idPedido")
+    @Expose
+    private Integer idPedido;
+
     @SerializedName("idCliente")
     @Expose
     private Integer idCliente;
@@ -23,8 +27,8 @@ public class Pedido {
     @Expose
     private String fecha;
 
-
-    public Pedido(Integer idCliente, double totalGeneral, String despachado, String fecha) {
+    public Pedido(Integer idPedido, Integer idCliente, double totalGeneral, String despachado, String fecha) {
+        this.idPedido = idPedido;
         this.idCliente = idCliente;
         this.totalGeneral = totalGeneral;
         this.despachado = despachado;
@@ -33,6 +37,14 @@ public class Pedido {
 
     public  Pedido(){
 
+    }
+
+    public Integer getIdPedido() {
+        return idPedido;
+    }
+
+    public void setIdPedido(Integer idPedido) {
+        this.idPedido = idPedido;
     }
 
     public Integer getIdCliente() {

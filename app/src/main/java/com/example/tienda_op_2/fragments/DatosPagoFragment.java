@@ -25,6 +25,8 @@ public class DatosPagoFragment extends DialogFragment {
     EditText txtNumTarjeta, txtMesVencimiento, txtAnioVencimiento, txtCVV;
     Activity actividad;
     Button btnAceptarDP;
+    Button btn_confirmarPago;
+
 
     /*@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -101,4 +103,9 @@ public class DatosPagoFragment extends DialogFragment {
             Toast.makeText(getContext(), "No se pudo registrar la targeta", Toast.LENGTH_SHORT).show();
         }
     }
+
+
+
+
+
 }
