@@ -15,6 +15,7 @@ import com.example.tienda_op_2.Services.PedidoService;
 import com.example.tienda_op_2.api.apiClientes;
 import com.example.tienda_op_2.api.apiDetallePedido;
 import com.example.tienda_op_2.api.apiPedido;
+import com.example.tienda_op_2.api.servicioApi;
 import com.example.tienda_op_2.base_temp.SQLiteOpenHelper;
 import com.example.tienda_op_2.carga_de_datos.CargaProductos;
 import com.example.tienda_op_2.carga_de_datos.CargarDatosPagoEnvio;
@@ -123,28 +124,11 @@ public class ListaComprasFragment extends Fragment {
     }
 
 
-
-
-
     public void cargarDatosDetalle(){
-        List<Carrito> lista_car=new ArrayList<>();
 
-        SQLiteOpenHelper base=new SQLiteOpenHelper(getContext());
-        lista_car=base.listar();
-
-        for(int i=0;i<lista_car.size();i++){
-            Detalle_pedido det=new Detalle_pedido();
-            det.setIdProducto(lista_car.get(i).getId_producto());
-            det.setCantidad(lista_car.get(i).getCatidadProducto());
-            det.setIdPedido(2);
-            det.setPrecioUnitario(lista_car.get(i).getPrecioProducto());
-            det.setDespachado("false");
-            agregarDetalle(det);
-
-            System.out.println(lista_car.get(i).getId_producto()+ "ddd"+ lista_car.get(i).getCatidadProducto() );
-            System.out.println("añadirrrrrrrrrrrrr");
-        }
-
+        //Listar el pedido desde el Api
+        servicioApi ser=new servicioApi();
+        ser.listarPedido();
     }
 
     //Metodo par registrar Pedido
@@ -158,6 +142,7 @@ public class ListaComprasFragment extends Fragment {
             public void onResponse(Call<Pedido> call, retrofit2.Response<Pedido> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(getContext(), "Pedido agregado automaticamente", Toast.LENGTH_SHORT).show();
+                    cargarDatosDetalle();
                 }
             }
             @Override
@@ -168,7 +153,7 @@ public class ListaComprasFragment extends Fragment {
     }
 
     //Metodo par registrar detallePedido
-    DetalleService detalleService;
+  /*  DetalleService detalleService;
     public void agregarDetalle(Detalle_pedido detalle){
 
         detalleService= apiDetallePedido.getDetalle();
@@ -185,7 +170,7 @@ public class ListaComprasFragment extends Fragment {
                 Toast.makeText(getContext(), "Error al agregar detalle", Toast.LENGTH_SHORT).show();
             }
         });
-    }
+    }*/
 
 
     public void OnClick(View view){

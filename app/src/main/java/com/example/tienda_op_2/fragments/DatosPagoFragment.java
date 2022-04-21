@@ -26,8 +26,6 @@ public class DatosPagoFragment extends DialogFragment {
     Activity actividad;
     Button btnAceptarDP;
 
-
-
     /*@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -103,9 +101,6 @@ public class DatosPagoFragment extends DialogFragment {
             Toast.makeText(getContext(), "No se pudo registrar la targeta", Toast.LENGTH_SHORT).show();
         }
     }
-
-
-
 
 
 }

@@ -140,7 +140,7 @@ public class servicioApi {
             public void onResponse(JSONArray response) {
                 try {
                     apiPedido apiP = new apiPedido(context);
-                    pedidos = apiP.parseJSON(response)  ;
+                    apiP.parseJSON(response);
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Toast.makeText(null, e.getMessage(), Toast.LENGTH_LONG).show();

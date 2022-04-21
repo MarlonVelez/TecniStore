@@ -217,7 +217,8 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
             car.setCatidadProducto(cursor.getInt(4));
             car.setStock(cursor.getInt(5));
             car.setImgProducto(cursor.getString(6));
-            car.setId_producto(cursor.getInt(7));
+            car.setId_producto(cursor.getInt(8));
+            System.out.println(cursor.getInt(8)+ "  pppppppppppppp");
             listaCarrito.add(car);
         }
         return listaCarrito;

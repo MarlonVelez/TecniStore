@@ -66,8 +66,6 @@ public class DetalleProducto extends AppCompatActivity {
 
         //RECIVO DATOS MANDADOS AL SELECCIONAR UN PRODUCTO EN LA LISTA DEL HOME //////////////////////
         Intent i = getIntent();
-
-
         nombre = i.getStringExtra("name");
         image = i.getStringExtra("image");
         precio = i.getStringExtra("price");
@@ -128,7 +126,6 @@ public class DetalleProducto extends AppCompatActivity {
                     int stock;
                     int cantidadInput;
                     stock= Integer.parseInt(stockProdcuto.getText().toString());
-
                     if (cantidad.getText().toString().equalsIgnoreCase("")) { //If para controlar exepcion al dejar el edit text vacio
                         cantidadInput=0;
                     }else {
@@ -228,6 +225,10 @@ public class DetalleProducto extends AppCompatActivity {
         String cantidadCompra= cantidad.getText().toString();
         String imagen= image;
         int stock= Integer.parseInt(stockProdcuto.getText().toString());
+
+        System.out.println(id_producto+ " 77777777777777777777777777");
+
+
 
         boolean bandera= base.agregarCarrito(id_producto,nombreP, descP, precioP, cantidadCompra, imagen, stock, estado);
 
