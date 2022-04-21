@@ -94,19 +94,13 @@ public class ListaComprasFragment extends Fragment {
     //CODIGO GENERADO POR WILLIAM
     public void cargarDatosPedido(){
 
-        System.out.println(" registro pedidoooooooooooooooooooooooooooo");
         listaCliente= apiClientes.listacliente;
-        System.out.println(listaCliente.size()+ "tamaño lisssssstaaaaaaaaaaaaa clienteeeeeeeeeee");
-
         int id_cliente=0;
         cedulaCliente=RegistroFragment.cedula;
 
         for(int i=0; i<listaCliente.size();i++){
-            System.out.println(cedulaCliente+ " cedulaaaaaaaaaaaaa");
             if(cedulaCliente.equals(listaCliente.get(i).getCedula())) {
                 id_cliente = listaCliente.get(i).getIdCliente();
-                System.out.println(listaCliente.get(i).getCedula()+ " ceddd");
-                System.out.println(id_cliente+" iddddddddddddddddddddddddddddddddddddddddddddd");
             }
         }
         double totalGeneral;
@@ -151,27 +145,6 @@ public class ListaComprasFragment extends Fragment {
             }
         });
     }
-
-    //Metodo par registrar detallePedido
-  /*  DetalleService detalleService;
-    public void agregarDetalle(Detalle_pedido detalle){
-
-        detalleService= apiDetallePedido.getDetalle();
-        Call<Detalle_pedido> call = detalleService.addDetalle(detalle);
-        call.enqueue(new Callback<Detalle_pedido>() {
-            @Override
-            public void onResponse(Call<Detalle_pedido> call, retrofit2.Response<Detalle_pedido> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(getContext(), "Detalle agregado automaticamente", Toast.LENGTH_SHORT).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<Detalle_pedido> call, Throwable t) {
-                Toast.makeText(getContext(), "Error al agregar detalle", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }*/
-
 
     public void OnClick(View view){
         switch (view.getId()){

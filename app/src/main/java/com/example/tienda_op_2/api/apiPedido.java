@@ -2,6 +2,7 @@ package com.example.tienda_op_2.api;
 
 import android.content.Context;
 import android.widget.Toast;
+import com.example.tienda_op_2.CarritoCompras;
 import com.example.tienda_op_2.Services.DetalleService;
 import com.example.tienda_op_2.Services.PedidoService;
 import com.example.tienda_op_2.base_temp.SQLiteOpenHelper;
@@ -45,7 +46,6 @@ public class apiPedido {
             p.setIdPedido(jsonObject.getInt("idPedido"));
             listaPedido.add(p);
         }
-        System.out.println(listaPedido.size()+" pedidooooooooooooooooooooooo ssssssssssssssssssssssssssssssssssssssssssssssss");
         cargarDatosDetalle();
     }
 
@@ -54,11 +54,6 @@ public class apiPedido {
     public void cargarDatosDetalle(){
         int id_pedido;
         List<Carrito> lista_car=new ArrayList<>();
-
-        /*for(int i=0; i<listaPedido.size();i++){
-
-        }*/
-
         SQLiteOpenHelper base=new SQLiteOpenHelper(context);
         lista_car=base.listar();
         id_pedido=listaPedido.get(listaPedido.size()-1).getIdPedido();
@@ -77,7 +72,7 @@ public class apiPedido {
         }
 
     }
-
+    //Metodo par registrar detallePedido
     DetalleService detalleService;
     public void agregarDetalle(Detalle_pedido detalle){
 
@@ -87,7 +82,9 @@ public class apiPedido {
             @Override
             public void onResponse(Call<Detalle_pedido> call, retrofit2.Response<Detalle_pedido> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(context, "Detalle agregado automaticamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Factura generada Exitosamente", Toast.LENGTH_SHORT).show();
+                   SQLiteOpenHelper base = new SQLiteOpenHelper(context.getApplicationContext());
+                    base.eliminarCarrito(null);
                 }
             }
             @Override

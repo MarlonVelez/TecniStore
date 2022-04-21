@@ -21,18 +21,17 @@ import com.example.tienda_op_2.modelo.ItemLayout;
 import java.util.ArrayList;
 
 
-
 public class CargaProductos {
 
-    Context context;
-    RecyclerView recyclerView;
+    static Context context;
+    static RecyclerView recyclerView;
     CarritoAdapter carritoAdapter;
     ListaComprasAdapter listaComprasAdapter;
-    TextView txtTotal;
+    static TextView txtTotal;
     CardView cardCarritoVacio;
     LottieAnimationView imgCarritoVacio;
-    ArrayList<Carrito> arrayList= new ArrayList<>();
-    public static  double total=0;
+    ArrayList<Carrito> arrayList = new ArrayList<>();
+    public static double total = 0;
 
 
     public CargaProductos(Context context, RecyclerView recyclerView, TextView txtTotal, CardView cardCarritoVacio, LottieAnimationView imgCarritoVacio) {
@@ -46,20 +45,21 @@ public class CargaProductos {
     public CargaProductos() {
     }
 
-    public void listarProductosCarrito(String id, String layout){
-        SQLiteOpenHelper base= new SQLiteOpenHelper(context);
-        SQLiteDatabase open= base.getReadableDatabase();
-        Cursor fila=null;
-        if (id==null){
-            fila = open.rawQuery("select * from carrito",null );
-        }else {
-            fila = open.rawQuery("select * from carrito where id="+id,null );
+    public void listarProductosCarrito(String id, String layout) {
+        System.out.println(context+" aaaaaaaaaaaaaaaaaaaaaaaaaa");
+        SQLiteOpenHelper base = new SQLiteOpenHelper(context);
+        SQLiteDatabase open = base.getReadableDatabase();
+        Cursor fila = null;
+        if (id == null) {
+            fila = open.rawQuery("select * from carrito", null);
+        } else {
+            fila = open.rawQuery("select * from carrito where id=" + id, null);
         }
 
-        if (fila.moveToFirst()){
+        if (fila.moveToFirst()) {
 
-            do{
-                Carrito carrito= new Carrito();
+            do {
+                Carrito carrito = new Carrito();
                 carrito.setNombreProducto(fila.getString(1));
                 carrito.setDescripcionProducto(fila.getString(2));
                 carrito.setPrecioProducto(fila.getDouble(3));
@@ -68,63 +68,120 @@ public class CargaProductos {
                 carrito.setStock(fila.getInt(5));
                 arrayList.add(carrito);
 
-            }while (fila.moveToNext());
+            } while (fila.moveToNext());
             base.close();
             open.close();
-            if (layout.equalsIgnoreCase("Carrito")){
-                if (arrayList.size()>0){
+            if (layout.equalsIgnoreCase("Carrito")) {
+                if (arrayList.size() > 0) {
                     cardCarritoVacio.setVisibility(View.GONE);
                     mostrarCarrito(arrayList);
                     carritoAdapter.notifyDataSetChanged();
-                }else{
+                } else {
                     cardCarritoVacio.setVisibility(View.VISIBLE);
                 }
 
             }
 
-            if (layout.equalsIgnoreCase("Lista Compras")){
+            if (layout.equalsIgnoreCase("Lista Compras")) {
                 mostrarListaCompras(arrayList);
                 listaComprasAdapter.notifyDataSetChanged();
             }
 
 
-        }else{
+        } else {
             //Toast.makeText(context, "No hay datos registrados", Toast.LENGTH_LONG).show();
             mostrarListaCompras(arrayList);
             listaComprasAdapter.notifyDataSetChanged();
         }
+
+
     }
 
+
+    public ArrayList<Carrito> actualizarProductosCarrito(String id) {
+        System.out.println(context+ "bbbbbbbbbbbbbbbbbbbbbb");
+        SQLiteOpenHelper base = new SQLiteOpenHelper(context);
+        SQLiteDatabase open = base.getReadableDatabase();
+        Cursor fila = null;
+        if (id == null) {
+            fila = open.rawQuery("select * from carrito", null);
+        } else {
+            fila = open.rawQuery("select * from carrito where id=" + id, null);
+        }
+        if (fila.moveToFirst()) {
+
+            do {
+                Carrito carrito = new Carrito();
+                carrito.setNombreProducto(fila.getString(1));
+                carrito.setDescripcionProducto(fila.getString(2));
+                carrito.setPrecioProducto(fila.getDouble(3));
+                carrito.setCatidadProducto(fila.getInt(4));
+                carrito.setImgProducto(fila.getString(6));
+                carrito.setStock(fila.getInt(5));
+                arrayList.add(carrito);
+
+            } while (fila.moveToNext());
+            base.close();
+            open.close();
+
+        }
+        return  arrayList;
+
+
+    }
 
 
     public void mostrarCarrito(ArrayList<Carrito> array) {
 
-        total=0;
+        total = 0;
         for (int i = 0; i < array.size(); i++) {
-            total=(array.get(i).getCatidadProducto()*array.get(i).getPrecioProducto())+total;
+            total = (array.get(i).getCatidadProducto() * array.get(i).getPrecioProducto()) + total;
         }
-        txtTotal.setText("$"+total);
+        txtTotal.setText("$" + total);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        carritoAdapter = new CarritoAdapter(context,array);
+        carritoAdapter = new CarritoAdapter(context, array);
         recyclerView.setAdapter(carritoAdapter);
     }
 
+    public void actulizarCarrito(ArrayList<Carrito> array) {
 
+
+
+    total = 0;
+        for (int i = 0; i < array.size(); i++) {
+            total = (array.get(i).getCatidadProducto() * array.get(i).getPrecioProducto()) + total;
+        }
+        System.out.println(total+" totaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalll");
+        txtTotal.setText("$" + total);
+        carritoAdapter = new CarritoAdapter(context, array);
+        recyclerView.setAdapter(carritoAdapter);
+    }
+
+    public void actulizarTotal(){
+        total = 0;
+        for (int i = 0; i < arrayList.size(); i++) {
+            total = (arrayList.get(i).getCatidadProducto() * arrayList.get(i).getPrecioProducto()) + total;
+        }
+        System.out.println(total+" totaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalll");
+        txtTotal.setText("$" + total);
+    }
 
 
     public void mostrarListaCompras(ArrayList<Carrito> array) {
-        double total=0;
+        double total = 0;
 
         for (int i = 0; i < array.size(); i++) {
 
-            total=(array.get(i).getCatidadProducto()*array.get(i).getPrecioProducto())+total;
+            total = (array.get(i).getCatidadProducto() * array.get(i).getPrecioProducto()) + total;
         }
-        txtTotal.setText("Total:"+"        $"+total);
+        txtTotal.setText("Total:" + "        $" + total);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        listaComprasAdapter = new ListaComprasAdapter(context,array);
+        listaComprasAdapter = new ListaComprasAdapter(context, array);
         recyclerView.setAdapter(listaComprasAdapter);
+        ////////////////////
+        listaComprasAdapter.notifyDataSetChanged();
     }
 
 }

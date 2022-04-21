@@ -13,8 +13,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.tienda_op_2.adapter.CarritoAdapter;
 import com.example.tienda_op_2.base_temp.SQLiteOpenHelper;
 import com.example.tienda_op_2.carga_de_datos.CargaProductos;
+import com.example.tienda_op_2.modelo.Carrito;
+
+import java.util.ArrayList;
 
 
 public class CarritoCompras extends AppCompatActivity{
@@ -23,9 +27,11 @@ public class CarritoCompras extends AppCompatActivity{
     TextView txtTotal;
     RecyclerView listaCarrito;
     Button btnComprarCarrito, btnCancelarCarrito;
+    CarritoAdapter carritoAdapter;
 
     CardView cardCarritoVacio;
     LottieAnimationView imgCarritoVacio;
+    ArrayList<Carrito> carrito=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,7 +126,13 @@ public class CarritoCompras extends AppCompatActivity{
 
     public void refrescar(View view, String nombre){
         SQLiteOpenHelper base = new SQLiteOpenHelper(view.getContext());
+
+        System.out.println("quitar cccccccccccccccccccccccccccccc");
         base.eliminarCarrito(nombre);
+        CargaProductos cp= new CargaProductos();
+        //LISTA LOS NUEVOS PRODUCTOS DEL CARRITO E INVOCA AL METODO PARA ACTULIZAR EL RECYCLER
+        carrito=cp.actualizarProductosCarrito(null);
+        cp.actulizarCarrito(carrito);
 
         /*CargaProductos datosProductos= new CargaProductos(this, listaCarrito, myTextView);
         datosProductos.listarProductosCarrito(null);*/

@@ -19,6 +19,8 @@ import com.example.tienda_op_2.modelo.Carrito;
 import com.squareup.picasso.Picasso;
 import org.jetbrains.annotations.NotNull;
 
+import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.security.AccessController.getContext;
@@ -27,8 +29,10 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
 
     Context context;
     List<Carrito> itemList;
+    ArrayList<Carrito> carrito=new ArrayList<>();
 
     public CarritoAdapter(Context context, List<Carrito> itemList) {
+        System.out.println(" Carrito de comapras");
         this.context = context;
         this.itemList = itemList;
     }
@@ -71,6 +75,10 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
                     //Actualizamos datos en la base temporal
                     CarritoCompras carritoCompras= new CarritoCompras();
                     carritoCompras.editarCarrito(view, String.valueOf(total), holder.nombre.getText().toString());
+                    CargaProductos cp= new CargaProductos();
+                    carrito=cp.actualizarProductosCarrito(null);
+                    cp.actulizarTotal();
+
                 }else{
                     Toast.makeText(context, "No hay mas stock", Toast.LENGTH_SHORT).show();
                 }
@@ -82,6 +90,8 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
             public void onClick(View view) {
                 /*Se obtiene el valor dentro de la barra de cantidad*/
                 int total= Integer.parseInt(holder.cantidad.getText().toString());
+
+
                 /*Se valida que el total que se obtenga de la barra de cantidad no sea cero
                 * ya que obviamente no se puede comprar cero articulos*/
                 if (total!=0){
@@ -91,6 +101,10 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
                     //Actualizamos datos en la base temporal
                     CarritoCompras carritoCompras= new CarritoCompras();
                     carritoCompras.editarCarrito(view, String.valueOf(total), holder.nombre.getText().toString());
+
+                   CargaProductos cp= new CargaProductos();
+                    carrito=cp.actualizarProductosCarrito(null);
+                    cp.actulizarTotal();
 
                 }
 
