@@ -65,7 +65,7 @@ public class CargarDatosPagoEnvio {
     public String listarDatosTargeta(){
         SQLiteOpenHelper base= new SQLiteOpenHelper(context);
         SQLiteDatabase open= base.getReadableDatabase();
-        Cursor fila= open.rawQuery("select * from datos_cliente",null );
+        Cursor fila= open.rawQuery("select * from datos_tarjeta",null );
 
         if (fila.moveToFirst()) {
 

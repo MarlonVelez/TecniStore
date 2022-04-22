@@ -3,15 +3,15 @@
                                                    xmlns:app="http://schemas.android.com/apk/res-auto"
                                                    xmlns:tools="http://schemas.android.com/tools"
                                                    android:layout_width="match_parent"
-                                                   android:layout_height="320dp"
+                                                   android:layout_height="340dp"
                                                    tools:context=".CarritoCompras">
 
     <androidx.cardview.widget.CardView
-            android:layout_width="392dp"
-            android:layout_height="319dp"
+            android:layout_width="380dp"
+            android:layout_height="320dp"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="1.0" app:layout_constraintVertical_bias="0.003"
+            app:layout_constraintHorizontal_bias="0.461"
             app:cardElevation="5dp">
         <Button
                 android:text="Quitar"
@@ -19,11 +19,11 @@
                 android:layout_height="58dp" android:id="@+id/btn_quitarCarrito" app:iconTint="@null"
                 style="@null" android:backgroundTint="@color/rojo_eliminar"
                 android:textColor="@color/blaco_arena"
-                android:layout_marginStart="250dp" android:layout_marginTop="242dp"/>
+                android:layout_marginStart="230dp" android:layout_marginTop="200dp"/>
         <androidx.cardview.widget.CardView
                 android:layout_width="160dp"
                 android:layout_height="44dp" app:cardCornerRadius="20dp" android:layout_marginStart="10dp"
-                android:layout_marginTop="250dp" app:cardElevation="5dp">
+                android:layout_marginTop="210dp" app:cardElevation="5dp">
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="112dp"
@@ -57,7 +57,7 @@
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="185dp" android:layout_marginTop="40dp">
+                android:layout_height="185dp" android:layout_marginTop="5dp">
             <ImageView
                     android:layout_width="120dp"
                     android:layout_height="150dp" app:srcCompat="@drawable/ic_launcher_foreground"
@@ -65,8 +65,8 @@
                     android:layout_marginTop="30dp"/>
             <LinearLayout
                     android:orientation="vertical"
-                    android:layout_width="262dp"
-                    android:layout_height="184dp" android:layout_marginStart="5dp">
+                    android:layout_width="248dp"
+                    android:layout_height="match_parent" android:layout_marginStart="5dp">
                 <TextView
                         android:text="TextView"
                         android:layout_width="match_parent"

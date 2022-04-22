@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.tienda_op_2.base_temp.SQLiteOpenHelper;
 import com.example.tienda_op_2.carga_de_datos.CargarDatosPagoEnvio;
 import com.example.tienda_op_2.carga_de_datos.CargarUsuario;
 import com.example.tienda_op_2.modelo.Cliente;
@@ -23,12 +24,11 @@ public class PerfilUsuario extends AppCompatActivity {
 
     LottieAnimationView imgbackgroundUserProfile, imgbackgroundUserProfile2, imgbackgroundUserProfile3;
     TextInputEditText txtUserNameProfile;
-    TextInputEditText txtEmailProfile;
     TextInputEditText txtClaveProfile;
-    TextView btnEditarDatos;
+    TextView btnEditarDatos, labelNombreUsuario;
     Button btnGuardarCambios;
     Toolbar toolbar;
-    boolean bandera=false;
+    String datoValidacion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,27 +73,33 @@ public class PerfilUsuario extends AppCompatActivity {
         imgbackgroundUserProfile3.setRepeatCount(2000);
 
         txtUserNameProfile= findViewById(R.id.txtNameUserProfile);
-        txtEmailProfile= findViewById(R.id.txtEmailUserProfile);
         txtClaveProfile= findViewById(R.id.txtClaveUserProfile);
 
-        btnEditarDatos= findViewById(R.id.btnEditarDatos);
+        btnEditarDatos= findViewById(R.id.btnEditarPerfil);
         btnGuardarCambios= findViewById(R.id.btnGuardarCambios);
+        labelNombreUsuario= findViewById(R.id.labelNombreUsuario);
 
         txtUserNameProfile.setEnabled(false);
-        txtEmailProfile.setEnabled(false);
         txtClaveProfile.setEnabled(false);
         btnGuardarCambios.setEnabled(false);
 
         btnEditarDatos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 txtUserNameProfile.setEnabled(true);
-                txtEmailProfile.setEnabled(true);
+                datoValidacion= txtUserNameProfile.getText().toString();
                 txtClaveProfile.setEnabled(true);
                 btnGuardarCambios.setEnabled(true);
             }
         });
+
+        btnGuardarCambios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editarDatos();
+            }
+        });
+
         comprobarUsuario();
     }
 
@@ -104,9 +110,6 @@ public class PerfilUsuario extends AppCompatActivity {
         ArrayList<Usuario> usuario= usu.listarUsuarioP();
 
         String estadoUsuario= usuario.get(0).getEstadoUsuario();
-        //Guardar los datos en un array de cliente
-        CargarDatosPagoEnvio cli = new CargarDatosPagoEnvio(PerfilUsuario.this);
-        ArrayList<Cliente> cliente = cli.listarDatosCliente();
 
         if (estadoUsuario.equalsIgnoreCase("por registrar")){
             new AlertDialog.Builder(PerfilUsuario.this)
@@ -134,11 +137,13 @@ public class PerfilUsuario extends AppCompatActivity {
             for (int i = 0; i <usuario.size(); i++) {
                 txtUserNameProfile.setText(usuario.get(i).getNombreUsuario());
                 txtClaveProfile.setText(usuario.get(i).getClaveUsuario());
-            }
-            
-            for (int i = 0; i < cliente.size(); i++) {
-                txtEmailProfile.setText(cliente.get(i).getCorreo());
+                labelNombreUsuario.setText(usuario.get(i).getNombreUsuario());
             }
         }
+    }
+
+    private void editarDatos(){
+        SQLiteOpenHelper editarUusario= new SQLiteOpenHelper(PerfilUsuario.this);
+        editarUusario.editarUsuario(txtUserNameProfile.getText().toString(), txtClaveProfile.getText().toString(), datoValidacion);
     }
 }

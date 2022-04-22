@@ -36,7 +36,6 @@ public class ListaComprasFragment extends Fragment {
 
     RecyclerView listaCompra;
     TextView labelTotalCompra, labelNombreCliente, labelDireccionCliente, labelTelefonoCliente, labelNumeroTarjeta;
-    TextView btnEditarCarrito, btnEditarDatosPago;
     ArrayList<Cliente> listaCliente= new ArrayList<>();
     String cedulaCliente;
     Button btnConfirmar;
@@ -54,8 +53,6 @@ public class ListaComprasFragment extends Fragment {
         labelTelefonoCliente= root.findViewById(R.id.txtTelefonoClientePago);
         labelNumeroTarjeta= root.findViewById(R.id.txtNumTarjetaClientePago);
 
-        btnEditarCarrito= root.findViewById(R.id.btnEditarCarrito);
-        btnEditarDatosPago= root.findViewById(R.id.btnEditarDatosPago);
         btnConfirmar=root.findViewById(R.id.btnConfirmarPago);
 
         btnConfirmar.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +61,8 @@ public class ListaComprasFragment extends Fragment {
                 cargarDatosPedido();
             }
         });
+
+
         cargarListaCompras();
         cargarDatosPago();
 
@@ -79,6 +78,7 @@ public class ListaComprasFragment extends Fragment {
 
         CargarDatosPagoEnvio datos= new CargarDatosPagoEnvio(getContext());
         String numeroTarjeta= datos.listarDatosTargeta();
+        System.out.println("NUM TAR NUM TAR NUM TAR NUM TAR NUM TAR NUM TAR NUM TAR NUM TAR NUM TAR "+numeroTarjeta);
         ArrayList<Cliente> cliente= datos.listarDatosCliente();
 
         for (int i = 0; i < cliente.size(); i++) {
@@ -146,19 +146,4 @@ public class ListaComprasFragment extends Fragment {
         });
     }
 
-    public void OnClick(View view){
-        switch (view.getId()){
-
-            case R.id.btnEditarCarrito:
-
-                break;
-            case R.id.btnEditarDatosPago:
-                Fragment resgitro= new RegistroFragment();
-                ft.replace(R.id.fragmentContenedor, resgitro);
-                ft.addToBackStack(null);
-                ft.commit();
-                break;
-
-        }
-    }
 }

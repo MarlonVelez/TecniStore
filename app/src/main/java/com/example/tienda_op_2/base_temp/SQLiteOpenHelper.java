@@ -60,6 +60,7 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
         super(context, NOMBRE_BD, null, VERSION_BD);
     }
 
+
     @Override
     public void onCreate(SQLiteDatabase base) {
         base.execSQL(TABLA_CARRITO);
@@ -142,6 +143,12 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
         }else{
             return false;
         }
+    }
+
+    public void editarUsuario(String nombreUsuario, String contrasenia, String datoValidacion){
+        SQLiteDatabase bd= getWritableDatabase();
+        bd.execSQL("UPDATE usuario SET nombreUsuario='"+nombreUsuario+"', clave='"+contrasenia+"'"+" WHERE nombreUsuario= '"+datoValidacion+"'");
+        bd.close();
     }
 
     ///// TABLA DATOS PAGO ///////
