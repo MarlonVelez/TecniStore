@@ -37,10 +37,10 @@ public class VentanaPago extends AppCompatActivity  {
         setContentView(R.layout.activity_ventana_pago);
         setTitle("Formulario de Pago y Envio");
 
-        tab= findViewById(R.id.tab_layout);
+        /*tab= findViewById(R.id.tab_layout);
         tab.addTab(tab.newTab().setText("Datos de Envio"));
-        tab.addTab(tab.newTab().setText("Lista de Compras"));
-        tab.setTabGravity(TabLayout.GRAVITY_FILL);
+        tab.addTab(tab.newTab().setText("Lista de Compras"));*/
+        //tab.setTabGravity(TabLayout.GRAVITY_FILL);
         fm= getSupportFragmentManager();
         fragmentContenedor= findViewById(R.id.fragmentContenedor);
 
@@ -49,7 +49,7 @@ public class VentanaPago extends AppCompatActivity  {
         getSupportFragmentManager().beginTransaction().add(R.id.fragmentContenedor, fragmentRegistro).commit();
         ft= getSupportFragmentManager().beginTransaction();
 
-        final PagoFargmentAdapter adapter= new PagoFargmentAdapter(fm, this, tab.getTabCount());
+        //final PagoFargmentAdapter adapter= new PagoFargmentAdapter(fm, this, tab.getTabCount());
         /*CONFIGURACION TOOL BAR*/
 
         toolbar= findViewById(R.id.toolBar);

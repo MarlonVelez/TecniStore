@@ -197,8 +197,6 @@ public class DetalleProducto extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     private void sumCantidad(){
