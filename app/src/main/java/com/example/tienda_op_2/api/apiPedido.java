@@ -1,11 +1,14 @@
 package com.example.tienda_op_2.api;
 
 import android.content.Context;
+import android.content.Intent;
 import android.widget.Toast;
 import com.example.tienda_op_2.CarritoCompras;
+import com.example.tienda_op_2.MainActivity;
 import com.example.tienda_op_2.Services.DetalleService;
 import com.example.tienda_op_2.Services.PedidoService;
 import com.example.tienda_op_2.base_temp.SQLiteOpenHelper;
+import com.example.tienda_op_2.fragments.DialogoPagoFragment;
 import com.example.tienda_op_2.modelo.Carrito;
 import com.example.tienda_op_2.modelo.Detalle_pedido;
 import com.example.tienda_op_2.modelo.Pedido;
@@ -83,8 +86,12 @@ public class apiPedido {
             public void onResponse(Call<Detalle_pedido> call, retrofit2.Response<Detalle_pedido> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(context, "Factura generada Exitosamente", Toast.LENGTH_SHORT).show();
+
                    SQLiteOpenHelper base = new SQLiteOpenHelper(context.getApplicationContext());
                     base.eliminarCarrito(null);
+
+                    Intent home= new Intent(context, MainActivity.class);
+                    context.startActivity(home);
                 }
             }
             @Override

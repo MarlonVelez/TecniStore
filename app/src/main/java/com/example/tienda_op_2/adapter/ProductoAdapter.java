@@ -94,6 +94,7 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
                 i.putExtra("desc", prodcutoList.get(position).getDescripcion());
                 i.putExtra("qty", String.valueOf(prodcutoList.get(position).getStock()));
                 System.out.println("STOCK¡¡: " + prodcutoList.get(position).getStock());
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 context.startActivity(i);
             }
         });

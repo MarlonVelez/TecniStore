@@ -54,6 +54,8 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
         holder.cantidad.setText(String.valueOf(itemList.get(position).getCatidadProducto()));
         holder.cantidad.setEnabled(false);
 
+
+
         Picasso.get()
                 .load(itemList.get(position).getImgProducto())
                 .error(R.mipmap.ic_launcher)

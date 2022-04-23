@@ -137,6 +137,7 @@ public class CargaProductos {
         for (int i = 0; i < array.size(); i++) {
             total = (array.get(i).getCatidadProducto() * array.get(i).getPrecioProducto()) + total;
         }
+
         txtTotal.setText("$" + total);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);

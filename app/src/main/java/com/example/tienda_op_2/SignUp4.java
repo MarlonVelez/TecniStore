@@ -96,11 +96,16 @@ public class SignUp4 extends AppCompatActivity {
             @Override
             public void onResponse(Call<com.example.tienda_op_2.weblogin.modelo.Usuario> call, retrofit2.Response<com.example.tienda_op_2.weblogin.modelo.Usuario> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(SignUp4.this, "Usuario agregado", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(SignUp4.this, "Usuario agregado", Toast.LENGTH_SHORT).show();
 
                     /*GUARDAMOS EL USUARIO EN LA BASE TEMP PARA VALIDAR EL INGRESO A LA APP*/
                     SQLiteOpenHelper bd= new SQLiteOpenHelper(SignUp4.this);
-                    bd.agregarUsuario(txt_usu.getText().toString(), "cliente", txt_contra.getText().toString(), "registrado");
+                    boolean bandera =bd.agregarUsuario(txt_usu.getText().toString(), "cliente", txt_contra.getText().toString(), "registrado");
+                    if(bandera!=false){
+                        Toast.makeText(SignUp4.this, "Usuario agregado", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(SignUp4.this, "Error al agregar usuario 234234", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 
