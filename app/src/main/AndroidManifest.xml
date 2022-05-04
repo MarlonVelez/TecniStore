@@ -10,7 +10,8 @@
             android:label="TecniStore"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/Theme.Tienda_op_2">
+            android:theme="@style/Theme.Tienda_op_2"
+            android:usesCleartextTraffic="true">
         <activity
                 android:name=".AtencionCliente"
                 android:exported="true"/>

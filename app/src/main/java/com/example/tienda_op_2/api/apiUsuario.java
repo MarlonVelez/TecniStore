@@ -31,7 +31,7 @@ public class apiUsuario {
 
     public boolean postDatosVolley2(ArrayList<Usuario> usuario){
 
-        String url="https://tecnistoreaapi.rj.r.appspot.com/usuario/create";
+        String url="http://192.168.18.245:8080/usuario/create";
         RequestQueue queue = Volley.newRequestQueue(contexto);
         StringRequest request = new StringRequest(Request.Method.POST,url, new com.android.volley.Response.Listener<String>(){
             @Override

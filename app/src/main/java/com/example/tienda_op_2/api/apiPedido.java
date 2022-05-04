@@ -24,7 +24,7 @@ import java.util.List;
 
 public class apiPedido {
 
-    public static final String BASE_URL = "https://tecnistoreaapi.rj.r.appspot.com:443/";
+    public static final String BASE_URL = "http://192.168.18.245:8080/";
 
     public static PedidoService getpedidoService(){
         return servicioApi.getRetro(BASE_URL).create(PedidoService.class);

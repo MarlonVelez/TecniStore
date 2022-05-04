@@ -76,7 +76,7 @@ public class Inicio_Login extends AppCompatActivity implements Validacion_user {
 
     private void obtenerDatos(){
 
-        String direccion="https://tecnistoreaapi.rj.r.appspot.com/usuario";
+        String direccion="http://192.168.18.245:8080/usuario";
         JsonArrayRequest jsonArrayRequest= new JsonArrayRequest(direccion, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
