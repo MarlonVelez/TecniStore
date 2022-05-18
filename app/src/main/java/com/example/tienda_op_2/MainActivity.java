@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void getProductos() {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.18.245:8080/")
+                .baseUrl("http://10.0.2.2:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         InterfaceRetro json = retrofit.create(InterfaceRetro.class);
