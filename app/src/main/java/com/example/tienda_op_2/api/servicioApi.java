@@ -42,7 +42,7 @@ public class servicioApi {
     }
 
     public void datosList(RecyclerView recyclerView) {
-        String URL = "http://192.168.18.245:8080/" + endPoint;
+        String URL = "http://10.0.2.2:8080/" + endPoint;
 
         JsonArrayRequest usersJSON = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
             @Override
@@ -76,7 +76,7 @@ public class servicioApi {
 
     public ArrayList<Producto> listarCategorias(RecyclerView recyclerView, int id) {
 
-        String URL = "http://192.168.18.245:8080/producto/categoria/" +id;
+        String URL = "http://10.0.2.2:8080/producto/categoria/" +id;
 
         JsonArrayRequest usersJSON = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
             @Override
@@ -107,7 +107,7 @@ public class servicioApi {
    public void listarClientes() {
 
         System.out.println("liatar clienmtessssssssssssss");
-        String URL = "http://192.168.18.245:8080/cliente";
+        String URL = "http://10.0.2.2:8080/cliente";
 
         JsonArrayRequest usersJSON = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
             @Override
@@ -133,7 +133,7 @@ public class servicioApi {
 
     public void listarPedido() {
 
-        String URL = "http://192.168.18.245:8080/pedido";
+        String URL = "http://10.0.2.2:8080/pedido";
 
         JsonArrayRequest usersJSON = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
             @Override
